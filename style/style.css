@@ -192,7 +192,6 @@ body::-webkit-scrollbar {
             .secondBlock-g {
                 display: flex;
                 flex-direction: column;
-                align-items: center;
             }
 
             img {
@@ -211,10 +210,9 @@ body::-webkit-scrollbar {
             .secondblock-span {
 
                 span {
-                    font-size: 1.2vw;
+                    font-size: 1.6vw;
                     text-overflow: clip;
                     display: grid;
-                    text-align: center;
                 }
             }
         }
@@ -529,59 +527,69 @@ body::-webkit-scrollbar {
             justify-content: center;
         }
 
-        & .btn {
-            --color: white;
-            --color2: rgb(10, 25, 30);
-            padding: 0.8em 1.75em;
-            background-color: #00A97F;
-            border-radius: 6px;
-            border: .3px solid var(--color);
-            transition: .5s;
-            position: relative;
-            overflow: hidden;
+        & button {
+            --primary-color: #627557;
+            --secondary-color: #fff;
+            --hover-color: #414B3B;
+            --arrow-width: 10px;
+            --arrow-stroke: 2px;
+            box-sizing: border-box;
+            border: 0;
+            border-radius: 20px;
+            color: var(--secondary-color);
+            padding: 1em 1.8em;
+            background: var(--primary-color);
+            display: flex;
+            transition: 0.2s background;
+            align-items: center;
+            gap: 0.6em;
+            font-weight: bold;
             cursor: pointer;
-            z-index: 1;
-            color: var(--color);
             margin-bottom: 10px;
-        }
-
-        .btn::after,
-        .btn::before {
-            content: '';
-            display: block;
-            height: 100%;
-            width: 100%;
-            transform: skew(90deg) translate(-50%, -50%);
+            font-family: Montserrat;
+            font-weight: 400;
+          }
+          
+          button .arrow-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          
+          button .arrow {
+            margin-top: 1px;
+            width: var(--arrow-width);
+            background: var(--primary-color);
+            height: var(--arrow-stroke);
+            position: relative;
+            transition: 0.2s;
+          }
+          
+          button .arrow::before {
+            content: "";
+            box-sizing: border-box;
             position: absolute;
-            inset: 50%;
-            left: 25%;
-            z-index: -1;
-            transition: .5s ease-out;
-            background-color: var(--color);
-        }
-
-        .btn::before {
-            top: -50%;
-            left: -25%;
-            transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
-        }
-
-        .btn:hover::before {
-            transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
-        }
-
-        .btn:hover::after {
-            transform: skew(45deg) translate(-50%, -50%);
-        }
-
-        .btn:hover {
-            color: var(--color2);
-        }
-
-        .btn:active {
-            filter: brightness(.7);
-            transform: scale(.98);
-        }
+            border: solid var(--secondary-color);
+            border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+            display: inline-block;
+            top: -3px;
+            right: 3px;
+            transition: 0.2s;
+            padding: 3px;
+            transform: rotate(-45deg);
+          }
+          
+          button:hover {
+            background-color: var(--hover-color);
+          }
+          
+          button:hover .arrow {
+            background: var(--secondary-color);
+          }
+          
+          button:hover .arrow:before {
+            right: 0;
+          }
     }
 
     .projetoItem:nth-of-type(2) .content {
