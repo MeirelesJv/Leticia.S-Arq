@@ -13,3 +13,7 @@ app.use(bodyParser.json());
 
 //Express
 app.listen(8080,()=>{console.log("Rodando!");});
+
+//Rotas
+const login = require("./router/login")
+app.use("/", login);
