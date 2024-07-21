@@ -15,5 +15,5 @@ app.use(bodyParser.json());
 app.listen(8080,()=>{console.log("Rodando!");});
 
 //Rotas
-const login = require("./router/login")
-app.use("/", login);
+const users = require("./router/users")
+app.use("/", users);
