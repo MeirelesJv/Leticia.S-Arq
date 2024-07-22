@@ -52,7 +52,21 @@ body {
             flex-direction: column;
             gap: 10px;
             align-items: center;
+
+            .invalid{
+                color: rgb(255, 55, 55);
+                padding-left: 5px;
+                padding-top: 3px;
+                text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+                font-family: Montserrat;
+                font-weight: 400;
+                font-size: 15px;
+            }
+            .invalid-none{
+                display: none;
+            }
         }
+
         .input-group {
             position: relative;
 
@@ -93,6 +107,8 @@ body {
            .input:focus, input:valid {
             outline: none;
             border: 1.5px solid #414B3B;
+            background: white;
+            color: black;
            }
            
            .input:focus ~ label, input:valid ~ label {
@@ -197,6 +213,19 @@ body {
         display: flex;
         flex-direction: column;
 
+        .invalid{
+            color: rgb(255, 55, 55);
+            padding-left: 5px;
+            padding-top: 3px;
+            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+            font-family: Montserrat;
+            font-weight: 400;
+            font-size: 15px;
+        }
+        .invalid-none{
+            display: none;
+        }
+
         .grid{
             display: flex;
             gap: 10px;
@@ -239,6 +268,8 @@ body {
        .input:focus, input:valid {
         outline: none;
         border: 1.5px solid #414B3B;
+        background: white;
+        color: black;
        }
        
        .input:focus ~ label, input:valid ~ label {

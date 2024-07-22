@@ -44,10 +44,10 @@ router.post("/users/register", async (req,res)=>{
 
                 res.redirect('/');
             }else{
-                return res.status(400).json({message: "Cpf já cadastrado"});
+                return res.status(402).json({message: "Cpf já cadastrado"});
             }
         }else{
-            return res.status(400).json({message: "Email já cadastrado"});
+            return res.status(401).json({message: "Email já cadastrado"});
         }
 
     } catch (error) {
