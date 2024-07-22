@@ -13,20 +13,22 @@
             <h3>Login</h3>
         </div>
         <div class="mid">
-            <form action="" method="post">
+            <form action="/users/login" id="myForm" method="post">
                 <div class="input-group">
-                    <input required="" type="email" name="email" autocomplete="off" class="input">
+                    <input required="" type="email" name="email" id="email" autocomplete="off" class="input">
                     <label class="user-label">Email</label>
                 </div>
                 <div class="input-group" style="display: flex; flex-direction: column;">
-                    <input required="" type="password" name="password" autocomplete="off" class="input">
+                    <input required="" type="password" name="password" id="password" autocomplete="off" class="input">
                     <label class="user-label">Senha</label>
                     <a href="">Esqueci a senha</a>
                 </div>
+                <div class="bottom" id="button" style="padding-bottom: 0px;">
+                    <button>Entrar</button>
+                </div>
             </form>
         </div>
-        <div class="bottom">
-            <button>Enviar</button>
+        <div class="bottom" style="padding-top: 0px;">
             <div class="solid"></div>
             <div class="bottom-bot">
                 <a href="/register"><button style="font-size: 12px; height: 2rem; padding: 0 2rem;">Cadastrar-se</button></a>
@@ -34,4 +36,9 @@
         </div>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script src="script/login.js"></script>
+
+<!-- <script src="../../style/script/login.js"></script> -->
 </html>

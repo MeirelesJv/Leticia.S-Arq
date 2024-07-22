@@ -12,18 +12,18 @@
     
     function limpa_formulário_cep() {
             //Limpa valores do formulário de cep.
-            document.getElementById('rua').value=("");
-            document.getElementById('bairro').value=("");
-            document.getElementById('cidade').value=("");
+            document.getElementById('road').value=("");
+            document.getElementById('neighborhood').value=("");
+            document.getElementById('city').value=("");
             document.getElementById('uf').value=("");
     }
 
     function meu_callback(conteudo) {
         if (!("erro" in conteudo)) {
             //Atualiza os campos com os valores.
-            document.getElementById('rua').value=(conteudo.logradouro);
-            document.getElementById('bairro').value=(conteudo.bairro);
-            document.getElementById('cidade').value=(conteudo.localidade);
+            document.getElementById('road').value=(conteudo.logradouro);
+            document.getElementById('neighborhood').value=(conteudo.bairro);
+            document.getElementById('city').value=(conteudo.localidade);
             document.getElementById('uf').value=(conteudo.uf);
         } //end if.
         else {
@@ -48,9 +48,9 @@
             if(validacep.test(cep)) {
 
                 //Preenche os campos com "..." enquanto consulta webservice.
-                document.getElementById('rua').value="...";
-                document.getElementById('bairro').value="...";
-                document.getElementById('cidade').value="...";
+                document.getElementById('road').value="...";
+                document.getElementById('neighborhood').value="...";
+                document.getElementById('city').value="...";
                 document.getElementById('uf').value="...";
 
                 //Cria um elemento javascript.
@@ -83,7 +83,7 @@
             <h3>Cadastro</h3>
         </div>
         <div class="formulario">
-            <form action="a" method="post">
+            <form action="/users/register" method="post">
                     <div class="grid">
                         <div class="input-group">
                             <input required type="text" name="name" id="name" autocomplete="off" class="input">
@@ -109,7 +109,7 @@
                             <input required type="date" name="birth" id="birth" autocomplete="off" class="input">
                         </div>
                         <div class="input-group">
-                            <input required type="tel" name="telefone" id="tel" maxlength="11" autocomplete="off" class="input">
+                            <input required type="tel" name="tel" id="tel" maxlength="11" autocomplete="off" class="input">
                             <label class="user-label">Telefone</label>
                         </div>
                     </div>
@@ -125,17 +125,17 @@
                     </div> 
                     <div class="grid">
                         <div class="input-group">
-                            <input required type="text" name="rua" id="rua" class="input">
+                            <input required type="text" name="road" id="road" class="input">
                             <label class="user-label">Rua</label>
                         </div>
                         <div class="input-group">
-                            <input required type="text" name="bairro" id="bairro" class="input">
+                            <input required type="text" name="neighborhood" id="neighborhood" class="input">
                             <label class="user-label">Bairro</label>
                         </div>
                     </div>
                     <div class="grid">
                         <div class="input-group">
-                            <input required type="text" name="cidade" id="cidade"  class="input">
+                            <input required type="text" name="city" id="city"  class="input">
                             <label class="user-label">Cidade</label>
                         </div>
                         <div class="input-group">
