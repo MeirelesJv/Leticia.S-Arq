@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const connection = require("./database/database");
 const session = require("express-session");
+const jwt = require("jsonwebtoken");
 
 app.use(express.static('style'));
 
