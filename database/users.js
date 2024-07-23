@@ -12,11 +12,13 @@ const Users = connection.define('Users',{
     },
     Email:{
         type: sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     Cpf:{
         type: sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     Birth:{
         type: sequelize.DATEONLY,
