@@ -28,8 +28,8 @@ app.get("/", (req,res)=> {
 
 //Rotas
 const users = require("./router/users")
-const freelancerHome = require('./router/freelancerHome')
-app.use("/", users,freelancerHome);
+const freelancerHome = require('./router/freelancer/home')
+app.use("/", users,freelancerHome,);
 
 connection.authenticate().then(() =>{
     console.log("Banco conectado!");

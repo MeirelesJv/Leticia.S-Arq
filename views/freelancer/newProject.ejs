@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/freelancer/newProject.css">
+    <link rel="icon" href="Portfolio/0. Logo.png">
+    <title>Novo Projeto</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="left">
+            <img src="Portfolio/0. Logo.png" alt="">
+            <div class="center">
+                <p>Leticia S.</p>
+                <p>Arquitetura</p>
+            </div>
+        </div>
+        <div class="rigth">
+            <div class="user">
+                <div class="name">
+                    <p>João Vitor</p>
+                    <p>Meireles</p>
+                </div>
+                <ion-icon style="font-size: 40px;" name="person-circle-outline"></ion-icon>
+            </div>
+            <div class="rightSecond">
+                <a href="/logout"><ion-icon style="font-size: 20px;" name="log-out-outline"></ion-icon></a>
+            </div>
+            
+        </div>
+    </div>
+    <div class="container">
+        <div class="box">
+            <div class="title">
+                <h2>Explique como deseja o projeto</h2>
+            </div>
+            <div class="form">
+                <form action="/teste/te" method="post" enctype="multipart/form-data">
+                    <!-- <div class="service title-project">
+                        <label class="label">Titulo do Projeto</label>
+                        <input autocomplete="off" name="title" id="title" class="input" type="text">
+                    </div>
+                    <div class="service types">
+                        <label class="label">Escolha o tipo do Projeto</label>
+                        <select name="" id="">
+                            <option value="">teste</option>
+                            <option value="">aa</option>
+                        </select>
+                        <label class="description">bla bla bla bla bla</label>
+                    </div> -->
+                    <div class="service files">
+                        <label class="label">Anexar arquivos</label>
+                        <input type="file" class="input-file" id="files" name="files">
+                        <label class="description">Arquivos necessarios:</label>
+                        <input type="text" name="ad" id="ad">
+                    </div>
+                    <!-- <div class="service reference">
+                        <label class="label">Referencias para o Projeto</label>
+                        <input type="file" class="input-file" id="files-reference" name="files-reference">
+                        <input autocomplete="off" name="reference" id="reference" class="input" type="text">
+                    </div>      -->
+                    <div class="homeBlock-button">
+                        <button>Enviar</button>
+                    </div>              
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</html>

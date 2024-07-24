@@ -4,21 +4,22 @@ const users = require("../database/users");
 const bcrypt = require("bcryptjs");
 const passwordRecover = require("../database/passwordReset");
 const envioEmail = require("./Email/email");
-const {  v4 : uuidv4  } = require("uuid")
+const {  v4 : uuidv4  } = require("uuid");
+const userOn = require("../middleware/userOn");
 
-router.get("/login",(req,res)=>{
+router.get("/login",userOn, (req,res)=>{
     res.render("users/login")
 });
 
-router.get("/register", (req,res)=>{
+router.get("/register",userOn ,(req,res)=>{
     res.render("users/register")
 });
 
-router.get("/recover/email", (req,res)=>{
+router.get("/recover/email",userOn, (req,res)=>{
     res.render("users/recoverEmail")
 });
 
-router.get("/login/recover",(req,res)=>{
+router.get("/login/recover",userOn, (req,res)=>{
     res.render("users/recover")
 });
 
@@ -127,7 +128,6 @@ router.post("/users/recover", async (req,res)=>{
     const tokenValid = await passwordRecover.findOne({where: {Token: token}})
     if(tokenValid != undefined){
         var email = tokenValid.dataValues.Email
-        var tokenUser = tokenValid.dataValues.Token
         if(tokenValid.dataValues.Use === '0'){
             const salt = bcrypt.genSaltSync(10);
             const hash = bcrypt.hashSync(password, salt);
@@ -139,7 +139,7 @@ router.post("/users/recover", async (req,res)=>{
             })
             await passwordRecover.update({Use: '1'},{
                 where: {
-                    Token: tokenUser
+                    Token: token
                 }
             })
 

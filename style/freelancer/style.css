@@ -4,7 +4,6 @@
     font-display: swap;
 }
 
-
 * {
     margin: 0;
     padding: 0;
@@ -23,13 +22,14 @@ a {
     flex-direction: column;
     background-color: #d8bf9f;
 }
+
 .block-top{
-    height: 15%;
+    height: 10%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 40px 0px 40px;
-
+    padding: 0px 200px 0px 200px;
+    border-bottom: 1px #e2e2e2 solid;
     
     .left {
         display: flex;
@@ -70,11 +70,12 @@ a {
 
 .block-bot{
     height: 85%;
-    padding-top: 50px;
+    padding: 50px 200px 0px 200px;
+
     .bot-top{
         display: flex;
         justify-content: space-between;
-        padding: 0 50px 0 50px;
+        align-items: center;
     }
     .newProject{
         .button {
@@ -122,5 +123,23 @@ a {
             left: -100px;
             opacity: 0.6;
           }
+    }
+}
+
+.projects {
+    padding-top: 50px;
+
+    .box{
+        border: 1px #e2e2e2 solid;
+        border-radius: 9999px;
+
+        .box-content{
+            padding: 20px 50px 20px 50px;
+
+            .box-header{
+                display: flex;
+                justify-content: space-between;
+            }
+        }
     }
 }
