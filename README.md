@@ -18,6 +18,7 @@
 
 - [Sobre](#about)
 - [Recursos](#features)
+- [Dependencias](#Dependencias)
 
 ## <a name="about"> Sobre
 
@@ -33,3 +34,17 @@ de projetos Freelances
 - Abertura e acompanhamento de serviços Freelancers
   - NodeJs
   - 
+
+## <a name="Dependencias"> Dependencias
+
+- Axios
+- Bcryptjs
+- Body-Parser
+- Cors
+- Ejs
+- Express
+- Jsonwebtoken
+- Nodemailer
+- Sequelize
+- Tedious
+- Uuid
