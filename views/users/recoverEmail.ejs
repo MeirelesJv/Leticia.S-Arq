@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">  
+    <link rel="icon" href="Portfolio/0. Logo.png">
+    <link rel="stylesheet" href="/users.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha</title>
+</head>
+<body>
+    <div class="container" style="justify-content: center;">
+        <div class="top">
+            <h3 style="font-size: 2rem;">Recuperar Senha</h3>
+        </div>
+        <div class="mid">
+            <form action="" id="myForm" method="post">
+                <div class="input-group">
+                    <input required="" type="text" name="email" id="email" autocomplete="off" class="input">
+                    <label class="user-label">Email do cadastro</label>
+                    <p class="invalid invalid-none" id="errorInvalid">Email não encontrado!</p>
+                </div>
+                <div class="bottom" id="button" style="padding-bottom: 0px;">
+                    <button>Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+const form = document.getElementById('myForm');
+const input = document.getElementById('errorInvalid')
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault()
+
+  const formData = {
+    email: document.getElementById('email').value,
+  };
+
+  try {
+    const response = await axios.post('/users/recover/email', formData);
+    console.log(response)
+    window.location = '/login/recover';
+  } catch (error) {
+    invalidateElem(input);
+  }
+});
+
+function invalidateElem(id) {
+  id.classList.remove('invalid-none')
+}
+
+</script>
+</html>
