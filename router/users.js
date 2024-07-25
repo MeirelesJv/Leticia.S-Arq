@@ -6,6 +6,9 @@ const passwordRecover = require("../database/passwordReset");
 const envioEmail = require("./Email/email");
 const {  v4 : uuidv4  } = require("uuid");
 const userOn = require("../middleware/userOn");
+const jwt = require("jsonwebtoken");
+
+const JWTSecret = 'bamlrçdkgmnaerçnoht'
 
 router.get("/login",userOn, (req,res)=>{
     res.render("users/login")
@@ -79,17 +82,36 @@ router.post("/users/login", async (req,res)=>{
         if(user != undefined){
             var correct = bcrypt.compareSync(password, user.Password);
             if(correct){
-                req.session.user = {
-                    id: user.id,
-                    email: user.Email
+                
+                try {
+                    var token = jwt.sign({ id: users.id,email: users.Email,type: users.Type }, JWTSecret, { expiresIn: '1h' });
+                    res.status(200);
+                    res.json({token: token})
+                } catch (error) {
+                    res.status(400);
+                    res.json({message: "Falha interna"})
                 }
+                // jwt.sign({id: users.id,email: users.Email,type: users.Type},JWTSecret,{expiresIn: '120h'},(err, token)=>{
+                //     if(err){
+                        // res.status(400);
+                        // res.json({message: "Falha interna"})
+                        // var decoded = jwt.verify(token, JWTSecret);
+                        // console.log(token)
+                        // console.log(decoded)
+                //     }else{
+                //         res.status(200);
+                //         res.json({token: token})
+                //         console.log(token)
+                //     }
+                // });
+
                 //res.json(req.session.user);
-                 res.redirect("/home")
+                //  res.redirect("/home")
             }else{
-                return res.status(400).json({message: "Email já cadastrado"});
+                return res.status(400).json({message: "Email ou Senha incompativeis"});
             }
         }else{
-            return res.status(400).json({message: "Email já cadastrado"});
+            return res.status(400).json({message: "Email ou Senha incompativeis"});
         }
     })
 

@@ -157,7 +157,6 @@ form.addEventListener('submit', async (event) => {
   });
 
   function invalidateElem(data) {
-    console.log("aqui" + data)
     if(data == "Email já cadastrado"){
         email.classList.remove('invalid-none')
     }else if(data == "Cpf já cadastrado"){

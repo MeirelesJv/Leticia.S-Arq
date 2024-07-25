@@ -1,44 +1,44 @@
 const sequelize = require("sequelize");
 const connection = require("./database");
+const users = require("./users");
 
-const Project = connection.define('Project',{
-    User_id:{
-        type: sequelize.STRING,
-        allowNull: false
-    },
-    Approval:{
+const Project = connection.define('Project', {
+    Approval: {
         type: sequelize.BIGINT,
         allowNull: false
     },
-    Name:{
+    Name: {
         type: sequelize.STRING,
         allowNull: false
     },
-    Service:{
+    Service: {
         type: sequelize.BIGINT,
         allowNull: false
     },
-    Obs:{
+    Obs: {
         type: sequelize.STRING,
         allowNull: false
     },
-    ArchitecturalProject:{
+    ArchitecturalProject: {
         type: sequelize.STRING,
         allowNull: true
     },
-    Mockup:{
+    Mockup: {
         type: sequelize.STRING,
         allowNull: true
     },
-    NeedProgram:{
+    NeedProgram: {
         type: sequelize.STRING,
         allowNull: true
     },
-    Status:{
+    Status: {
         type: sequelize.BIGINT,
         allowNull: false
     }
 })
 
-Project.sync({force: false}).then(()=>{});
+users.hasMany(Project);
+Project.belongsTo(users);
+
+Project.sync({ force: false }).then(() => { });
 module.exports = Project;

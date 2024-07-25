@@ -3,7 +3,6 @@ const app = express();
 const bodyParser = require("body-parser");
 const connection = require("./database/database");
 const session = require("express-session");
-const jwt = require("jsonwebtoken");
 
 app.use(express.static('style'));
 
@@ -18,6 +17,7 @@ app.use(bodyParser.json());
 app.use(session({
     secret: "imrpivarv4094cl", cookie:{maxAge: null}
 }))
+
 
 //Express
 app.listen(8080,()=>{console.log("Rodando!");});

@@ -43,6 +43,12 @@
 const form = document.getElementById('myForm');
 const input = document.getElementById('errorInvalid')
 
+var axiosConfig = {
+    headers: {
+        Authorization: "Bearer " + localStorage.getItem("token")
+    }
+}
+
 form.addEventListener('submit', async (event) => {
     
   event.preventDefault()
@@ -53,7 +59,10 @@ form.addEventListener('submit', async (event) => {
 
   try {
     const response = await axios.post('/users/login', formData);
-        window.location = '/home';
+    var token = response.data.token
+    localStorage.setItem("token", token);
+    axiosConfig.headers.Authorization = "Bearer " + localStorage.getItem("token")
+    window.location = '/home';
   } catch (error) {
     invalidateElem(input);
   }

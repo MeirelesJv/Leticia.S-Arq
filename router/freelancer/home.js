@@ -1,37 +1,25 @@
 const express = require("express");
 const router = express.Router();
 const loginAuth = require("../../middleware/loginAuth");
-// const uploadMiddleware = require("../../middleware/multer")
-const multer = require('multer')
-const path = require('path')
+const projectBase = require("../../database/project");
+const references = require("../../database/references");
+const uploadMiddleware = require("../../middleware/multer");
+const authJWT = require("../../middleware/authJwt")
 
 
 
-router.get("/home",loginAuth, (req,res)=>{
+router.get("/home",authJWT, (req,res)=>{
     res.render("freelancer/home")
 });
 
 router.get("/new/project", (req,res)=>{
     res.render("freelancer/newProject")
-})
+});
 
-
-const storage = multer.diskStorage({
-    destination: function(req, file, cb){
-        cb(null, "uploads/");
-    },
-    filename: function(req, file, cb){
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
-})
-
-const upload = multer({storage})
-
-router.post("/teste/te",upload.fields([{name: 'files',maxCount: 1},{name: 'filesReference',maxCount: 1}]), (req,res)=>{
+router.post("/project",uploadMiddleware.fields([{name: 'files',maxCount: 1},{name: 'filesReference',maxCount: 1}]), (req,res)=>{
     let{title,serviceSelect,textarea} = req.body
-
-    console.log(req.files)
-    res.send("BOA")
-})
+    console.log(req.session)
+    
+});
 
 module.exports = router;

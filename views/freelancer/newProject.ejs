@@ -36,7 +36,7 @@
                 <h2>Novo projeto</h2>
             </div>
             <div class="form">
-                <form action="/teste/te" method="post" enctype="multipart/form-data">
+                <form action="/project" id="formProject" method="post" enctype="multipart/form-data">
                     <div class="service title-project">
                         <label class="label">Comodo / Local do Projeto</label>
                         <input autocomplete="off" required="" name="title" id="title" class="input" type="text">
@@ -62,8 +62,9 @@
                             </svg>
                             <span>ADD FILE</span> 
                             </label>
-                            <input type="file" class="input-file" id="files" name="files">
+                            <input onchange="FileName(this)" type="file" class="input-file" id="files" name="files">
                         </div>
+                        <div id="Filename"></div>
                         <p class="description" id="descriptionFile">Arquivos necessario: </p>
                     </div>
                     <div class="service reference">
@@ -76,14 +77,15 @@
                             </svg>
                             ADD FILE 
                             </label>
-                            <input required type="file" class="input-file" id="filesReference" name="filesReference">
+                            <input accept="image/*" required onchange="showFileName(this)" type="file" class="input-file" id="filesReference" name="filesReference">
                         </div>
+                        <div id="descriptionFilename"></div>
                         <p class="description" id="description-file">Encaminhe no maximo 3 fotos para ser usada como referência</p>
                     </div> 
                     <div class="service">
                         <label class="label">Programa de necessidade</label>
-                        <textarea class="input textarea" name="textarea" id="textarea" rows="10" cols="50" required=""></textarea>
                         <p class="description" id="description-file">Descreva ai vai</p>
+                        <textarea class="input textarea" name="textarea" id="textarea" rows="10" cols="50" required=""></textarea>
                     </div> 
                     <div class="homeBlock-button">
                         <button class="btn">Enviar</button>

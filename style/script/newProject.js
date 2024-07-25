@@ -1,3 +1,4 @@
+const { Token } = require("tedious/lib/token/token");
 
 //select
 const selectElement = document.getElementById('serviceSelect');
@@ -5,7 +6,10 @@ const resultadoElement = document.getElementById('description');
 const fileElement = document.getElementById('titleFile');
 const fileDescription = document.getElementById('descriptionFile');
 const filesDiv = document.getElementById('filesDiv');
-const inputFile = document.getElementById('files')
+const inputFile = document.getElementById('files');
+const inputDescription = document.getElementById('filesReference');
+const nameDescription = document.getElementById('descriptionFilename');
+const form = document.getElementById('formProject');
 
 const opcoes = {
     option1: 'Projeto de interiores é uma área da arquitetura que se dedica a planejar e organizar espaços internos, buscando a funcionalidade, estética e o bem-estar dos usuários',
@@ -35,14 +39,77 @@ selectElement.addEventListener('change', function () {
     // Atualiza o texto do parágrafo
     resultadoElement.textContent = opcoes[valorSelecionado];
 
-    if(valorSelecionado != 'option1'){
+    if (valorSelecionado != 'option1') {
         fileDescription.textContent = opcoesFile[valorSelecionado];
         fileElement.textContent = opcoesName[valorSelecionado];
         filesDiv.classList.remove('files-none');
         inputFile.setAttribute('required');
-    }else {
+    } else {
         filesDiv.classList.add('files-none');
         inputFile.removeAttribute('required');
     }
 
 });
+
+//Mostrar o nome do arquivo
+
+function showFileName(input) {
+    if (input.files && input.files[0]) {
+        var fileName = input.files[0].name;
+        document.getElementById('descriptionFilename').textContent = fileName;
+    } else {
+        document.getElementById('descriptionFilename').textContent = 'Nenhum arquivo selecionado';
+    }
+}
+
+function FileName(input) {
+    if (input.files && input.files[0]) {
+        var fileName = input.files[0].name;
+        document.getElementById('Filename').textContent = fileName;
+    } else {
+        document.getElementById('Filename').textContent = 'Nenhum arquivo selecionado';
+    }
+}
+
+
+//Axios
+const axiosConfig = {
+    headers: {
+        Autorization: "Bearer " + localStorage.getItem("token")
+    }
+}
+
+let isValidForm = false
+
+form.addEventListener('submit', async (event) => {
+    event.preventDefault()
+
+    const formData = {
+        title: document.getElementById('title').value,
+        serviceSelect: document.getElementById('serviceSelect').value,
+        textarea: document.getElementById('textarea').value,
+        files: document.getElementById('files').value,
+        filesReference: document.getElementById('filesReference').value,
+    }
+
+    try {
+        const response = await axios.post('/project', formData,axiosConfig);
+        console.log("teste 1")
+        window.location = '/home';
+    } catch (error) {
+        var data = error.response.data.message
+        invalidateElem(data);
+    }
+
+
+});
+
+function invalidateElem(data) {
+    if (data == "Email já cadastrado") {
+        email.classList.remove('invalid-none')
+    } else if (data == "Cpf já cadastrado") {
+        cpf.classList.remove('invalid-none')
+    } else {
+        serv.classList.remove('invalid-none')
+    }
+}
