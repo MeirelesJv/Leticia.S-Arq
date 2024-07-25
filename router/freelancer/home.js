@@ -28,8 +28,10 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage})
 
-router.post("/teste/te",upload.single("files"), (req,res)=>{
-   res.send("boa") 
+router.post("/teste/te",upload.fields([{name: 'files',maxCount: 1},{name: 'filesReference',maxCount: 1}]), (req,res)=>{
+    let{}
+   console.log(req.files)
+   res.send("BOA")
 })
 
 module.exports = router;

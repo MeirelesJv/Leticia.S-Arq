@@ -1,9 +1,9 @@
 
 //select
-const selectElement = document.getElementById('service-select');
+const selectElement = document.getElementById('serviceSelect');
 const resultadoElement = document.getElementById('description');
-const fileElement = document.getElementById('title-file');
-const fileDescription = document.getElementById('description-file');
+const fileElement = document.getElementById('titleFile');
+const fileDescription = document.getElementById('descriptionFile');
 const filesDiv = document.getElementById('filesDiv');
 const inputFile = document.getElementById('files')
 
@@ -38,8 +38,8 @@ selectElement.addEventListener('change', function () {
     if(valorSelecionado != 'option1'){
         fileDescription.textContent = opcoesFile[valorSelecionado];
         fileElement.textContent = opcoesName[valorSelecionado];
-        inputFile.setAttribute('required')
         filesDiv.classList.remove('files-none');
+        inputFile.setAttribute('required');
     }else {
         filesDiv.classList.add('files-none');
         inputFile.removeAttribute('required');
