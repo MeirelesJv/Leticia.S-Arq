@@ -21,17 +21,17 @@ const storage = multer.diskStorage({
         cb(null, "uploads/");
     },
     filename: function(req, file, cb){
-        const fileName = req.body.ad;
-        cb(null, fileName + '-' + Date.now() + path.extname(file.originalname));
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 })
 
 const upload = multer({storage})
 
 router.post("/teste/te",upload.fields([{name: 'files',maxCount: 1},{name: 'filesReference',maxCount: 1}]), (req,res)=>{
-    let{}
-   console.log(req.files)
-   res.send("BOA")
+    let{title,serviceSelect,textarea} = req.body
+
+    console.log(req.files)
+    res.send("BOA")
 })
 
 module.exports = router;
