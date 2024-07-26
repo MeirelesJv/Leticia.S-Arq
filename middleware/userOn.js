@@ -1,5 +1,5 @@
 function userOn(req,res,next){
-    if(req.session.user == undefined){
+    if(req.session.token == undefined){
         next();
     }else{
         res.redirect("/home");

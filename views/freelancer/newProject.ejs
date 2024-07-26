@@ -37,14 +37,14 @@
             </div>
             <div class="form">
                 <form action="/project" id="formProject" method="post" enctype="multipart/form-data">
-                    <div class="service title-project">
+                    <!-- <div class="service title-project">
                         <label class="label">Comodo / Local do Projeto</label>
                         <input autocomplete="off" required="" name="title" id="title" class="input" type="text">
                         <label class="description">Apenas o nome do comodo para usarmos como referencia </label>
-                    </div>
+                    </div> -->
                     <div class="service types">
                         <label class="label">Escolha o tipo do Projeto</label>
-                        <select name="serviceSelect" id="serviceSelect">
+                        <select class="" name="serviceSelect" id="serviceSelect">
                             <option value="option1">Projeto de Interiores</option>
                             <option value="option2">Modelagem 3d</option>
                             <option value="option3">Renderização</option>
@@ -52,7 +52,7 @@
                         </select>
                         <p class="description" id="description">Projeto de interiores é uma área da arquitetura que se dedica a planejar e organizar espaços internos, buscando a funcionalidade, estética e o bem-estar dos usuários</p>
                     </div>
-                    <div id="filesDiv" class=" files">
+                    <!-- <div id="filesDiv" class="files-none files">
                         <label class="label" id="titleFile">Anexar arquivos necessarios para </label>
                         <div class="">
                             <label class="lalabel" for="files">
@@ -80,13 +80,13 @@
                             <input accept="image/*" required onchange="showFileName(this)" type="file" class="input-file" id="filesReference" name="filesReference">
                         </div>
                         <div id="descriptionFilename"></div>
-                        <p class="description" id="description-file">Encaminhe no maximo 3 fotos para ser usada como referência</p>
+                        <p class="description" id="description-file">Encaminhe uma foto para ser usada como referência para o projeto</p>
                     </div> 
                     <div class="service">
                         <label class="label">Programa de necessidade</label>
                         <p class="description" id="description-file">Descreva ai vai</p>
                         <textarea class="input textarea" name="textarea" id="textarea" rows="10" cols="50" required=""></textarea>
-                    </div> 
+                    </div>  -->
                     <div class="homeBlock-button">
                         <button class="btn">Enviar</button>
                     </div>              

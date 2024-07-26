@@ -1,5 +1,3 @@
-const { Token } = require("tedious/lib/token/token");
-
 //select
 const selectElement = document.getElementById('serviceSelect');
 const resultadoElement = document.getElementById('description');
@@ -35,7 +33,6 @@ const opcoesName = {
 selectElement.addEventListener('change', function () {
     // Obtém o valor selecionado
     const valorSelecionado = selectElement.value;
-
     // Atualiza o texto do parágrafo
     resultadoElement.textContent = opcoes[valorSelecionado];
 
@@ -73,11 +70,11 @@ function FileName(input) {
 
 
 //Axios
-const axiosConfig = {
-    headers: {
-        Autorization: "Bearer " + localStorage.getItem("token")
-    }
-}
+// const axiosConfig = {
+//     headers: {
+//         Autorization: "Bearer " + localStorage.getItem("token")
+//     }
+// // }
 
 let isValidForm = false
 
@@ -85,31 +82,19 @@ form.addEventListener('submit', async (event) => {
     event.preventDefault()
 
     const formData = {
-        title: document.getElementById('title').value,
-        serviceSelect: document.getElementById('serviceSelect').value,
-        textarea: document.getElementById('textarea').value,
-        files: document.getElementById('files').value,
-        filesReference: document.getElementById('filesReference').value,
+        // title: document.getElementById('title').value,
+        serviceSelect: selectElement,
+        // textarea: document.getElementById('textarea').value,
+        // files: document.getElementById('files').value,
+        // filesReference: document.getElementById('filesReference').value,
     }
 
     try {
-        const response = await axios.post('/project', formData,axiosConfig);
-        console.log("teste 1")
+        const response = await axios.post('/project', formData);
         window.location = '/home';
     } catch (error) {
-        var data = error.response.data.message
-        invalidateElem(data);
+        console.log(error)
     }
 
 
 });
-
-function invalidateElem(data) {
-    if (data == "Email já cadastrado") {
-        email.classList.remove('invalid-none')
-    } else if (data == "Cpf já cadastrado") {
-        cpf.classList.remove('invalid-none')
-    } else {
-        serv.classList.remove('invalid-none')
-    }
-}

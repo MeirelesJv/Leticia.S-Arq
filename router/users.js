@@ -11,10 +11,10 @@ const jwt = require("jsonwebtoken");
 const JWTSecret = 'bamlrçdkgmnaerçnoht'
 
 router.get("/login",userOn, (req,res)=>{
-    res.render("users/login")
+    res.render("users/login");
 });
 
-router.get("/register",userOn ,(req,res)=>{
+router.get("/register",userOn, (req,res)=>{
     res.render("users/register")
 });
 
@@ -27,7 +27,7 @@ router.get("/login/recover",userOn, (req,res)=>{
 });
 
 router.get("/logout",(req,res) =>{
-    req.session.user = undefined;
+    req.session.token = undefined;
     res.redirect("/");
 });
 
@@ -82,9 +82,9 @@ router.post("/users/login", async (req,res)=>{
         if(user != undefined){
             var correct = bcrypt.compareSync(password, user.Password);
             if(correct){
-                
                 try {
                     var token = jwt.sign({ id: users.id,email: users.Email,type: users.Type }, JWTSecret, { expiresIn: '1h' });
+                    req.session.tokenn = token
                     res.status(200);
                     res.json({token: token})
                 } catch (error) {
