@@ -212,7 +212,6 @@ body {
         gap: 20px;
         display: flex;
         flex-direction: column;
-
         .invalid{
             color: rgb(255, 55, 55);
             padding-left: 5px;

@@ -12,22 +12,18 @@ const Project = connection.define('Project', {
         allowNull: false
     },
     Service: {
-        type: sequelize.BIGINT,
+        type: sequelize.STRING,
         allowNull: false
     },
     Obs: {
         type: sequelize.STRING,
         allowNull: false
     },
-    ArchitecturalProject: {
+    File: {
         type: sequelize.STRING,
         allowNull: true
     },
-    Mockup: {
-        type: sequelize.STRING,
-        allowNull: true
-    },
-    NeedProgram: {
+    FileRoute: {
         type: sequelize.STRING,
         allowNull: true
     },

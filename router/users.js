@@ -83,7 +83,7 @@ router.post("/users/login", async (req,res)=>{
             var correct = bcrypt.compareSync(password, user.Password);
             if(correct){
                 try {
-                    var token = jwt.sign({ id: users.id,email: users.Email,type: users.Type }, JWTSecret, { expiresIn: '1h' });
+                    var token = jwt.sign({ id: user.id,email: user.Email,type: user.Type }, JWTSecret, { expiresIn: '1h' });
                     req.session.tokenn = token
                     res.status(200);
                     res.json({token: token})
