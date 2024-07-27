@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="Portfolio/0. Logo.png">
+    <link rel="stylesheet" href="users.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+</head>
+
+<body>
+    <div class="container-register">
+        <div class="top-register">
+            <h3>Cadastro</h3>
+        </div>
+        <div class="formulario">
+            <form action="/users/register" id="registerForm" method="post">
+                    <div class="grid">
+                        <div class="input-group">
+                            <input required type="text" name="name" id="name" autocomplete="off" class="input">
+                            <label class="user-label">Nome</label>
+                        </div>
+                        <div class="input-group">
+                            <input required type="text" name="surname" id="surname" autocomplete="off" class="input">
+                            <label class="user-label">Sobrenome</label>
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="input-group">
+                            <input required type="text" name="email" id="email" autocomplete="off" class="input">
+                            <label class="user-label">Email</label>
+                            <p class="invalid invalid-none" id="emailAlert">Email já cadastrado!</p>
+                            <p class="invalid invalid-none" id="emailInvalid">Email Invalido!</p>
+                        </div>
+                        <div class="input-group">
+                            <input required type="text" name="cpf" id="cpf"  oninput="mascara(this)" class="input">
+                            <label class="user-label">Cpf</label>
+                            <p class="invalid invalid-none" id="cpfAlert">Cpf já cadastrado!</p>
+                            <p class="invalid invalid-none" id="cpfInvalid">Cpf Invalido!</p>
+                        </div>
+                    </div>
+                    <div class="grid" style="justify-content: space-between;">
+                        <div class="input-group">
+                            <input required type="date" name="birth" id="birth" autocomplete="off" class="input">
+                        </div>
+                        <div class="input-group">
+                            <input required type="tel" name="tel" id="tel" maxlength="11" autocomplete="off" class="input">
+                            <label class="user-label">Telefone</label>
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="input-group">
+                            <input required type="password" name="password" id="password" autocomplete="off" class="input">
+                            <label class="user-label">Senha</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" name="cep" id="cep" value=""  maxlength="9" onblur="pesquisacep(this.value);" required class="input">
+                            <label class="user-label">Cep</label>
+                        </div>
+                    </div> 
+                    <div class="grid">
+                        <div class="input-group">
+                            <input required type="text" name="road" id="road" class="input">
+                            <label class="user-label">Rua</label>
+                        </div>
+                        <div class="input-group">
+                            <input required type="text" name="neighborhood" id="neighborhood" class="input">
+                            <label class="user-label">Bairro</label>
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="input-group">
+                            <input required type="text" name="city" id="city"  class="input">
+                            <label class="user-label">Cidade</label>
+                        </div>
+                        <div class="input-group">
+                            <input required type="text" name="uf" id="uf" class="input">
+                            <label class="user-label">Uf</label>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <button>Enviar</button>
+                    </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="script/register.js"></script>
+</html>

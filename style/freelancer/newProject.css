@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&display=swap');
+
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #d8bf9f;
+    display: block;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.navbar {
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 200px 0px 200px;
+    border-bottom: 1px #e2e2e2 solid;
+
+    .left {
+        display: flex;
+
+        img {
+            width: 50px;
+        }
+    }
+
+    .center {
+        color: white;
+        font-family: Higuen\ Regular;
+        font-weight: 400;
+        font-size: 20px;
+        text-shadow: 0 3px 8px rgba(0, 0, 0, 0);
+    }
+
+    .rigth {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .rightSecond {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+    }
+}
+
+.box {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    font-family: "Sorts Mill Goudy", serif;
+
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+
+    .files-none {
+        display: none;
+    }
+
+    .service {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+.label {
+    display: block;
+    margin-bottom: .3rem;
+    font-size: .9rem;
+    font-weight: bold;
+}
+
+.description {
+    padding-top: 1em;
+    display: block;
+    color: #333232;
+    font-size: 0.875rem;
+}
+
+.input-group {
+    position: relative;
+
+    a {
+        color: white;
+        margin-top: 5px;
+        font-size: 13px;
+        padding-left: 3px;
+    }
+}
+
+.input {
+    border: solid 1.5px white;
+    border-radius: 1rem;
+    background: none;
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: white;
+    color: black;
+    transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input:focus,
+input:valid {
+    outline: none;
+    border: 1.5px solid white;
+    background: white;
+    color: black;
+}
+
+select {
+    border: solid 1.5px white;
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 1rem;
+    color: black;
+    background: white;
+}
+
+select:focus,
+input:valid {
+    outline: none;
+    border: 1.5px solid white;
+    background: white;
+    color: black;
+}
+
+.lalabel {
+    border: none;
+    display: flex;
+    padding: 0.75rem 1.5rem;
+    background-color: #488aec;
+    color: #ffffff;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    align-items: center;
+    border-radius: 0.5rem;
+    user-select: none;
+    gap: 0.75rem;
+    box-shadow: 0 4px 6px -1px #488aec31, 0 2px 4px -1px #488aec17;
+    transition: all .6s ease;
+    cursor: pointer;
+    width: 80px;
+    width: 100px;
+    height: 20px;
+}
+
+.lalabel:hover {
+    box-shadow: 0 10px 15px -3px #488aec4f, 0 4px 6px -2px #488aec17;
+}
+
+.lalabel:focus,
+.lalabel:active {
+    opacity: .85;
+    box-shadow: none;
+}
+
+.lalabel svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.textarea {
+    resize: none;
+}
+
+button {
+    padding: 1.3em 3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #23c483;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+.homeBlock-button {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: end;
+}

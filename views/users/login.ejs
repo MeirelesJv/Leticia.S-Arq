@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">  
+    <link rel="icon" href="Portfolio/0. Logo.png">
+    <link rel="stylesheet" href="users.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="top">
+            <h3>Login</h3>
+        </div>
+        <div class="mid">
+            <form action="/users/login" id="myForm" method="post">
+                <div class="input-group">
+                    <input required="" type="email" name="email" id="email" autocomplete="off" class="input">
+                    <label class="user-label">Email</label>
+                    <p class="invalid invalid-none" id="errorInvalid">Email ou senha invalidos!</p>
+                </div>
+                <div class="input-group" style="display: flex; flex-direction: column;">
+                    <input required="" type="password" name="password" id="password" autocomplete="off" class="input">
+                    <label class="user-label">Senha</label>
+                    <a href="/recover/email">Esqueci a senha</a>
+                </div>
+                <div class="bottom" id="button" style="padding-bottom: 0px;">
+                    <button>Entrar</button>
+                </div>
+            </form>
+        </div>
+        <div class="bottom" style="padding-top: 0px;">
+            <div class="solid"></div>
+            <div class="bottom-bot">
+                <a href="/register"><button style="font-size: 12px; height: 2rem; padding: 0 2rem;">Cadastrar-se</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+const form = document.getElementById('myForm');
+const input = document.getElementById('errorInvalid')
+
+var axiosConfig = {
+    headers: {
+        Authorization: "Bearer " + localStorage.getItem("token")
+    }
+}
+
+form.addEventListener('submit', async (event) => {
+    
+  event.preventDefault()
+  const formData = {
+    email: document.getElementById('email').value,
+    password: document.getElementById('password').value
+  };
+
+  try {
+    const response = await axios.post('/users/login', formData);
+    var token = response.data.token
+    localStorage.setItem("token", token);
+    axiosConfig.headers.Authorization = "Bearer " + localStorage.getItem("token")
+    window.location = '/home';
+  } catch (error) {
+    invalidateElem(input);
+  }
+});
+
+function invalidateElem(id) {
+  id.classList.remove('invalid-none')
+}
+
+</script>
+</html>

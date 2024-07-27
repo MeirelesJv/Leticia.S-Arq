@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/freelancer/newProject.css">
+    <link rel="icon" href="/Portfolio/0. Logo.png">
+    <title>Novo Projeto</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="left">
+            <img src="/Portfolio/0. Logo.png" alt="">
+            <div class="center">
+                <p>Leticia S.</p>
+                <p>Arquitetura</p>
+            </div>
+        </div>
+        <div class="rigth">
+            <div class="user">
+                <div class="name">
+                    <p>João Vitor</p>
+                    <p>Meireles</p>
+                </div>
+                <ion-icon style="font-size: 40px;" name="person-circle-outline"></ion-icon>
+            </div>
+            <div class="rightSecond">
+                <a href="/logout"><ion-icon style="font-size: 20px;" name="log-out-outline"></ion-icon></a>
+            </div>
+            
+        </div>
+    </div>
+    <div class="container">
+        <div class="box">
+            <div class="title">
+                <h2>Novo projeto</h2>
+            </div>
+            <div class="form">
+                <form action="/project" id="formProject" method="post" enctype="multipart/form-data">
+                    <div class="service title-project">
+                        <label class="label">Comodo / Local do Projeto</label>
+                        <input autocomplete="off" required="" name="title" id="title" class="input" type="text">
+                        <label class="description">Apenas o nome do comodo para usarmos como referencia </label>
+                    </div>
+                    <div class="service types">
+                        <label class="label">Escolha o tipo do Projeto</label>
+                        <select class="serviceSelect" name="serviceSelect" id="serviceSelect">
+                            <option value="interiorDesign">Projeto de Interiores</option>
+                            <option value="modeling">Modelagem 3d</option>
+                            <option value="rendering">Renderização</option>
+                            <option value="humanizedPlant">Planta Humanizada</option>
+                        </select>
+                        <p class="description" id="description">Projeto de interiores é uma área da arquitetura que se dedica a planejar e organizar espaços internos, buscando a funcionalidade, estética e o bem-estar dos usuários</p>
+                    </div>
+                    <div id="filesDiv" class="files-none files">
+                        <label class="label" id="titleFile">Anexar arquivos necessarios para </label>
+                        <div class="">
+                            <label class="lalabel" for="files">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125" stroke="#fffffff" stroke-width="2"></path>
+                            <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#fffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                            <span>ADD FILE</span> 
+                            </label>
+                            <input onchange="FileName(this)" type="file" class="input-file" id="files" name="files">
+                        </div>
+                        <div id="Filename"></div>
+                        <p class="description" id="descriptionFile">Arquivos necessario: </p>
+                    </div>
+                    <div class="service reference">
+                        <label class="label">Referencias para o Projeto</label>
+                        <div class="">
+                            <label class="lalabel" for="filesReference">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125" stroke="#fffffff" stroke-width="2"></path>
+                            <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#fffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                            ADD FILE 
+                            </label>
+                            <input accept="image/*" required onchange="showFileName(this)" type="file" class="input-file" id="filesReference" name="filesReference">
+                        </div>
+                        <div id="descriptionFilename"></div>
+                        <p class="description" id="description-file">Encaminhe uma foto para ser usada como referência para o projeto</p>
+                    </div> 
+                    <div class="service">
+                        <label class="label">Programa de necessidade</label>
+                        <p class="description" id="description-file">Descreva ai vai</p>
+                        <textarea class="input textarea" name="textarea" id="textarea" rows="10" cols="50" required=""></textarea>
+                    </div> 
+                    <div class="homeBlock-button">
+                        <button class="btn">Enviar</button>
+                    </div>              
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="/script/newProject.js"></script>
+</html>
