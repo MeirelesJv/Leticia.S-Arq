@@ -93,22 +93,6 @@ router.post("/users/login", async (req,res)=>{
                     res.status(400);
                     res.json({message: "Falha interna"})
                 }
-                // jwt.sign({id: users.id,email: users.Email,type: users.Type},JWTSecret,{expiresIn: '120h'},(err, token)=>{
-                //     if(err){
-                        // res.status(400);
-                        // res.json({message: "Falha interna"})
-                        // var decoded = jwt.verify(token, JWTSecret);
-                        // console.log(token)
-                        // console.log(decoded)
-                //     }else{
-                //         res.status(200);
-                //         res.json({token: token})
-                //         console.log(token)
-                //     }
-                // });
-
-                //res.json(req.session.user);
-                //  res.redirect("/home")
             }else{
                 return res.status(400).json({message: "Email ou Senha incompativeis"});
             }
