@@ -278,3 +278,26 @@ body {
         color: white;
        }
 }
+
+@media screen and (max-width: 768px){
+    body{
+        background-repeat: no-repeat;
+        background-size: auto;
+        align-items: self-end;
+    }
+    .grid{
+        flex-direction: column;
+        gap: 15px;
+    }
+    form{
+        gap: 15px;
+    }
+    .container-register{
+        height: 100vh;
+        justify-content: flex-start;
+    }
+    .top-register{
+        padding-top: 40px;
+    }
+    
+}
