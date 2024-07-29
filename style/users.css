@@ -284,6 +284,7 @@ body {
         background-repeat: no-repeat;
         background-size: auto;
         align-items: self-end;
+        height: 100vh;
     }
     .grid{
         flex-direction: column;
@@ -293,11 +294,18 @@ body {
         gap: 15px;
     }
     .container-register{
-        height: 100vh;
+        width: 100%;
+        height: 100%;
         justify-content: flex-start;
     }
     .top-register{
         padding-top: 40px;
     }
-    
+    .container {
+        & .mid {
+            .input {
+                width: 200px;
+            }
+        }
+    }
 }

@@ -27,7 +27,7 @@ router.get("/login/recover",userOn, (req,res)=>{
 });
 
 router.get("/logout",(req,res) =>{
-    req.session.token = undefined;
+    req.session.tokenn = undefined;
     res.redirect("/");
 });
 

@@ -3,12 +3,18 @@ const router = express.Router();
 const projectBase = require("../../database/project");
 const references = require("../../database/references");
 const upload = require("../../middleware/multer");
-const authJWT = require("../../middleware/authJwt")
+const authJWT = require("../../middleware/authJwt");
+const { Op } = require('sequelize');
 
-
+//Status 
 
 router.get("/home",authJWT, (req,res)=>{
-    res.render("freelancer/home")
+    var cliente = req.loggedUser.type
+    var clienteId = req.loggedUser.id
+    console.log(cliente)
+    projectBase.findAll({order: [['id']],include: [{model: references}],where: {Status: {[Op.ne]: 11}}}).then(projectBase =>{
+        res.render("freelancer/home",{projectBase: projectBase,references: references,cliente: cliente,clienteId: clienteId})
+    })
 });
 
 router.get("/new/project",authJWT, (req,res)=>{
