@@ -3,9 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="icon" href="/Portfolio/0. Logo.png">
+    <link rel="stylesheet" href="/freelancer/project.css">
+    <title>Projeto <%= project.Name %></title>
 </head>
 <body>
-    <p>passo</p>
+    <div class="container">
+        <div class="block-top">
+            <div class="left">
+                <img src="/Portfolio/0. Logo.png" alt="">
+                <div class="center">
+                    <p>Leticia S.</p>
+                    <p>Arquitetura</p>
+                </div>
+            </div>
+            <div class="rigth">
+                <div class="user">
+                    <div class="name">
+                        <p><%= User.Name %></p>
+                        <p><%= User.Surname %></p>
+                    </div>
+                    <ion-icon style="font-size: 40px;" name="person-circle-outline"></ion-icon>
+                </div>
+                <div class="rightSecond">
+                    <a href="/logout"><ion-icon style="font-size: 20px;" name="log-out-outline"></ion-icon></a>
+                </div>
+
+            </div>
+        </div>
+        <div class="block-bot">
+            <div class="BlockHeader">
+                <div class="title">
+                    <p><%= project.Name %></p>
+                </div>
+                <div class="status">
+                    <% if (project.Status == 0 && UserType === 1){ %>
+                        <p><%= statusMap[project.Status] %></p>
+                        <form id="formApproval">
+                            <input type="hidden" name="projectId" id="projectId" value="<%= project.id %>">
+                            <button class="approval" name="approval" id="approval" value="2">Aprovar</button>
+                            <button class="reject" name="reject" id="reject" value="1">Recusar</button>
+                        </form>
+                    <% } else { %>
+                        <p><%= statusMap[project.Status] %></p>
+                    <% } %>
+                   
+                </div>
+            </div>
+            <div class="BlockBody">
+                <div class="Obs">
+                    <span><%= project.Obs %></span>
+                </div>
+                <div class="Reference">
+                    <img src="<%= ReferenceRoutes.Route %>" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/script/project.js"></script>
 </html>

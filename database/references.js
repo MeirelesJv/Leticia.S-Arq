@@ -2,7 +2,7 @@ const sequelize = require("sequelize");
 const connection = require("./database");
 const project = require("./project")
 
-const References = connection.define('References',{
+const ReferencesRoute = connection.define('ReferencesRoute',{
     Name:{
         type: sequelize.STRING,
         allowNull: false
@@ -13,8 +13,8 @@ const References = connection.define('References',{
     }
 })
 
-project.hasMany(References);
-References.belongsTo(project);
+project.hasMany(ReferencesRoute);
+ReferencesRoute.belongsTo(project);
 
-References.sync({force: false}).then(()=>{});
-module.exports = References;
+ReferencesRoute.sync({force: false}).then(()=>{});
+module.exports = ReferencesRoute;

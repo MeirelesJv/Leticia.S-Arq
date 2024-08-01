@@ -40,7 +40,7 @@ selectElement.addEventListener('change', function () {
         fileDescription.textContent = opcoesFile[valorSelecionado];
         fileElement.textContent = opcoesName[valorSelecionado];
         filesDiv.classList.remove('files-none');
-        inputFile.setAttribute('required');
+        inputFile.setAttribute('required', '');
     } else {
         filesDiv.classList.add('files-none');
         inputFile.removeAttribute('required');
