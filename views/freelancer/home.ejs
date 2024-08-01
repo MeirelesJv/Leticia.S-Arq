@@ -54,42 +54,47 @@
             <div class="projects">
                 <% projectBase.forEach(project => { %>
                     <% if (cliente === 1) { %>
-                        <div class="box">
-                            <div class="box-content">
-                                <div class="service">
-                                    <p>Serviço: <%= serviceMap[project.Service] %></p>
-                                </div>
-                                <div class="box-header">
-                                    <h3><%= project.Name %></h3>
-                                    <div class="status">
-                                        <span> <%= project.Status %> </span>
+                        <a href="/project/<%= project.Uuid %>">
+                            <div class="box">
+                                <div class="box-content">
+                                    <div class="box-header">
+                                        <h3><%= project.Name %></h3>
+                                        <div class="status">
+                                            <span> <%= statusMap[project.Status] %> </span>
+                                        </div>
+                                    </div>
+                                    <div class="box-body">
+                                        <p><%= project.Obs %></p>
+                                    </div>
+                                    <div class="box-footer">
+                                        <div class="service">
+                                            <p><%= serviceMap[project.Service] %></p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="box-body">
-                                    <p><%= project.Obs %></p>
-                                </div>
-                                <div class="box-footer">
-        
-                                </div>
                             </div>
-                        </div>
+                        </a>
                     <% } else if(clienteId === project.UserId) { %>
-                        <div class="box">
-                            <div class="box-content">
-                                <div class="box-header">
-                                    <h3><%= project.Name %></h3>
-                                    <div class="status">
-                                        <span> <%= project.Status %> </span>
+                        <a href="/project/<%= project.Uuid %>">
+                            <div class="box">
+                                <div class="box-content">
+                                    <div class="box-header">
+                                        <h3><%= project.Name %></h3>
+                                        <div class="status">
+                                            <span> <%= statusMap[project.Status] %> </span>
+                                        </div>
+                                    </div>
+                                    <div class="box-body">
+                                        <p><%= project.Obs %></p>
+                                    </div>
+                                    <div class="box-footer">
+                                        <div class="service">
+                                            <p><%= serviceMap[project.Service] %></p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="box-body">
-        
-                                </div>
-                                <div class="box-footer">
-        
-                                </div>
                             </div>
-                        </div>
+                        </a>
                     <% } %>
                 <% }) %>
                 

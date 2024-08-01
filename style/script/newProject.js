@@ -68,6 +68,7 @@ function FileName(input) {
 
 // //Axios
 form.addEventListener('submit', async (event) => {
+    event.target.querySelector("button[type=submit]").disabled = true;
     event.preventDefault()
 
     const title = document.getElementById('title').value;
@@ -92,8 +93,8 @@ form.addEventListener('submit', async (event) => {
         })
 
         window.location = '/home';
-
     } catch (error) {
+        event.target.querySelector("button[type=submit]").disabled = false;
         console.log(error)
     }
 });

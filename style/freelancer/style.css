@@ -23,7 +23,7 @@ a {
     height: 100vh;
     display: flex; 
     flex-direction: column;
-    background-color: #d8bf9f;
+    background-color: #414b3b;
 }
 
 .block-top{
@@ -142,19 +142,27 @@ a {
 
     .box{
         border: 1px #e2e2e2 solid;
-        border-radius: 9999px;
+        border-radius: 20px;
 
         .box-content{
-            padding: 20px 50px 20px 50px;
+            padding: 20px;
 
             .box-header{
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                padding-top: 6px;
                 
                 h3{
                     font-size: 20px;
                 }
+            }
+            .box-body{
+                padding-top: 10px;
+                word-wrap: break-word;
+            }
+            .box-footer{
+                padding-top: 10px;
             }
         }
     }

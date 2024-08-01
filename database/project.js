@@ -16,7 +16,7 @@ const Project = connection.define('Project', {
         allowNull: false
     },
     Obs: {
-        type: sequelize.STRING,
+        type: sequelize.TEXT,
         allowNull: false
     },
     File: {
@@ -30,7 +30,12 @@ const Project = connection.define('Project', {
     Status: {
         type: sequelize.BIGINT,
         allowNull: false
-    }
+    },
+    Uuid: {
+        type: sequelize.STRING,
+        allowNull: true
+    },
+    
 })
 
 users.hasMany(Project);
