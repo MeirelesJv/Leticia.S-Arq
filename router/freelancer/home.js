@@ -78,9 +78,11 @@ router.post("/project", [upload.fields([{ name: 'filesReference', maxCount: 1 },
         })
 
         var fileRefe = req.files.filesReference[0]
+        var route = fileRefe.destination
+        var fileRefeSe = route.split('\\');
         await ReferencesRoute.create({
             Name: fileRefe.filename,
-            Route: fileRefe.destination,
+            Route: fileRefeSe[2],
             ProjectId: newProject.id
         })
 
@@ -161,6 +163,11 @@ router.post("/project/edit/approve",authJWT, async(req,res) =>{
         return res.status(400).json({ message: "Erro interno"})
     }
     
+});
+
+router.post("/project/edit/referencesAdm",[upload.single('fileReferenceAdm'),authJWT], async(req,res)=>{
+    console.log(req.file)
+   
 });
 
 module.exports = router;

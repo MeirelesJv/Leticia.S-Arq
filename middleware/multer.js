@@ -3,17 +3,6 @@ const path = require('path')
 const fs = require('fs')
 const {  v4 : uuidv4  } = require("uuid");
 
-// const fileFilter = (req, file, cb) => {
-//     if(file.fieldname === 'filesReference'){
-//         if (file.mimetype.startsWith("image")) {
-//             cb(null, true);
-//         } else {
-//             cb("Please upload only images.", false);
-//         }
-//     }
-//     cb(null, true);
-// };
-
 function formatarHoraMinuto(timestamp) {
     
     return `${horas}:${minutos}`;
@@ -21,19 +10,30 @@ function formatarHoraMinuto(timestamp) {
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const dates = new Date(Date.now());
-        const horas = dates.getHours().toString().padStart(2, '0');
-        const minutos = dates.getMinutes().toString().padStart(2, '0');
 
-        var namePast = req.session.bananao + horas + minutos;
-        const uploadPath = path.join('uploads/',namePast);
-        // Create directory structure if it doesn't exist
-        try {
-            fs.mkdirSync(uploadPath, { recursive: true });
-            cb(null, uploadPath);
-        } catch (error) {
-            console.log(error)
+        if(file.fieldname == 'fileReferenceAdm'){
+            const projectRoute = req.body.projectRoute;
+            const uploadPath = 'style/uploads/' + projectRoute;
+            try {
+                cb(null, uploadPath)
+            } catch (error) {
+                console.log(error)
+            }
+        }else{
+            const dates = new Date(Date.now());
+            const horas = dates.getHours().toString().padStart(2, '0');
+            const minutos = dates.getMinutes().toString().padStart(2, '0');
+
+            var namePast = req.session.bananao + horas + minutos;
+            const uploadPath = path.join('style/uploads/',namePast);
+            try {
+                fs.mkdirSync(uploadPath, { recursive: true });
+                cb(null, uploadPath);
+            } catch (error) {
+                console.log(error)
+            }
         }
+        
         
         
     },
