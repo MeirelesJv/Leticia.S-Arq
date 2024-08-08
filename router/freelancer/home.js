@@ -54,24 +54,29 @@ router.post("/project", [upload.fields([{ name: 'filesReference', maxCount: 1 },
     var fileDestination
     var fileObg
     var code = uuidv4();
+    var fileDestinationS
 
     if (fileObgNull) {
         fileObg = fileObgNull[0];
         fileName = fileObg.filename
         fileDestination = fileObg.destination
+        var filesplit = fileDestination.split('\\');
+        fileDestinationS = filesplit[2]
     } else {
         fileDestination = null
         fileName = null
+        fileDestinationS= null
     }
 
     try {
+
         const newProject = await projectBase.create({
             Approval: Approval,
             Name: title,
             Service: serviceSelect,
             Obs: textarea,
             File: fileName,
-            FileRoute: fileDestination,
+            FileRoute: fileDestinationS,
             Status: status,
             UserId: req.loggedUser.id,
             Uuid: code
@@ -83,23 +88,22 @@ router.post("/project", [upload.fields([{ name: 'filesReference', maxCount: 1 },
         await ReferencesRoute.create({
             Name: fileRefe.filename,
             Route: fileRefeSe[2],
+            Type: fileRefe.fieldname,
             ProjectId: newProject.id
         })
 
         res.redirect("/home")
-        console.log('deu')
     } catch (error) {
         res.status(400)
         res.json({ message: "Deu erro aqui" })
-        console.log(error)
     }
 
 });
 
 router.get("/project/:Uuid",authJWT, async (req,res) =>{
     var Uuid = req.params.Uuid;
-    var UserType = req.loggedUser.type
-    var UserId = req.loggedUser.id
+    var UserType = req.loggedUser.type;
+    var UserId = req.loggedUser.id;
 
     var statusMap = {
         0: 'Solicitação Pendente',
@@ -117,14 +121,23 @@ router.get("/project/:Uuid",authJWT, async (req,res) =>{
         12: 'Recusado'    
     }
 
+    var serviceMap = {
+        rendering: 'Renderização',
+        humanizedPlant: 'Planta humanizada',
+        modeling: 'Modelagem 3D',
+        interiorDesign: 'Projeto de Interiores'
+    };
+
     projectBase.findOne({include: [{ model: ReferencesRoute },{ model: Users },], where: { Uuid: Uuid}}).then(project =>{
         if(!project){
             return res.status(404).json({ message: 'Projeto não encontrado' });
         }
+
         const { User } = project
-        const ReferenceRoutes = project.ReferencesRoutes[0]
+        const referenceRoute = project.ReferencesRoutes
+
         if(UserType === 1 || UserId === project.UserId){
-            res.render("freelancer/project", {project,User,ReferenceRoutes,statusMap,UserType})
+            res.render("freelancer/project", {project,User,referenceRoute,statusMap,UserType,serviceMap})
         }else{
             return res.status(400).json({message: "Acesso negado"})
         }
@@ -165,9 +178,104 @@ router.post("/project/edit/approve",authJWT, async(req,res) =>{
     
 });
 
-router.post("/project/edit/referencesAdm",[upload.single('fileReferenceAdm'),authJWT], async(req,res)=>{
-    console.log(req.file)
-   
+router.post("/project/edit/referencesAdm",[upload.fields([{ name: 'fileReferenceAdm', maxCount: 1 }, { name: 'fileMarcenaria', maxCount: 1 },{ name: 'fileLayout', maxCount: 1 },{ name: 'fileRender', maxCount: 1 },{ name: 'filePlanta', maxCount: 1 },{ name: 'fileTecnico', maxCount: 1 }]),authJWT], async(req,res)=>{
+    let { projectId,marcName,marcCode,marcMarca, revestName,revestCode,revestMarca,renderApi,prancha } = req.body
+
+    let {fileReferenceAdm,fileMarcenaria,fileLayout,fileRender,fileTecnico,filePlanta } = req.files
+    console.log(fileLayout)
+
+    
+
+    try {
+
+        if(fileReferenceAdm){
+            let route = fileReferenceAdm[0].destination
+            let fileRefeSe = route.split('/');
+            await ReferencesRoute.create({
+                Name: fileReferenceAdm[0].filename,
+                Route: fileRefeSe[2],
+                Type: fileReferenceAdm[0].fieldname,
+                ProjectId: projectId,
+            }); 
+        }
+        
+        if(fileMarcenaria){
+            let route = fileMarcenaria[0].destination
+            let fileRefeSe = route.split('/');
+            await ReferencesRoute.create({
+                Name: fileMarcenaria[0].filename,
+                Route: fileRefeSe[2],
+                Type: fileMarcenaria[0].fieldname,
+                ProjectId: projectId,
+            });
+        }
+
+        if(fileLayout){
+            let route = fileLayout[0].destination
+            let fileRefeSe = route.split('/');
+            await ReferencesRoute.create({
+                Name: fileLayout[0].filename,
+                Route: fileRefeSe[2],
+                Type: fileLayout[0].fieldname,
+                ProjectId: projectId,
+            });
+        }
+
+        if(fileRender){
+            let route = fileRender[0].destination
+            let fileRefeSe = route.split('/');
+            await ReferencesRoute.create({
+                Name: fileRender[0].filename,
+                Route: fileRefeSe[2],
+                Type: fileRender[0].fieldname,
+                ProjectId: projectId,
+            });
+        }
+
+        if(filePlanta){
+            let route = filePlanta[0].destination
+            let fileRefeSe = route.split('/');
+            await ReferencesRoute.create({
+                Name: filePlanta[0].filename,
+                Route: fileRefeSe[2],
+                Type: filePlanta[0].fieldname,
+                ProjectId: projectId,
+            });
+        }
+
+        if(fileTecnico){
+            let route = fileTecnico[0].destination
+            let fileRefeSe = route.split('/');
+            await ReferencesRoute.create({
+                Name: fileTecnico[0].filename,
+                Route: fileRefeSe[2],
+                Type: fileTecnico[0].fieldname,
+                ProjectId: projectId,
+            });
+        }
+ 
+        await projectBase.update({
+            MarcName: marcName,
+            MarcCode: marcCode,
+            MarcMarca: marcMarca,
+            RevestName: revestName,
+            RevestCode: revestCode,
+            RevestMarca: revestMarca,
+            RenderApi: renderApi,
+            Prancha: prancha
+        },{ 
+            where: {
+                id: projectId
+            }
+        }); 
+
+        console.log("sera?")
+        res.status(200)
+    } catch (error) {
+        res.status(400)
+        res.json({message: "Erro interno"});
+    }
+    
 });
 
 module.exports = router;

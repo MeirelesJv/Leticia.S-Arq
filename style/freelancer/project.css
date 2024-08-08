@@ -6,32 +6,37 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     overflow: hidden;
     color: white;
+    font-family: "Sorts Mill Goudy", serif;
 }
 
 a {
     text-decoration: none;
     color: black;
 }
+
 .container {
     width: 100vw;
     height: 100vh;
-    display: flex; 
+    display: flex;
     flex-direction: column;
     background-color: #414b3b;
 }
-.block-top{
-    height: 10%;
+
+.block-top {
+    height: 14%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0px 200px 0px 200px;
     border-bottom: 1px #e2e2e2 solid;
-    
+
     .left {
         display: flex;
 
@@ -54,12 +59,13 @@ a {
         justify-content: center;
         align-items: center;
 
-        .user{
+        .user {
             display: flex;
             align-items: center;
             gap: 5px;
         }
-        .rightSecond{
+
+        .rightSecond {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -69,24 +75,201 @@ a {
     }
 }
 
-.block-bot{
-    border: 1px red solid;
-    margin: 50px;
+.block-bot {
+    margin: 0px 50px 0px 50px;
+    overflow-y: auto;
 
-    .BlockHeader{
+    .BlockHeader {
         display: flex;
         justify-content: space-between;
-    }
+        align-items: center;
 
-    .BlockBody{
-    
-        .Reference{
+        .status {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
 
-            img{
-                width: 200px;
+            span{
+                
+            }
+
+            p {
+                font-size: 20px;
+            }
+
+            .statusForm {
+                display: flex;
+                gap: 10px;
+            }
+
+            .approval {
+                position: relative;
+                padding: 10px 22px;
+                border-radius: 6px;
+                border: none;
+                color: #fff;
+                cursor: pointer;
+                background-color: #2ed418;
+                transition: all 0.2s ease;
+            }
+
+            .reject {
+                position: relative;
+                padding: 10px 22px;
+                border-radius: 6px;
+                border: none;
+                color: #fff;
+                cursor: pointer;
+                background-color: #af1a1a;
+                transition: all 0.2s ease;
+            }
+
+        }
+
+        .title {
+
+            p {
+                font-size: 50px;
             }
         }
     }
+
+    .serviceType {
+        display: flex;
+
+        p {
+            background-color: rgb(154 154 165 / 49%);
+            border: 1px white solid;
+            padding: 0.3rem;
+            border-radius: 10px;
+        }
+    }
+
+    .BlockBody {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+
+    }
+}
+
+.fileService {
+    display: flex;
+    padding-top: 10px;
+    gap: 10px;
+    align-items: center;
+
+    .Download-button {
+        display: flex;
+        align-items: center;
+        font-family: inherit;
+        font-weight: 500;
+        font-size: 17px;
+        padding: 5px 5px;
+        color: white;
+        background: rgb(103, 92, 156);
+        border: none;
+        box-shadow: 0 0.7em 1.5em -0.5em rgba(59, 48, 78, 0.527);
+        letter-spacing: 0.05em;
+        border-radius: 8px;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .Download-button svg {
+        width: 15px;
+    }
+}
+
+.Obs {
+    margin-top: 20px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Reference {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+
+    .titleEtaps{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    img{
+        width: 200px;
+    }
+
+    .ReferenceFiles{
+        display: flex;
+        gap: 10px;
+    }
+
+    .plusButton {
+        --plus_sideLength: 1.5rem;
+        --plus_topRightTriangleSideLength: 0.4rem;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid white;
+        width: var(--plus_sideLength);
+        height: var(--plus_sideLength);
+        background-color: #000000;
+        overflow: hidden;
+    }
+
+    .plusButton::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        right: 0;
+        width: 0;
+        height: 0;
+        border-width: 0 var(--plus_topRightTriangleSideLength) var(--plus_topRightTriangleSideLength) 0;
+        border-style: solid;
+        border-color: transparent white transparent transparent;
+        transition-timing-function: ease-in-out;
+        transition-duration: 0.2s;
+    }
+
+    .plusButton:hover {
+        cursor: pointer;
+    }
+
+    .plusButton:hover::before {
+        --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+    }
+
+    .plusButton:focus-visible::before {
+        --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+    }
+
+    .plusButton>.plusIcon {
+        fill: white;
+        width: calc(var(--plus_sideLength) * 0.7);
+        height: calc(var(--plus_sideLength) * 0.7);
+        z-index: 1;
+        transition-timing-function: ease-in-out;
+        transition-duration: 0.2s;
+    }
+
+    .plusButton:hover>.plusIcon {
+        fill: black;
+        transform: rotate(180deg);
+    }
+
+    .plusButton:focus-visible>.plusIcon {
+        fill: black;
+        transform: rotate(180deg);
+    }
+}
+
+.titleEtaps {
+    font-size: 25px;
+    font-weight: 600;
 }
 
 .lalabel {
@@ -130,4 +313,15 @@ a {
 
 input[type="file"] {
     display: none;
+}
+
+
+.block-bot::-webkit-scrollbar {
+    background-color: transparent;
+}
+
+
+
+img {
+    width: 10px;
 }

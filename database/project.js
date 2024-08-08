@@ -19,6 +19,38 @@ const Project = connection.define('Project', {
         type: sequelize.TEXT,
         allowNull: false
     },
+    MarcName: {
+        type: sequelize.TEXT,
+        allowNull: true
+    },
+    MarcCode: {
+        type: sequelize.TEXT,
+        allowNull: true
+    },
+    MarcMarca: {
+        type: sequelize.TEXT,
+        allowNull: true
+    },
+    RevestName: {
+        type: sequelize.TEXT,
+        allowNull: true
+    },
+    RevestCode: {
+        type: sequelize.TEXT,
+        allowNull: true
+    },
+    RevestMarca: {
+        type: sequelize.TEXT,
+        allowNull: true
+    },
+    RenderApi: {
+        type: sequelize.TEXT,
+        allowNull: true
+    },
+    Prancha: {
+        type: sequelize.TEXT,
+        allowNull: true
+    },
     File: {
         type: sequelize.STRING,
         allowNull: true
@@ -35,7 +67,6 @@ const Project = connection.define('Project', {
         type: sequelize.STRING,
         allowNull: true
     },
-    
 })
 
 users.hasMany(Project);

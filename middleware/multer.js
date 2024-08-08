@@ -11,8 +11,9 @@ function formatarHoraMinuto(timestamp) {
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
 
-        if(file.fieldname == 'fileReferenceAdm'){
+        if(file.fieldname != 'filesReference' && file.fieldname != 'files'){
             const projectRoute = req.body.projectRoute;
+            console.log(projectRoute)
             const uploadPath = 'style/uploads/' + projectRoute;
             try {
                 cb(null, uploadPath)

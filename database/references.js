@@ -10,6 +10,10 @@ const ReferencesRoute = connection.define('ReferencesRoute',{
     Route:{
         type: sequelize.STRING,
         allowNull: false
+    },
+    Type:{
+        type: sequelize.STRING,
+        allowNull: false
     }
 })
 
