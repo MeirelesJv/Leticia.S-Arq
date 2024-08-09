@@ -200,76 +200,66 @@ a {
     }
     img{
         width: 200px;
+        border-radius: 30px;
     }
 
     .ReferenceFiles{
         display: flex;
         gap: 10px;
     }
+}
 
-    .plusButton {
-        --plus_sideLength: 1.5rem;
-        --plus_topRightTriangleSideLength: 0.4rem;
-        position: relative;
+.statusMarcenaria{
+
+    .inputsMarcenaria{
         display: flex;
-        justify-content: center;
-        align-items: center;
-        border: 1px solid white;
-        width: var(--plus_sideLength);
-        height: var(--plus_sideLength);
-        background-color: #000000;
-        overflow: hidden;
-    }
+        gap: 40px;
+        padding-top: 20px;
 
-    .plusButton::before {
-        position: absolute;
-        content: "";
-        top: 0;
-        right: 0;
-        width: 0;
-        height: 0;
-        border-width: 0 var(--plus_topRightTriangleSideLength) var(--plus_topRightTriangleSideLength) 0;
-        border-style: solid;
-        border-color: transparent white transparent transparent;
-        transition-timing-function: ease-in-out;
-        transition-duration: 0.2s;
+        p{
+            position: relative;
+            margin-bottom: .3rem;
+            font-size: .9rem;
+            left: 10px;
+        }
+        
     }
+    .spanMarcenaria{
+        padding-top: 20px;
+        display: flex;
+        gap: 40px;
+    }
+}
 
-    .plusButton:hover {
-        cursor: pointer;
-    }
+.statusRevest{
+    
+}
 
-    .plusButton:hover::before {
-        --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
-    }
+.inputs{
+    display: flex;
+    gap: 40px;
+    padding-top: 20px;
 
-    .plusButton:focus-visible::before {
-        --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+    p{
+        position: relative;
+        margin-bottom: .3rem;
+        font-size: .9rem;
+        left: 10px;
     }
+}
 
-    .plusButton>.plusIcon {
-        fill: white;
-        width: calc(var(--plus_sideLength) * 0.7);
-        height: calc(var(--plus_sideLength) * 0.7);
-        z-index: 1;
-        transition-timing-function: ease-in-out;
-        transition-duration: 0.2s;
-    }
-
-    .plusButton:hover>.plusIcon {
-        fill: black;
-        transform: rotate(180deg);
-    }
-
-    .plusButton:focus-visible>.plusIcon {
-        fill: black;
-        transform: rotate(180deg);
-    }
+.inputsSpan{
+    padding-top: 20px;
+    display: flex;
+    gap: 40px;
 }
 
 .titleEtaps {
     font-size: 25px;
     font-weight: 600;
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
 .lalabel {
@@ -320,8 +310,97 @@ input[type="file"] {
     background-color: transparent;
 }
 
+.input{
+    border: solid 1.5px white;
+    border-radius: 1rem;
+    background: none;
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: white;
+    color: black;
+    transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 
+.input:focus,
+input:valid {
+    outline: none;
+    border: 1.5px solid white;
+    background: white;
+    color: black;
+}
 
-img {
-    width: 10px;
+.BlockBotton{
+    display: flex;
+    justify-content: end;
+    margin-bottom: 30px;
+
+    .Atualizar {
+        position: relative;
+        padding: 10px 22px;
+        border-radius: 6px;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        background-color: #d4a218;
+        transition: all 0.2s ease;
+    }
+}
+
+.plusButton {
+    --plus_sideLength: 1.5rem;
+    --plus_topRightTriangleSideLength: 0.4rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    width: var(--plus_sideLength);
+    height: var(--plus_sideLength);
+    background-color: #000000;
+    overflow: hidden;
+}
+
+.plusButton::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-width: 0 var(--plus_topRightTriangleSideLength) var(--plus_topRightTriangleSideLength) 0;
+    border-style: solid;
+    border-color: transparent white transparent transparent;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+}
+
+.plusButton:hover {
+    cursor: pointer;
+}
+
+.plusButton:hover::before {
+    --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+}
+
+.plusButton:focus-visible::before {
+    --plus_topRightTriangleSideLength: calc(var(--plus_sideLength) * 2);
+}
+
+.plusButton>.plusIcon {
+    fill: white;
+    width: calc(var(--plus_sideLength) * 0.7);
+    height: calc(var(--plus_sideLength) * 0.7);
+    z-index: 1;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+}
+
+.plusButton:hover>.plusIcon {
+    fill: black;
+    transform: rotate(180deg);
+}
+
+.plusButton:focus-visible>.plusIcon {
+    fill: black;
+    transform: rotate(180deg);
 }

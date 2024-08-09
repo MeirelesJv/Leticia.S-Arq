@@ -56,6 +56,13 @@ form.addEventListener('submit', async (event) => {
     const filePlanta = document.getElementById('filePlanta').files[0]
     const projectRoute = document.getElementById('projectRoute').value;
     const projectId = document.getElementById('projectId').value;
+    const marcName = document.getElementById('marcName').value;
+    const marcCode = document.getElementById('marcCode').value;
+    const marcMarca = document.getElementById('marcMarca').value;
+    const revestName = document.getElementById('revestName').value;
+    const revestCode = document.getElementById('revestCode').value;
+    const revestMarca = document.getElementById('revestMarca').value;
+    const renderApi = document.getElementById('renderApi').value;
 
     const formData = new FormData();
     formData.append('projectRoute',projectRoute)
@@ -66,6 +73,13 @@ form.addEventListener('submit', async (event) => {
     formData.append('fileRender', fileRender);
     formData.append('fileTecnico', fileTecnico);
     formData.append('filePlanta', filePlanta);
+    formData.append('marcName', marcName);
+    formData.append('marcCode', marcCode);
+    formData.append('marcMarca', marcMarca);
+    formData.append('revestName', revestName);
+    formData.append('revestCode', revestCode);
+    formData.append('revestMarca', revestMarca);
+    formData.append('renderApi', renderApi);
 
     try {
         await axios({

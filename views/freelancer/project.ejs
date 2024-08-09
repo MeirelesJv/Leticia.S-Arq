@@ -128,25 +128,19 @@
                         <% if (project.Status >= 0 && project.Status < 12) { %>
                             <div class="titleEtaps">
                                 <span>Layout</span>
-                            </div>
-                            <% if (UserType === 1) { %>
-                                <div class="">
-                                    <label class="lalabel" for="fileLayout">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="2" stroke="currentColor" aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125"
-                                                stroke="#fffffff" stroke-width="2"></path>
-                                            <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#fffffff"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <% if (UserType===1) { %>
+                                    <label for="fileLayout" tabindex="0" class="plusButton">
+                                        <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                                          <g mask="url(#mask0_21_345)">
+                                            <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
+                                          </g>
                                         </svg>
-                                        ADD FILE
                                     </label>
                                     <input accept="image/*" onchange="showFileName(this,'descriptionLayout')" type="file" class="input-file" id="fileLayout" name="fileLayout">
-                                </div>
-                                <input type="hidden" name="projectRoute" id="projectRoute"value="<%= referenceRoute[0].Route %>">
-                                <div id="descriptionLayout"></div>                            
-                            <% } %>
+                                    <input type="hidden" name="projectRoute" id="projectRoute"value="<%= referenceRoute[0].Route %>">
+                                    <div id="descriptionLayout"></div>  
+                                <% } %>
+                            </div>
                             <% referenceRoute.forEach(element=> { %>
                                 <% if (element.Type == 'fileLayout') { %>
                                 <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
@@ -158,47 +152,41 @@
                         <% if (project.Status >= 0 && project.Status < 12) { %>
                             <div class="titleEtaps">
                                 <span>Marcenaria</span>
-                            </div>
-                            <% if (UserType === 1) { %>
-                                <div class="">
-                                    <label class="lalabel" for="fileMarcenaria">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="2" stroke="currentColor" aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125"
-                                                stroke="#fffffff" stroke-width="2"></path>
-                                            <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#fffffff"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <% if (UserType===1) { %>
+                                    <label for="fileMarcenaria" tabindex="0" class="plusButton">
+                                        <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                                          <g mask="url(#mask0_21_345)">
+                                            <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
+                                          </g>
                                         </svg>
-                                        ADD FILE
                                     </label>
                                     <input accept="image/*" onchange="showFileName(this,'descriptionMarcenaria')" type="file" class="input-file" id="fileMarcenaria" name="fileMarcenaria">
-                                </div>
-                                <input type="hidden" name="projectRoute" id="projectRoute" value="<%= referenceRoute[0].Route %>">
-                                <div id="descriptionMarcenaria"></div>
-                            <% } %>
+                                    <input type="hidden" name="projectRoute" id="projectRoute"value="<%= referenceRoute[0].Route %>">
+                                    <div id="descriptionMarcenaria"></div>  
+                                <% } %>
+                            </div>
                             <% referenceRoute.forEach(element=> { %>
                                 <% if (element.Type == 'fileMarcenaria') { %>
                                 <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
                                 <% } %>
                             <% }) %>
                             <% if (UserType === 1) { %>
-                                <div class="inputsMarcenaria">
+                                <div class="inputs">
                                     <div class="inputsProject">
                                         <p>Nome</p>
-                                        <input type="text" name="marcName" id="marcName" value="<%= project.MarcName %>">
+                                        <input class="input" type="text" name="marcName" id="marcName" value="<%= project.MarcName %>">
                                     </div>
                                     <div class="inputsProject">
                                         <p>Codigo</p>
-                                        <input type="text" name="marcCode" id="marcCode" value="<%= project.MarcCode %>">
+                                        <input class="input" type="text" name="marcCode" id="marcCode" value="<%= project.MarcCode %>">
                                     </div>
                                     <div class="inputsProject">
                                         <p>Marca</p>
-                                        <input type="text" name="marcMarca" id="marcMarca" value="<%= project.MarcMarca %>">
+                                        <input class="input" type="text" name="marcMarca" id="marcMarca" value="<%= project.MarcMarca %>">
                                     </div>
                                 </div>
                             <% } %>
-                            <div class="inputsMarcenaria">
+                            <div class="inputsSpan">
                                 <div class="Projects">
                                     <p>Nome</p>
                                     <span><%= project.MarcName %></span>
@@ -218,47 +206,41 @@
                         <% if (project.Status >= 0 && project.Status < 12) { %>
                             <div class="titleEtaps">
                                 <span>Revestimento</span>
-                            </div>
-                            <% if (UserType === 1) { %>
-                                <div class="">
-                                    <label class="lalabel" for="fileRevest">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="2" stroke="currentColor" aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125"
-                                                stroke="#fffffff" stroke-width="2"></path>
-                                            <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#fffffff"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <% if (UserType===1) { %>
+                                    <label for="fileRevest" tabindex="0" class="plusButton">
+                                        <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                                          <g mask="url(#mask0_21_345)">
+                                            <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
+                                          </g>
                                         </svg>
-                                        ADD FILE
                                     </label>
                                     <input accept="image/*" onchange="showFileName(this,'descriptionRevest')" type="file" class="input-file" id="fileRevest" name="fileRevest">
-                                </div>
-                                <input type="hidden" name="projectRoute" id="projectRoute" value="<%= referenceRoute[0].Route %>">
-                                <div id="descriptionRevest"></div>
-                            <% } %>
+                                    <input type="hidden" name="projectRoute" id="projectRoute"value="<%= referenceRoute[0].Route %>">
+                                    <div id="descriptionRevest"></div>  
+                                <% } %>
+                            </div>
                             <% referenceRoute.forEach(element=> { %>
                                 <% if (element.Type == 'fileRevest') { %>
                                 <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
                                 <% } %>
                             <% }) %>
                             <% if (UserType === 1) { %>
-                                <div class="inputsRevest">
+                                <div class="inputs">
                                     <div class="inputsProject">
                                         <p>Nome</p>
-                                        <input type="text" name="revestName" id="revestName" value="<%= project.RevestName %>">
+                                        <input class="input" type="text" name="revestName" id="revestName" value="<%= project.RevestName %>">
                                     </div>
                                     <div class="inputsProject">
                                         <p>Codigo</p>
-                                        <input type="text" name="revestCode" id="revestCode" value="<%= project.RevestCode %>">
+                                        <input class="input" type="text" name="revestCode" id="revestCode" value="<%= project.RevestCode %>">
                                     </div>
                                     <div class="inputsProject">
                                         <p>Marca</p>
-                                        <input type="text" name="revestMarca" id="revestMarca" value="<%= project.RevestMarca %>">
+                                        <input class="input" type="text" name="revestMarca" id="revestMarca" value="<%= project.RevestMarca %>">
                                     </div>
                                 </div>
                             <% } %>
-                            <div class="inputsMarcenaria">
+                            <div class="inputsSpan">
                                 <div class="Projects">
                                     <p>Nome</p>
                                     <span><%= project.RevestName %></span>
@@ -278,24 +260,20 @@
                         <% if (project.Status >= 0 && project.Status < 12) { %>
                             <div class="titleEtaps">
                                 <span>Renderização</span>
-                            </div>
-                            <% if (UserType === 1) { %>
-                                <div class="">
-                                    <label class="lalabel" for="fileRender">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="2" stroke="currentColor" aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125"
-                                                stroke="#fffffff" stroke-width="2"></path>
-                                            <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#fffffff"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <% if (UserType===1) { %>
+                                    <label for="fileRender" tabindex="0" class="plusButton">
+                                        <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                                          <g mask="url(#mask0_21_345)">
+                                            <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
+                                          </g>
                                         </svg>
-                                        ADD FILE
                                     </label>
                                     <input accept="image/*" onchange="showFileName(this,'descriptionRender')" type="file" class="input-file" id="fileRender" name="fileRender">
-                                </div>
-                                <input type="hidden" name="projectRoute" id="projectRoute" value="<%= referenceRoute[0].Route %>">
-                                <div id="descriptionRender"></div>
+                                    <input type="hidden" name="projectRoute" id="projectRoute"value="<%= referenceRoute[0].Route %>">
+                                    <div id="descriptionRender"></div>  
+                                <% } %>
+                            </div>
+                            <% if (UserType === 1) { %>
                                 <input type="text" id="renderApi" name="renderApi" placeholder="Api">
                             <% } %>
                             <% referenceRoute.forEach(element=> { %>
@@ -309,25 +287,19 @@
                         <% if (project.Status >= 0 && project.Status < 12) { %>
                             <div class="titleEtaps">
                                 <span>Detalhamento Tecnico</span>
-                            </div>
-                            <% if (UserType === 1) { %>
-                                <div class="">
-                                    <label class="lalabel" for="fileTecnico">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="2" stroke="currentColor" aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125"
-                                                stroke="#fffffff" stroke-width="2"></path>
-                                            <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#fffffff"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <% if (UserType===1) { %>
+                                    <label for="fileTecnico" tabindex="0" class="plusButton">
+                                        <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                                          <g mask="url(#mask0_21_345)">
+                                            <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
+                                          </g>
                                         </svg>
-                                        ADD FILE
                                     </label>
                                     <input accept=".pdf" onchange="showFileName(this,'descriptionTecnico')" type="file" class="input-file" id="fileTecnico" name="fileTecnico">
-                                </div>
-                                <input type="hidden" name="projectRoute" id="projectRoute" value="<%= referenceRoute[0].Route %>">
-                                <div id="descriptionTecnico"></div>
-                            <% } %>
+                                    <input type="hidden" name="projectRoute" id="projectRoute"value="<%= referenceRoute[0].Route %>">
+                                    <div id="descriptionTecnico"></div>  
+                                <% } %>
+                            </div>
                             <% referenceRoute.forEach(element=> { %>
                                 <% if (element.Type == 'fileTecnico') { %>
                                     <a href="/uploads/<%= element.FileRoute %>/<%= element.File %>" download="Project_<%= element.Name %>">Baixar Arquivo</a>
@@ -339,25 +311,19 @@
                         <% if (project.Status >= 0 && project.Status < 12) { %>
                             <div class="titleEtaps">
                                 <span>Planta Humanizada</span>
-                            </div>
-                            <% if (UserType === 1) { %>
-                                <div class="">
-                                    <label class="lalabel" for="filePlanta">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="2" stroke="currentColor" aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125"
-                                                stroke="#fffffff" stroke-width="2"></path>
-                                            <path d="M17 15V18M17 21V18M17 18H14M17 18H20" stroke="#fffffff"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <% if (UserType===1) { %>
+                                    <label for="filePlanta" tabindex="0" class="plusButton">
+                                        <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                                          <g mask="url(#mask0_21_345)">
+                                            <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
+                                          </g>
                                         </svg>
-                                        ADD FILE
                                     </label>
                                     <input accept="image/*" onchange="showFileName(this,'descriptionPlanta')" type="file" class="input-file" id="filePlanta" name="filePlanta">
-                                </div>
-                                <input type="hidden" name="projectRoute" id="projectRoute" value="<%= referenceRoute[0].Route %>">
-                                <div id="descriptionPlanta"></div>
-                            <% } %>
+                                    <input type="hidden" name="projectRoute" id="projectRoute"value="<%= referenceRoute[0].Route %>">
+                                    <div id="descriptionPlanta"></div>  
+                                <% } %>
+                            </div>
                             <% referenceRoute.forEach(element=> { %>
                                 <% if (element.Type == 'filePlanta') { %>
                                 <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
@@ -366,7 +332,9 @@
                         <% } %>
                     </div>
                     <div class="BlockBotton">
-                        <button type="submit">Atualizar</button>
+                        <% if (UserType===1) { %>
+                            <button class="Atualizar" type="submit">Atualizar</button>
+                        <% } %>
                     </div>
                 </div>
             </form>
