@@ -30,11 +30,11 @@ a {
 }
 
 .block-top {
-    height: 14%;
+    height: 8%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 200px 0px 200px;
+    padding: 0px 20px 0px 20px;
     border-bottom: 1px #e2e2e2 solid;
 
     .left {
@@ -47,10 +47,7 @@ a {
 
     .center {
         color: white;
-        font-family: Higuen\ Regular;
-        font-weight: 400;
         font-size: 20px;
-        text-shadow: 0 3px 8px rgba(0, 0, 0, 0);
     }
 
     .rigth {
@@ -76,6 +73,7 @@ a {
 }
 
 .block-bot {
+    height: 92%;
     margin: 0px 50px 0px 50px;
     overflow-y: auto;
 
@@ -190,7 +188,7 @@ a {
 
 .Reference {
     display: flex;
-    gap: 10px;
+    gap: 20px;
     flex-direction: column;
 
     .titleEtaps{
@@ -209,7 +207,21 @@ a {
     }
 }
 
+.statusLayout{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+
+    img{
+        width: 200px;
+        border-radius: 30px;
+    }
+}
+
 .statusMarcenaria{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
 
     .inputsMarcenaria{
         display: flex;
@@ -229,10 +241,37 @@ a {
         display: flex;
         gap: 40px;
     }
+    img{
+        width: 200px;
+        border-radius: 30px;
+    }
 }
 
 .statusRevest{
-    
+ 
+    img{
+        width: 200px;
+        border-radius: 30px;
+    }
+}
+
+.statusRender{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+
+    img{
+        width: 200px;
+        border-radius: 30px;
+    }
+}
+
+.statusPlanta{
+
+    img{
+        width: 200px;
+        border-radius: 30px;
+    }
 }
 
 .inputs{

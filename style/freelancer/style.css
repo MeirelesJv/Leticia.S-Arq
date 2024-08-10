@@ -27,11 +27,11 @@ a {
 }
 
 .block-top{
-    height: 10%;
+    height: 8%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 200px 0px 200px;
+    padding: 0px 20px 0px 20px;
     border-bottom: 1px #e2e2e2 solid;
     
     .left {
@@ -44,10 +44,7 @@ a {
 
     .center {
         color: white;
-        font-family: Higuen\ Regular;
-        font-weight: 400;
         font-size: 20px;
-        text-shadow: 0 3px 8px rgba(0, 0, 0, 0);
     }
 
     .rigth {
@@ -72,7 +69,7 @@ a {
 }
 
 .block-bot{
-    height: 85%;
+    height: 92%;
     padding: 50px 200px 0px 200px;
     overflow: hidden;
     overflow-y: auto;

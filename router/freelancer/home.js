@@ -13,7 +13,7 @@ const Users = require("../../database/users");
 router.get("/home", authJWT, (req, res) => {
     var cliente = req.loggedUser.type
     var clienteId = req.loggedUser.id
-
+    let User = {Name: req.loggedUser.name,Surname: req.loggedUser.surname}
     var serviceMap = {
         rendering: 'Renderização',
         humanizedPlant: 'Planta humanizada',
@@ -36,13 +36,16 @@ router.get("/home", authJWT, (req, res) => {
         11: 'Concluido',   
         12: 'Recusado'     
     }
-    projectBase.findAll({ order: [['id']], include: [{ model: ReferencesRoute }], where: { Status: { [Op.ne]: 11 } } }).then(projectBase => {
-        res.render("freelancer/home", {projectBase,ReferencesRoute,cliente,clienteId,serviceMap,statusMap })
+    projectBase.findAll({ order: [['id']], include: [{ model: ReferencesRoute }], where: { Status: { [Op.ne]: 11 } } }).then(project => {
+
+        const ReferencesRoute = project.ReferencesRoutes
+        res.render("freelancer/home", {project,ReferencesRoute,cliente,clienteId,serviceMap,statusMap,User })
     })
 });
 
 router.get("/new/project", authJWT, (req, res) => {
-    res.render("freelancer/newProject")
+    let User = {Name: req.loggedUser.name,Surname: req.loggedUser.surname}
+    res.render("freelancer/newProject",{User})
 });
 
 router.post("/project", [upload.fields([{ name: 'filesReference', maxCount: 1 }, { name: 'files', maxCount: 1 },]), authJWT], async (req, res) => {
@@ -178,10 +181,10 @@ router.post("/project/edit/approve",authJWT, async(req,res) =>{
     
 });
 
-router.post("/project/edit/referencesAdm",[upload.fields([{ name: 'fileReferenceAdm', maxCount: 1 }, { name: 'fileMarcenaria', maxCount: 1 },{ name: 'fileLayout', maxCount: 1 },{ name: 'fileRender', maxCount: 1 },{ name: 'filePlanta', maxCount: 1 },{ name: 'fileTecnico', maxCount: 1 }]),authJWT], async(req,res)=>{
+router.post("/project/edit/referencesAdm",[upload.fields([{ name: 'fileReferenceAdm', maxCount: 1 }, { name: 'fileMarcenaria', maxCount: 1 },{ name: 'fileLayout', maxCount: 1 },{ name: 'fileRender', maxCount: 1 },{ name: 'filePlanta', maxCount: 1 },{ name: 'fileTecnico', maxCount: 1 },{ name: 'fileRevest', maxCount: 1 },]),authJWT], async(req,res)=>{
     let { projectId,marcName,marcCode,marcMarca, revestName,revestCode,revestMarca,renderApi,prancha } = req.body
 
-    let {fileReferenceAdm,fileMarcenaria,fileLayout,fileRender,fileTecnico,filePlanta } = req.files
+    let {fileReferenceAdm,fileMarcenaria,fileLayout,fileRender,fileTecnico,filePlanta,fileRevest } = req.files
     console.log(fileLayout)
 
     
@@ -250,6 +253,17 @@ router.post("/project/edit/referencesAdm",[upload.fields([{ name: 'fileReference
                 Name: fileTecnico[0].filename,
                 Route: fileRefeSe[2],
                 Type: fileTecnico[0].fieldname,
+                ProjectId: projectId,
+            });
+        }
+
+        if(fileRevest){
+            let route = fileRevest[0].destination
+            let fileRefeSe = route.split('/');
+            await ReferencesRoute.create({
+                Name: fileRevest[0].filename,
+                Route: fileRefeSe[2],
+                Type: fileRevest[0].fieldname,
                 ProjectId: projectId,
             });
         }

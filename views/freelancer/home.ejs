@@ -22,8 +22,12 @@
             <div class="rigth">
                 <div class="user">
                     <div class="name">
-                        <p>João Vitor</p>
-                        <p>Meireles</p>
+                        <p>
+                            <%= User.Name %>
+                        </p>
+                        <p>
+                            <%= User.Surname %>
+                        </p>
                     </div>
                     <ion-icon style="font-size: 40px;" name="person-circle-outline"></ion-icon>
                 </div>
@@ -52,7 +56,7 @@
                 </div>
             </div>
             <div class="projects">
-                <% projectBase.forEach(project => { %>
+                <% project.forEach(project => { %>
                     <% if (cliente === 1) { %>
                         <a href="/project/<%= project.Uuid %>">
                             <div class="box">

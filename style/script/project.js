@@ -54,6 +54,7 @@ form.addEventListener('submit', async (event) => {
     const fileRender = document.getElementById('fileRender').files[0]
     const fileTecnico = document.getElementById('fileTecnico').files[0]
     const filePlanta = document.getElementById('filePlanta').files[0]
+    const fileRevest = document.getElementById('fileRevest').files[0]
     const projectRoute = document.getElementById('projectRoute').value;
     const projectId = document.getElementById('projectId').value;
     const marcName = document.getElementById('marcName').value;
@@ -73,6 +74,7 @@ form.addEventListener('submit', async (event) => {
     formData.append('fileRender', fileRender);
     formData.append('fileTecnico', fileTecnico);
     formData.append('filePlanta', filePlanta);
+    formData.append('fileRevest', fileRevest);
     formData.append('marcName', marcName);
     formData.append('marcCode', marcCode);
     formData.append('marcMarca', marcMarca);

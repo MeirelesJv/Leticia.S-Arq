@@ -274,7 +274,9 @@
                                 <% } %>
                             </div>
                             <% if (UserType === 1) { %>
-                                <input type="text" id="renderApi" name="renderApi" placeholder="Api">
+                                <div class="">
+                                    <input class="input" type="text" id="renderApi" name="renderApi" placeholder="Api">
+                                </div>
                             <% } %>
                             <% referenceRoute.forEach(element=> { %>
                                 <% if (element.Type == 'fileRender') { %>

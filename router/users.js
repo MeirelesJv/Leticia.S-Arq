@@ -84,7 +84,7 @@ router.post("/users/login", async (req,res)=>{
             var correct = bcrypt.compareSync(password, user.Password);
             if(correct){
                 try {
-                    var token = jwt.sign({ id: user.id,email: user.Email,type: user.Type }, JWTSecret, { expiresIn: '1h' });
+                    var token = jwt.sign({ id: user.id,email: user.Email,type: user.Type,name: user.Name,surname: user.Surname }, JWTSecret, { expiresIn: '1h' });
                     req.session.tokenn = token
                     req.session.bananao = user.id + aleCode
                     res.status(200);
