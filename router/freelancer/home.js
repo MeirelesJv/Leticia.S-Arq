@@ -185,10 +185,7 @@ router.post("/project/edit/referencesAdm",[upload.fields([{ name: 'fileReference
     let { projectId,marcName,marcCode,marcMarca, revestName,revestCode,revestMarca,renderApi,prancha } = req.body
 
     let {fileReferenceAdm,fileMarcenaria,fileLayout,fileRender,fileTecnico,filePlanta,fileRevest } = req.files
-    console.log(fileLayout)
-
     
-
     try {
 
         if(fileReferenceAdm){

@@ -26,7 +26,7 @@ a {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #414b3b;
+    background-color: #c7b099;
 }
 
 .block-top {
@@ -34,8 +34,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 20px 0px 20px;
-    border-bottom: 1px #e2e2e2 solid;
+    padding: 20px 40px 0px 40px;
 
     .left {
         display: flex;
@@ -60,6 +59,14 @@ a {
             display: flex;
             align-items: center;
             gap: 5px;
+            font-family: "Montserrat", sans-serif;
+
+            .name{
+                text-align: end;
+                font-size: 15px;
+                letter-spacing: 0.16em;
+                text-transform: uppercase;
+            }
         }
 
         .rightSecond {
@@ -72,6 +79,31 @@ a {
     }
 }
 
+.ReAce{
+    margin-top: 10px;
+    .approval {
+        position: relative;
+        padding: 10px 22px;
+        border-radius: 6px;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        background-color: #2ed418;
+        transition: all 0.2s ease;
+    }
+
+    .reject {
+        position: relative;
+        padding: 10px 22px;
+        border-radius: 6px;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        background-color: #af1a1a;
+        transition: all 0.2s ease;
+    }
+}
+
 .block-bot {
     height: 92%;
     margin: 0px 50px 0px 50px;
@@ -81,6 +113,8 @@ a {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        border-bottom: 2px solid;
+        height: 80px;
 
         .status {
             display: flex;
@@ -99,29 +133,6 @@ a {
                 display: flex;
                 gap: 10px;
             }
-
-            .approval {
-                position: relative;
-                padding: 10px 22px;
-                border-radius: 6px;
-                border: none;
-                color: #fff;
-                cursor: pointer;
-                background-color: #2ed418;
-                transition: all 0.2s ease;
-            }
-
-            .reject {
-                position: relative;
-                padding: 10px 22px;
-                border-radius: 6px;
-                border: none;
-                color: #fff;
-                cursor: pointer;
-                background-color: #af1a1a;
-                transition: all 0.2s ease;
-            }
-
         }
 
         .title {
@@ -153,29 +164,36 @@ a {
 
 .fileService {
     display: flex;
-    padding-top: 10px;
-    gap: 10px;
     align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
 
-    .Download-button {
+    .anexado{
         display: flex;
+        padding-top: 10px;
+        gap: 10px;
         align-items: center;
-        font-family: inherit;
-        font-weight: 500;
-        font-size: 17px;
-        padding: 5px 5px;
-        color: white;
-        background: rgb(103, 92, 156);
-        border: none;
-        box-shadow: 0 0.7em 1.5em -0.5em rgba(59, 48, 78, 0.527);
-        letter-spacing: 0.05em;
-        border-radius: 8px;
-        cursor: pointer;
-        position: relative;
-    }
 
-    .Download-button svg {
-        width: 15px;
+        .Download-button {
+            display: flex;
+            align-items: center;
+            font-family: inherit;
+            font-weight: 500;
+            font-size: 17px;
+            padding: 5px 5px;
+            color: white;
+            background: rgb(103, 92, 156);
+            border: none;
+            box-shadow: 0 0.7em 1.5em -0.5em rgba(59, 48, 78, 0.527);
+            letter-spacing: 0.05em;
+            border-radius: 8px;
+            cursor: pointer;
+            position: relative;
+        }
+    
+        .Download-button svg {
+            width: 15px;
+        }
     }
 }
 
@@ -299,6 +317,9 @@ a {
     display: flex;
     gap: 10px;
     align-items: center;
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
 }
 
 .lalabel {
@@ -384,6 +405,33 @@ input:valid {
         transition: all 0.2s ease;
     }
 }
+
+.button{
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    padding-block: 0.5rem;
+    padding-inline: 1.25rem;
+    background-color: #8e6a4a;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffff;
+    gap: 10px;
+    font-weight: bold;
+    border: 3px solid #8e6a4a;
+    outline: none;
+    overflow: hidden;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: "Sorts Mill Goudy", serif;
+}
+
+
+
+
+
+
 
 .plusButton {
     --plus_sideLength: 1.5rem;

@@ -4,7 +4,10 @@
     font-display: swap;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&display=swap');
+
 
 * {
     margin: 0;
@@ -23,7 +26,7 @@ a {
     height: 100vh;
     display: flex; 
     flex-direction: column;
-    background-color: #414b3b;
+    background-color: #c7b099;
 }
 
 .block-top{
@@ -31,8 +34,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 20px 0px 20px;
-    border-bottom: 1px #e2e2e2 solid;
+    padding: 20px 40px 0px 40px;
     
     .left {
         display: flex;
@@ -57,6 +59,14 @@ a {
             display: flex;
             align-items: center;
             gap: 5px;
+            font-family: "Montserrat", sans-serif;
+
+            .name{
+                text-align: end;
+                font-size: 15px;
+                letter-spacing: 0.16em;
+                text-transform: uppercase;
+            }
         }
         .rightSecond{
             display: flex;
@@ -70,7 +80,7 @@ a {
 
 .block-bot{
     height: 92%;
-    padding: 50px 200px 0px 200px;
+    padding: 50px 100px 0px 100px;
     overflow: hidden;
     overflow-y: auto;
 
@@ -78,6 +88,17 @@ a {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        border-bottom: 2px solid white;
+        height: 100px;
+
+        .title{
+            h2{
+                font-size: 41px;
+                font-family: Higuen\ Regular;
+                font-weight: 400;
+                height: 50px;
+            }
+        }
     }
     .newProject{
         .button {
@@ -85,7 +106,7 @@ a {
             transition: all 0.3s ease-in-out;
             padding-block: 0.5rem;
             padding-inline: 1.25rem;
-            background-color: #414B3B;
+            background-color: #8e6a4a;
             border-radius: 9999px;
             display: flex;
             align-items: center;
@@ -93,11 +114,12 @@ a {
             color: #ffff;
             gap: 10px;
             font-weight: bold;
-            border: 3px solid #ffffff4d;
+            border: 3px solid #8e6a4a;
             outline: none;
             overflow: hidden;
             font-size: 12px;
             cursor: pointer;
+            font-family: "Sorts Mill Goudy", serif;
           }
           
           .icon {

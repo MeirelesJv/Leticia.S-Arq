@@ -15,7 +15,7 @@ a {
 body {
     width: 100vw;
     height: 100vh;
-    background-color: #414b3b;
+    background-color: #c7b099;
     display: block;
     overflow-x: hidden;
 }
@@ -34,8 +34,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 20px 0px 20px;
-    border-bottom: 1px #e2e2e2 solid;
+    padding: 20px 40px 0px 40px;
 
     .left {
         display: flex;
@@ -43,14 +42,6 @@ body {
         img {
             width: 50px;
         }
-    }
-
-    .center {
-        color: white;
-        font-family: Higuen\ Regular;
-        font-weight: 400;
-        font-size: 20px;
-        text-shadow: 0 3px 8px rgba(0, 0, 0, 0);
     }
 
     .rigth {
@@ -63,6 +54,14 @@ body {
             display: flex;
             align-items: center;
             gap: 5px;
+            font-family: "Montserrat", sans-serif;
+
+            .name{
+                text-align: end;
+                font-size: 15px;
+                letter-spacing: 0.16em;
+                text-transform: uppercase;
+            }
         }
 
         .rightSecond {
@@ -167,7 +166,7 @@ input:valid {
     border: none;
     display: flex;
     padding: 0.75rem 1.5rem;
-    background-color: #488aec;
+    background-color: #8e6a4a;
     color: #ffffff;
     font-size: 0.75rem;
     line-height: 1rem;

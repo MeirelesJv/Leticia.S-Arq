@@ -70,17 +70,11 @@ body::-webkit-scrollbar {
             content: "";
             display: block;
             height: 2px;
-            /* Altura da borda inferior */
             background-color: white;
-            /* Cor da borda inferior */
             left: 0;
-            /* Posição inicial da borda: à esquerda */
             top: 100%;
-            /* Posição inicial da borda: abaixo do elemento */
             width: 0;
-            /* Largura inicial da borda: zero */
             transition: width 0.3s ease;
-            /* Animação de largura */
         }
 
         nav:hover::after {

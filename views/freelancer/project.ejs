@@ -14,11 +14,7 @@
     <div class="container">
         <div class="block-top">
             <div class="left">
-                <img src="/Portfolio/0. Logo.png" alt="">
-                <div class="center">
-                    <p>Leticia S.</p>
-                    <p>Arquitetura</p>
-                </div>
+                <a href="/home"><img src="/Portfolio/0. Logo.png" alt=""></a>
             </div>
             <div class="rigth">
                 <div class="user">
@@ -30,66 +26,65 @@
                             <%= User.Surname %>
                         </p>
                     </div>
-                    <ion-icon style="font-size: 40px;" name="person-circle-outline"></ion-icon>
+                    <ion-icon style="font-size: 50px;" name="person-circle-outline"></ion-icon>
                 </div>
                 <div class="rightSecond">
-                    <a href="/logout"><ion-icon style="font-size: 20px;" name="log-out-outline"></ion-icon></a>
+                    <a href="/logout"><ion-icon style="font-size: 30px;" name="log-out-outline"></ion-icon></a>
                 </div>
-
             </div>
         </div>
         <div class="block-bot">
             <div class="BlockHeader">
                 <div class="title">
-                        <p>
-                            <%= project.Name %>
-                        </p>
+                    <p>
+                        <%= project.Name %>
+                    </p>
                 </div>
-                <div class="status">
-                    <span>Status</span>
-                    <% if (project.Status==0 && UserType===1){ %>
-                        <p>
-                            <%= statusMap[project.Status] %>
-                        </p>
-                        <form class="statusForm" id="formApproval">
-                            <input type="hidden" name="projectId" id="projectId" value="<%= project.id %>">
-                            <button class="approval" name="approval" id="approval" value="2">Aprovar</button>
-                            <button class="reject" name="reject" id="reject" value="1">Recusar</button>
-                        </form>
-                        <% } else { %>
-                        <p>
-                            <%= statusMap[project.Status] %>
-                        </p>
-                        <% } %>
-
+                <div class="serviceType">
+                    <p><%= serviceMap[project.Service] %></p>
                 </div>
             </div>
-            <div class="serviceType">
-                <p><%= serviceMap[project.Service] %></p>
+            <div class="ReAce">
+                <% if (UserType===1 && project.Status == '0'){ %>
+                    <form class="statusForm" id="formApproval">
+                        <input type="hidden" name="projectId" id="projectId" value="<%= project.id %>">
+                        <button class="approval" name="approval" id="approval" value="2">Aprovar</button>
+                        <button class="reject" name="reject" id="reject" value="1">Recusar</button>
+                    </form>
+                <% }%>
             </div>
             <form id="projectEdit">
                 <div class="BlockBody">
                     <div class="fileService">
-                        <% if (project.Service != 'interiorDesign') { %>
-                            <div class="fileObgTitle">
-                                <span>Arquivo Anexado:</span>
+                        <div class="anexado">
+                            <% if (project.Service != 'interiorDesign') { %>
+                                <div class="fileObgTitle">
+                                    <span>Arquivo Anexado:</span>
+                                </div>
+                                <a href="/uploads/<%= project.FileRoute %>/<%= project.File %>" download="Project_<%= project.Name %>">
+                                    <label class="Download-button">
+                                        <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          height="16"
+                                          width="20"
+                                          viewBox="0 0 640 512"
+                                        >
+                                          <path
+                                            d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24V318.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z"
+                                            fill="white"
+                                          ></path>
+                                        </svg>
+                                        <span></span>
+                                    </label>
+                                </a>
+                            <% } %>
+                        </div>
+                        <% if (UserType===1 && project.Status >= 1 && project.Status < 12) { %>
+                            <div class="fotoPrinc">
+                                <label for="filePrinc" class="button">Adicionar Midia</label>
+                                <input accept="image/*" onchange="showFileName(this,'descriptionFilename')" type="file" class="input-file" id="filePrinc" name="filePrinc">
+                                <div class="description" id="descriptionFilename"></div>
                             </div>
-                            <a href="/uploads/<%= project.FileRoute %>/<%= project.File %>" download="Project_<%= project.Name %>">
-                                <label class="Download-button">
-                                    <svg
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      height="16"
-                                      width="20"
-                                      viewBox="0 0 640 512"
-                                    >
-                                      <path
-                                        d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24V318.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z"
-                                        fill="white"
-                                      ></path>
-                                    </svg>
-                                    <span></span>
-                                </label>
-                            </a>
                         <% } %>
                     </div>
                     <div class="Obs">
@@ -104,16 +99,16 @@
                         <div class="titleEtaps">
                             <span>Referencias</span>
                             <% if (UserType===1) { %>
-                            <label for="fileReferenceAdm" tabindex="0" class="plusButton">
-                                <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-                                  <g mask="url(#mask0_21_345)">
-                                    <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
-                                  </g>
-                                </svg>
-                            </label>
-                            <input accept="image/*" onchange="showFileName(this,'descriptionFilename')" type="file" class="input-file" id="fileReferenceAdm" name="fileReferenceAdm">
-                            <input type="hidden" name="projectRoute" id="projectRoute"value="<%= referenceRoute[0].Route %>">
-                            <div class="description" id="descriptionFilename"></div>
+                                <label for="fileReferenceAdm" tabindex="0" class="plusButton">
+                                    <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                                    <g mask="url(#mask0_21_345)">
+                                        <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
+                                    </g>
+                                    </svg>
+                                </label>
+                                <input accept="image/*" onchange="showFileName(this,'descriptionFilename')" type="file" class="input-file" id="fileReferenceAdm" name="fileReferenceAdm">
+                                <input type="hidden" name="projectRoute" id="projectRoute"value="<%= referenceRoute[0].Route %>">
+                                <div class="description" id="descriptionFilename"></div>
                             <% } %>
                         </div>
                         <div class="ReferenceFiles">
