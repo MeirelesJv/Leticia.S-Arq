@@ -39,7 +39,7 @@
                 <form action="/project" id="formProject" method="post" enctype="multipart/form-data">
                     <div class="service title-project">
                         <label class="label">Comodo / Local do Projeto</label>
-                        <input placeholder="Sala de estar, Quarto hóspede..." autocomplete="off" required="" name="title" id="title" class="input" type="text">
+                        <input placeholder="Sala de estar, Quarto hóspede..." maxlength="20" autocomplete="off" required="" name="title" id="title" class="input" type="text">
                         <label class="description">Apenas o nome do comodo para usarmos como referencia </label>
                     </div>
                     <div class="service types">
@@ -99,4 +99,10 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="/script/newProject.js"></script>
+
+<% function truncate(text, maxLength) {
+    return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+    } 
+%>
+
 </html>

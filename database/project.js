@@ -19,30 +19,6 @@ const Project = connection.define('Project', {
         type: sequelize.TEXT,
         allowNull: false
     },
-    MarcName: {
-        type: sequelize.TEXT,
-        allowNull: true
-    },
-    MarcCode: {
-        type: sequelize.TEXT,
-        allowNull: true
-    },
-    MarcMarca: {
-        type: sequelize.TEXT,
-        allowNull: true
-    },
-    RevestName: {
-        type: sequelize.TEXT,
-        allowNull: true
-    },
-    RevestCode: {
-        type: sequelize.TEXT,
-        allowNull: true
-    },
-    RevestMarca: {
-        type: sequelize.TEXT,
-        allowNull: true
-    },
     RenderApi: {
         type: sequelize.TEXT,
         allowNull: true
@@ -56,6 +32,10 @@ const Project = connection.define('Project', {
         allowNull: true
     },
     FileRoute: {
+        type: sequelize.STRING,
+        allowNull: true
+    },
+    ImgPrinc: {
         type: sequelize.STRING,
         allowNull: true
     },

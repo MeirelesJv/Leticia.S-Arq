@@ -7,8 +7,8 @@ const authJWT = require("../../middleware/authJwt");
 const { Op } = require('sequelize');
 const {  v4 : uuidv4  } = require("uuid");
 const Users = require("../../database/users");
+const workmanship = require("../../database/workmanship");
 
-//Status 
 
 router.get("/home", authJWT, (req, res) => {
     var cliente = req.loggedUser.type
@@ -181,10 +181,10 @@ router.post("/project/edit/approve",authJWT, async(req,res) =>{
     
 });
 
-router.post("/project/edit/referencesAdm",[upload.fields([{ name: 'fileReferenceAdm', maxCount: 1 }, { name: 'fileMarcenaria', maxCount: 1 },{ name: 'fileLayout', maxCount: 1 },{ name: 'fileRender', maxCount: 1 },{ name: 'filePlanta', maxCount: 1 },{ name: 'fileTecnico', maxCount: 1 },{ name: 'fileRevest', maxCount: 1 },]),authJWT], async(req,res)=>{
-    let { projectId,marcName,marcCode,marcMarca, revestName,revestCode,revestMarca,renderApi,prancha } = req.body
+router.post("/project/edit/referencesAdm",[upload.fields([{ name: 'fileReferenceAdm', maxCount: 1 }, { name: 'fileMarcenaria', maxCount: 1 },{ name: 'fileLayout', maxCount: 1 },{ name: 'fileRender', maxCount: 1 },{ name: 'filePlanta', maxCount: 1 },{ name: 'fileTecnico', maxCount: 1 },{ name: 'fileRevest', maxCount: 1 },{ name: 'filePrinc', maxCount: 1 }]),authJWT], async(req,res)=>{
+    let { projectId,renderApi,prancha } = req.body
 
-    let {fileReferenceAdm,fileMarcenaria,fileLayout,fileRender,fileTecnico,filePlanta,fileRevest } = req.files
+    let {fileReferenceAdm,fileMarcenaria,fileLayout,fileRender,fileTecnico,filePlanta,fileRevest,filePrinc } = req.files
     
     try {
 
@@ -264,14 +264,21 @@ router.post("/project/edit/referencesAdm",[upload.fields([{ name: 'fileReference
                 ProjectId: projectId,
             });
         }
+
+        if(filePrinc){
+            let route = filePrinc[0].destination
+            let fileRefeSe = route.split('/');
+            await projectBase.update({
+                ImgPrinc: filePrinc[0].filename,
+                FileRoute: fileRefeSe[2],
+            },{ 
+                where: {
+                    id: projectId
+                }
+            });
+        }
  
         await projectBase.update({
-            MarcName: marcName,
-            MarcCode: marcCode,
-            MarcMarca: marcMarca,
-            RevestName: revestName,
-            RevestCode: revestCode,
-            RevestMarca: revestMarca,
             RenderApi: renderApi,
             Prancha: prancha
         },{ 

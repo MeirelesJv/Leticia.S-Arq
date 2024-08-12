@@ -12,6 +12,8 @@
 
 <body>
     <div class="container">
+        <input type="hidden" name="projectId" id="projectId" value="<%= project.id %>">
+        <input type="hidden" name="projectRoute" id="projectRoute"value="<%= referenceRoute[0].Route %>">
         <div class="block-top">
             <div class="left">
                 <a href="/home"><img src="/Portfolio/0. Logo.png" alt=""></a>
@@ -47,11 +49,10 @@
             <div class="ReAce">
                 <% if (UserType===1 && project.Status == '0'){ %>
                     <form class="statusForm" id="formApproval">
-                        <input type="hidden" name="projectId" id="projectId" value="<%= project.id %>">
                         <button class="approval" name="approval" id="approval" value="2">Aprovar</button>
                         <button class="reject" name="reject" id="reject" value="1">Recusar</button>
                     </form>
-                <% }%>
+                <% } %>
             </div>
             <form id="projectEdit">
                 <div class="BlockBody">
@@ -80,36 +81,39 @@
                             <% } %>
                         </div>
                         <% if (UserType===1 && project.Status >= 1 && project.Status < 12) { %>
-                            <div class="fotoPrinc">
+                            <div class="inputsText">
                                 <label for="filePrinc" class="button">Adicionar Midia</label>
-                                <input accept="image/*" onchange="showFileName(this,'descriptionFilename')" type="file" class="input-file" id="filePrinc" name="filePrinc">
-                                <div class="description" id="descriptionFilename"></div>
+                                <input accept="image/*" onchange="showFileName(this,'descriptionFotoPrinc')" type="file" class="input-file" id="filePrinc" name="filePrinc">
+                                <div class="description" id="descriptionFotoPrinc"></div>
                             </div>
                         <% } %>
                     </div>
                     <div class="Obs">
                         <div class="titleEtaps">
-                            <span>Programa de necessidade</span>
+                            <div class="fafa">
+                                <span>Programa de necessidade</span>
+                            </div>
                         </div>
-                        <span>
+                        <span class="textar">
                             <%= project.Obs %>
                         </span>
                     </div>
                     <div class="Reference">
                         <div class="titleEtaps">
-                            <span>Referencias</span>
-                            <% if (UserType===1) { %>
-                                <label for="fileReferenceAdm" tabindex="0" class="plusButton">
-                                    <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-                                    <g mask="url(#mask0_21_345)">
-                                        <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
-                                    </g>
-                                    </svg>
-                                </label>
-                                <input accept="image/*" onchange="showFileName(this,'descriptionFilename')" type="file" class="input-file" id="fileReferenceAdm" name="fileReferenceAdm">
-                                <input type="hidden" name="projectRoute" id="projectRoute"value="<%= referenceRoute[0].Route %>">
-                                <div class="description" id="descriptionFilename"></div>
-                            <% } %>
+                            <div class="fafa">
+                                <span>Referencias</span>
+                            </div>
+                            <div class="inputsText">
+                                <% if (UserType===1) { %>
+                                    <label for="fileReferenceAdm" class="button">Adicionar Midia</label>
+                                    <input accept="image/*" onchange="showFileName(this,'descriptionFilename')" type="file" class="input-file" id="fileReferenceAdm" name="fileReferenceAdm">
+                                    <div class="description" id="descriptionFilename"></div>
+                                <% } %>
+                            </div>
+                            
+                        </div>
+                        <div class="text">
+                            <p>Fotos que ilustrem suas ideias para o seu espaço, sendo de mobiliário, cores, texturas, decorações ...</p>
                         </div>
                         <div class="ReferenceFiles">
                             <% referenceRoute.forEach(element=> { %>
@@ -122,19 +126,19 @@
                     <div class="statusLayout">
                         <% if (project.Status >= 0 && project.Status < 12) { %>
                             <div class="titleEtaps">
-                                <span>Layout</span>
-                                <% if (UserType===1) { %>
-                                    <label for="fileLayout" tabindex="0" class="plusButton">
-                                        <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-                                          <g mask="url(#mask0_21_345)">
-                                            <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
-                                          </g>
-                                        </svg>
-                                    </label>
-                                    <input accept="image/*" onchange="showFileName(this,'descriptionLayout')" type="file" class="input-file" id="fileLayout" name="fileLayout">
-                                    <input type="hidden" name="projectRoute" id="projectRoute"value="<%= referenceRoute[0].Route %>">
-                                    <div id="descriptionLayout"></div>  
-                                <% } %>
+                                <div class="fafa">
+                                    <span>Layout</span>
+                                </div>
+                                <div class="inputsText">
+                                    <% if (UserType===1) { %>
+                                        <label for="fileLayout" class="button">Adicionar Midia</label>
+                                        <input accept="image/*" onchange="showFileName(this,'descriptionLayout')" type="file" class="input-file" id="fileLayout" name="fileLayout">
+                                        <div class="description" id="descriptionLayout"></div>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="text">
+                                <p>Opções de disposição do mobiliário no espaço</p>
                             </div>
                             <% referenceRoute.forEach(element=> { %>
                                 <% if (element.Type == 'fileLayout') { %>
@@ -146,19 +150,18 @@
                     <div class="statusMarcenaria">
                         <% if (project.Status >= 0 && project.Status < 12) { %>
                             <div class="titleEtaps">
-                                <span>Marcenaria</span>
-                                <% if (UserType===1) { %>
-                                    <label for="fileMarcenaria" tabindex="0" class="plusButton">
-                                        <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-                                          <g mask="url(#mask0_21_345)">
-                                            <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
-                                          </g>
-                                        </svg>
-                                    </label>
-                                    <input accept="image/*" onchange="showFileName(this,'descriptionMarcenaria')" type="file" class="input-file" id="fileMarcenaria" name="fileMarcenaria">
-                                    <input type="hidden" name="projectRoute" id="projectRoute"value="<%= referenceRoute[0].Route %>">
-                                    <div id="descriptionMarcenaria"></div>  
-                                <% } %>
+                                <div class="fafa">
+                                    <span>Marcenaria</span>
+                                </div>
+                                <div class="inputsText">
+                                    <% if (UserType===1) { %>
+                                        <label for="fileMarcenaria" class="button">Adicionar Midia</label>
+                                        <input accept="image/*" onchange="showFileName(this,'descriptionMarcenaria')" type="file" class="input-file" id="fileMarcenaria" name="fileMarcenaria">
+                                        <div class="description" id="descriptionMarcenaria"></div>
+                                    <% } %></div>
+                            </div>
+                            <div class="text">
+                                <p>Móveis planejados</p>
                             </div>
                             <% referenceRoute.forEach(element=> { %>
                                 <% if (element.Type == 'fileMarcenaria') { %>
@@ -200,19 +203,15 @@
                     <div class="statusRevest">
                         <% if (project.Status >= 0 && project.Status < 12) { %>
                             <div class="titleEtaps">
-                                <span>Revestimento</span>
-                                <% if (UserType===1) { %>
-                                    <label for="fileRevest" tabindex="0" class="plusButton">
-                                        <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-                                          <g mask="url(#mask0_21_345)">
-                                            <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
-                                          </g>
-                                        </svg>
-                                    </label>
-                                    <input accept="image/*" onchange="showFileName(this,'descriptionRevest')" type="file" class="input-file" id="fileRevest" name="fileRevest">
-                                    <input type="hidden" name="projectRoute" id="projectRoute"value="<%= referenceRoute[0].Route %>">
-                                    <div id="descriptionRevest"></div>  
-                                <% } %>
+                                <div class="fafa">
+                                    <span>Revestimento</span>
+                                </div>
+                                <div class="inputsText">
+                                    <% if (UserType===1) { %>
+                                        <label for="fileRevest" class="button">Adicionar Midia</label>
+                                        <input accept="image/*" onchange="showFileName(this,'descriptionRevest')" type="file" class="input-file" id="fileRevest" name="fileRevest">
+                                        <div class="description" id="descriptionRevest"></div>
+                                    <% } %></div>
                             </div>
                             <% referenceRoute.forEach(element=> { %>
                                 <% if (element.Type == 'fileRevest') { %>
@@ -254,19 +253,15 @@
                     <div class="statusRender">
                         <% if (project.Status >= 0 && project.Status < 12) { %>
                             <div class="titleEtaps">
-                                <span>Renderização</span>
-                                <% if (UserType===1) { %>
-                                    <label for="fileRender" tabindex="0" class="plusButton">
-                                        <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-                                          <g mask="url(#mask0_21_345)">
-                                            <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
-                                          </g>
-                                        </svg>
-                                    </label>
-                                    <input accept="image/*" onchange="showFileName(this,'descriptionRender')" type="file" class="input-file" id="fileRender" name="fileRender">
-                                    <input type="hidden" name="projectRoute" id="projectRoute"value="<%= referenceRoute[0].Route %>">
-                                    <div id="descriptionRender"></div>  
-                                <% } %>
+                                <div class="fafa">
+                                    <span>Renderização</span>
+                                </div>
+                                <div class="inputsText">
+                                    <% if (UserType===1) { %>
+                                        <label for="fileRender" class="button">Adicionar Midia</label>
+                                        <input accept="image/*" onchange="showFileName(this,'descriptionRender')" type="file" class="input-file" id="fileRender" name="fileRender">
+                                        <div class="description" id="descriptionRender"></div>
+                                    <% } %></div>
                             </div>
                             <% if (UserType === 1) { %>
                                 <div class="">
@@ -283,20 +278,16 @@
                     <div class="statusTecnico">
                         <% if (project.Status >= 0 && project.Status < 12) { %>
                             <div class="titleEtaps">
-                                <span>Detalhamento Tecnico</span>
-                                <% if (UserType===1) { %>
-                                    <label for="fileTecnico" tabindex="0" class="plusButton">
-                                        <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-                                          <g mask="url(#mask0_21_345)">
-                                            <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
-                                          </g>
-                                        </svg>
-                                    </label>
-                                    <input accept=".pdf" onchange="showFileName(this,'descriptionTecnico')" type="file" class="input-file" id="fileTecnico" name="fileTecnico">
-                                    <input type="hidden" name="projectRoute" id="projectRoute"value="<%= referenceRoute[0].Route %>">
-                                    <div id="descriptionTecnico"></div>  
-                                <% } %>
-                            </div>
+                                <div class="fafa">
+                                    <span>Detalhamento Tecnico</span>
+                                </div>
+                                <div class="inputsText">
+                                    <% if (UserType===1) { %>
+                                        <label for="fileTecnico" class="button">Adicionar Midia</label>
+                                        <input accept=".pdf" onchange="showFileName(this,'descriptionTecnico')" type="file" class="input-file" id="fileTecnico" name="fileTecnico">
+                                        <div class="description" id="descriptionTecnico"></div>
+                                    <% } %></div>
+                                </div>
                             <% referenceRoute.forEach(element=> { %>
                                 <% if (element.Type == 'fileTecnico') { %>
                                     <a href="/uploads/<%= element.FileRoute %>/<%= element.File %>" download="Project_<%= element.Name %>">Baixar Arquivo</a>
@@ -307,20 +298,16 @@
                     <div class="statusPlanta">
                         <% if (project.Status >= 0 && project.Status < 12) { %>
                             <div class="titleEtaps">
-                                <span>Planta Humanizada</span>
-                                <% if (UserType===1) { %>
-                                    <label for="filePlanta" tabindex="0" class="plusButton">
-                                        <svg class="plusIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-                                          <g mask="url(#mask0_21_345)">
-                                            <path d="M13.75 23.75V16.25H6.25V13.75H13.75V6.25H16.25V13.75H23.75V16.25H16.25V23.75H13.75Z"></path>
-                                          </g>
-                                        </svg>
-                                    </label>
-                                    <input accept="image/*" onchange="showFileName(this,'descriptionPlanta')" type="file" class="input-file" id="filePlanta" name="filePlanta">
-                                    <input type="hidden" name="projectRoute" id="projectRoute"value="<%= referenceRoute[0].Route %>">
-                                    <div id="descriptionPlanta"></div>  
-                                <% } %>
-                            </div>
+                                <div class="fafa">
+                                    <span>Planta Humanizada</span>
+                                </div>
+                                <div class="inputsText">
+                                    <% if (UserType===1) { %>
+                                        <label for="filePlanta" class="button">Adicionar Midia</label>
+                                        <input accept="image/*" onchange="showFileName(this,'descriptionPlanta')" type="file" class="input-file" id="filePlanta" name="filePlanta">
+                                        <div class="description" id="descriptionPlanta"></div>
+                                    <% } %></div>
+                                </div>
                             <% referenceRoute.forEach(element=> { %>
                                 <% if (element.Type == 'filePlanta') { %>
                                 <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
