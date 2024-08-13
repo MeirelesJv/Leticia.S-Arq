@@ -26,7 +26,7 @@ a {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #c7b099;
+    background-color: #a6a89b;
 }
 
 .block-top {
@@ -41,6 +41,7 @@ a {
 
         img {
             width: 50px;
+            height: auto;
             border-radius: 0%;
         }
     }
@@ -113,7 +114,9 @@ a {
         height: 80px;
 
         .title {
-
+            display: flex;
+            align-items: center;
+            gap: 10px;
             p {
                 font-size: 50px;
             }
@@ -138,6 +141,39 @@ a {
 
     }
 }
+.status{
+    display: flex;
+    gap: 1rem;
+
+    .a{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .circle{
+        background-color: white;
+        width: 80px;
+        height: 80px;
+        border-radius: 100%;
+    }
+    .text{
+        text-align: center;
+        max-width: 120px;
+        font-family: "Montserrat", sans-serif;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 13px;
+        margin-top: 10px;
+    }
+    .line{
+        background-color: white;
+        margin-top: 42px;
+        height: 2px;
+        flex: 1 1 0%;
+    }
+}
+
 
 .fileService {
     display: flex;
@@ -190,10 +226,19 @@ a {
         color: black;
         transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
     }
+    .titleObs{
+        height: 35px;
+        width: 50%;
+        font-family: "Montserrat", sans-serif;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-weight: 100;
+    }
 }
 
 img{
-    width: 300px;
+    width: 200px;
+    height: 200px;
     border-radius: 100%;
 }
 
@@ -226,6 +271,35 @@ img{
     display: flex;
     gap: 20px;
     flex-direction: column;
+}
+
+.statusWork{
+    .ab{
+        width: 200px;
+        gap: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    .acabBot{
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    option{
+    color: black;
+    }
+
+    .acabInputsCliente{
+        
+        span{
+            font-family: "Montserrat", sans-serif;
+            
+        }
+        .workName{
+            font-weight: 600;
+            font-size: 20px;
+        }
+    }
 }
 
 .inputs{
@@ -263,6 +337,7 @@ img{
     font-family: "Montserrat", sans-serif;
     letter-spacing: 0.16em;
     text-transform: uppercase; 
+    font-weight: 100;
 }
 
 .inputsText{
@@ -335,4 +410,85 @@ input:valid {
     font-size: 12px;
     cursor: pointer;
     font-family: "Sorts Mill Goudy", serif;
+}
+
+
+
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4);
+
+    .P{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 15px;    
+
+        .buttonWork{
+            position: relative;
+            padding: 10px 22px;
+            border-radius: 6px;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            background-color: #2ea351;
+            transition: all 0.2s ease;
+        }
+    }
+}
+
+.modalNone{
+    display: none;
+}
+
+.formModal{
+    display: flex;
+    justify-content: space-around;
+
+    img{
+        width: 150px;
+        height: 150px;
+        border-radius: 0%;
+        margin-bottom: 10px;
+    }
+}
+
+.acabImag{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: end;
+}
+
+.acabInputs{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-content {
+    background-color: #a6a89b;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    height: 30%;
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }

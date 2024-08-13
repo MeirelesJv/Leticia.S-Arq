@@ -5,15 +5,15 @@ const project = require("./project")
 const Workmanship = connection.define('Workmanship',{
     Name:{
         type: sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     Code:{
         type: sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     Brand:{
         type: sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     File:{
         type: sequelize.STRING,
@@ -25,7 +25,7 @@ const Workmanship = connection.define('Workmanship',{
     },
     Type:{
         type: sequelize.STRING,
-        allowNull: false
+        allowNull: true
     }
 })
 

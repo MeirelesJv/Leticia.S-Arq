@@ -13,7 +13,6 @@ const storage = multer.diskStorage({
 
         if(file.fieldname != 'filesReference' && file.fieldname != 'files'){
             const projectRoute = req.body.projectRoute;
-            console.log(projectRoute)
             const uploadPath = 'style/uploads/' + projectRoute;
             try {
                 cb(null, uploadPath)

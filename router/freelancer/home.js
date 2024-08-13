@@ -31,10 +31,10 @@ router.get("/home", authJWT, (req, res) => {
         6: 'Desenvolvimento  Acabamentos',
         7: 'Modelagem 3D',
         8: 'Renderização',
-        9: 'Detalhamento Tecnico',
-        10: 'Planta Humanizada',
-        11: 'Concluido',   
-        12: 'Recusado'     
+        9: 'Planta Humanizada',
+        10: 'Detalhamento Tecnico',
+        11: 'Concluido',    
+        12: 'Recusado'    
     }
     projectBase.findAll({ order: [['id']], include: [{ model: ReferencesRoute }], where: { Status: { [Op.ne]: 11 } } }).then(project => {
 
@@ -118,8 +118,8 @@ router.get("/project/:Uuid",authJWT, async (req,res) =>{
         6: 'Desenvolvimento  Acabamentos',
         7: 'Modelagem 3D',
         8: 'Renderização',
-        9: 'Detalhamento Tecnico',
-        10: 'Planta Humanizada',
+        9: 'Planta Humanizada',
+        10: 'Detalhamento Tecnico',
         11: 'Concluido',    
         12: 'Recusado'    
     }
@@ -131,16 +131,17 @@ router.get("/project/:Uuid",authJWT, async (req,res) =>{
         interiorDesign: 'Projeto de Interiores'
     };
 
-    projectBase.findOne({include: [{ model: ReferencesRoute },{ model: Users },], where: { Uuid: Uuid}}).then(project =>{
+    projectBase.findOne({include: [{ model: ReferencesRoute },{ model: Users },{ model: workmanship }], where: { Uuid: Uuid}}).then(project =>{
         if(!project){
             return res.status(404).json({ message: 'Projeto não encontrado' });
         }
 
         const { User } = project
         const referenceRoute = project.ReferencesRoutes
+        const Workmanship = project.Workmanships
 
         if(UserType === 1 || UserId === project.UserId){
-            res.render("freelancer/project", {project,User,referenceRoute,statusMap,UserType,serviceMap})
+            res.render("freelancer/project", {project,User,referenceRoute,statusMap,UserType,serviceMap,Workmanship})
         }else{
             return res.status(400).json({message: "Acesso negado"})
         }
@@ -181,10 +182,10 @@ router.post("/project/edit/approve",authJWT, async(req,res) =>{
     
 });
 
-router.post("/project/edit/referencesAdm",[upload.fields([{ name: 'fileReferenceAdm', maxCount: 1 }, { name: 'fileMarcenaria', maxCount: 1 },{ name: 'fileLayout', maxCount: 1 },{ name: 'fileRender', maxCount: 1 },{ name: 'filePlanta', maxCount: 1 },{ name: 'fileTecnico', maxCount: 1 },{ name: 'fileRevest', maxCount: 1 },{ name: 'filePrinc', maxCount: 1 }]),authJWT], async(req,res)=>{
-    let { projectId,renderApi,prancha } = req.body
+router.post("/project/edit/referencesAdm",[upload.fields([{ name: 'fileReferenceAdm', maxCount: 1 }, { name: 'fileMarcenaria', maxCount: 1 },{ name: 'fileLayout', maxCount: 1 },{ name: 'fileRender', maxCount: 1 },{ name: 'filePlanta', maxCount: 1 },{ name: 'fileTecnico', maxCount: 1 },{ name: 'fileModeling', maxCount: 1 },{ name: 'filePrinc', maxCount: 1 }]),authJWT], async(req,res)=>{
+    let { projectId,renderApi,prancha} = req.body
 
-    let {fileReferenceAdm,fileMarcenaria,fileLayout,fileRender,fileTecnico,filePlanta,fileRevest,filePrinc } = req.files
+    let {fileReferenceAdm,fileMarcenaria,fileLayout,fileRender,fileTecnico,filePlanta,fileModeling,filePrinc,fileWork } = req.files
     
     try {
 
@@ -254,13 +255,13 @@ router.post("/project/edit/referencesAdm",[upload.fields([{ name: 'fileReference
             });
         }
 
-        if(fileRevest){
-            let route = fileRevest[0].destination
+        if(fileModeling){
+            let route = fileModeling[0].destination
             let fileRefeSe = route.split('/');
             await ReferencesRoute.create({
-                Name: fileRevest[0].filename,
+                Name: fileModeling[0].filename,
                 Route: fileRefeSe[2],
-                Type: fileRevest[0].fieldname,
+                Type: fileModeling[0].fieldname,
                 ProjectId: projectId,
             });
         }
@@ -277,7 +278,7 @@ router.post("/project/edit/referencesAdm",[upload.fields([{ name: 'fileReference
                 }
             });
         }
- 
+
         await projectBase.update({
             RenderApi: renderApi,
             Prancha: prancha
@@ -287,11 +288,35 @@ router.post("/project/edit/referencesAdm",[upload.fields([{ name: 'fileReference
             }
         }); 
 
-        console.log("sera?")
         res.status(200)
     } catch (error) {
         res.status(400)
         res.json({message: "Erro interno"});
+    }
+    
+});
+
+router.post("/project/edit/filesWork",[upload.single('fileWork'),authJWT], async (req,res) =>{
+    let {acabName,acabCode,acabType,acabBrand,projectId} = req.body
+    let fileWork = req.file
+    try {
+        let route = fileWork.destination
+        let fileRefeSe = route.split('/');
+
+        await workmanship.create({
+            Name: acabName,
+            Code: acabCode,
+            Brand:  acabBrand,
+            Type:  acabType,
+            File: fileWork.filename,
+            Route: fileRefeSe[2],
+            ProjectId: projectId,
+        }); 
+
+        res.status(200);
+    } catch (error) {
+        res.status(400);
+        res.json({message: "Erro interno"})
     }
     
 });
