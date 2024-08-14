@@ -1,18 +1,85 @@
-const approval = document.getElementById('approval');
-const reject = document.getElementById('reject');
+//Axios References
 const form = document.getElementById('projectEdit');
-const workButton = document.getElementById('workButton');
-const modal = document.getElementById('modal');
-const close = document.getElementById('close');
+form.addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-//Modal
-workButton.addEventListener('click' ,(event)=>{
-    modal.classList.remove('modalNone')
-})
+    const formDataa = new FormData();
+    const projectId = document.getElementById('projectId').value;
+    formDataa.append('projectId', projectId);
+    const projectRoute = document.getElementById('projectRoute').value;
+    formDataa.append('projectRoute',projectRoute);
+    const filePrinc = document.getElementById('filePrinc').files[0]
+    formDataa.append('filePrinc', filePrinc);
+    const fileReference = document.getElementById('fileReferenceAdm').files[0]
+    formDataa.append('fileReferenceAdm', fileReference);
+    const fileLayout = document.getElementById('fileLayout').files[0]
+    formDataa.append('fileLayout', fileLayout);
+    const fileMarcenaria = document.getElementById('fileMarcenaria').files[0]
+    formDataa.append('fileMarcenaria', fileMarcenaria);
+    const fileModeling = document.getElementById('fileModeling').files[0]
+    formDataa.append('fileModeling', fileModeling);
+    const fileRender = document.getElementById('fileRender').files[0]
+    formDataa.append('fileRender', fileRender);
+    const renderApi = document.getElementById('renderApi').value;
+    formDataa.append('renderApi', renderApi);
+    const filePlanta = document.getElementById('filePlanta').files[0]
+    formDataa.append('filePlanta', filePlanta);
+    const fileTecnico = document.getElementById('fileTecnico').files[0]
+    formDataa.append('fileTecnico', fileTecnico);
 
-close.addEventListener('click' ,(event)=>{
-    modal.classList.add('modalNone')
-})
+    try {
+        await axios({
+            method: "POST",
+            url: "/project/edit/referencesAdm",
+            data: formDataa,
+            headers: {
+                'Content-Type': 'multipart/form-data;'
+            }
+        })
+
+        recarregarAPagina()
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+function recarregarAPagina(){
+    window.location.reload();
+} 
+
+//Status Update
+async function statusupdate(stats){
+    const projectId = document.getElementById('projectId').value;
+    var number = stats
+    console.log(number)
+    console.log(stats)
+
+    axios.post('/project/edit/status', {
+    stats: stats,
+    projectId: projectId
+    })
+    .then(response => {
+        window.location.reload();
+    })
+    .catch(error => {
+        console.error(error);
+    });
+}
+
+function truncate(text, maxLength) {
+    return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+} 
+
+//Mostrar o nome do arquivo
+function showFileName(input,Deescre) {
+    if (input.files && input.files[0]) {
+        var fileName = input.files[0].name;
+        var name = truncate(fileName,20)
+        document.getElementById(Deescre).textContent = name;
+    } else {
+        document.getElementById(Deescre).textContent = 'Nenhum arquivo selecionado';
+    }
+}
 
 //ImagemPreview
 const inputModal = document.getElementById('fileWork');
@@ -36,84 +103,6 @@ inputModal.addEventListener('change', (event)=>{
     }
     reader.readAsDataURL(inputModal.files[0])
 })
-
-//Axios References
-form.addEventListener('submit', async (event) => {
-    // event.target.querySelector("button[type=submit]").disabled = true;
-    event.preventDefault();
-
-    const fileReference = document.getElementById('fileReferenceAdm').files[0]
-    const fileLayout = document.getElementById('fileLayout').files[0]
-    const fileMarcenaria = document.getElementById('fileMarcenaria').files[0]
-    const fileRender = document.getElementById('fileRender').files[0]
-    const fileTecnico = document.getElementById('fileTecnico').files[0]
-    const filePlanta = document.getElementById('filePlanta').files[0]
-    const fileModeling = document.getElementById('fileModeling').files[0]
-    const filePrinc = document.getElementById('filePrinc').files[0]
-    const projectRoute = document.getElementById('projectRoute').value;
-    const projectId = document.getElementById('projectId').value;
-    const renderApi = document.getElementById('renderApi').value;
-
-    const formData = new FormData();
-    formData.append('projectRoute',projectRoute)
-    formData.append('fileReferenceAdm', fileReference);
-    formData.append('projectId', projectId);
-    formData.append('fileLayout', fileLayout);
-    formData.append('fileMarcenaria', fileMarcenaria);
-    formData.append('fileRender', fileRender);
-    formData.append('fileTecnico', fileTecnico);
-    formData.append('filePlanta', filePlanta);
-    formData.append('fileModeling', fileModeling);
-    formData.append('renderApi', renderApi);
-    formData.append('filePrinc', filePrinc);
-
-    try {
-        await axios({
-            method: "POST",
-            url: "/project/edit/referencesAdm",
-            data: formData,
-            headers: {
-                'Content-Type': 'multipart/form-data;'
-            }
-        })
-
-        window.location.reload();
-    } catch (error) {
-        // event.target.querySelector("button[type=submit]").disabled = false;
-        console.log(error)
-    }
-});
-
-//Axios Approval
-approval.addEventListener('click', async (event) => {
-    event.preventDefault()
-
-    try {
-        axios.post('/project/edit/approve', {
-            projectId: document.getElementById('projectId').value,
-            approval: 2,
-        });
-
-        window.location.reload();
-    } catch (error) {
-        console.log(error)
-    }
-});
-
-reject.addEventListener('click', async (event) => {
-    event.preventDefault()
-
-    try {
-        axios.post('/project/edit/approve', {
-            projectId: document.getElementById('projectId').value,
-            approval: 1,
-        });
-
-        window.location.reload();
-    } catch (error) {
-        console.log(error)
-    }
-});
 
 //Axios WorkFile
 const formWork = document.getElementById('formWork');
@@ -153,17 +142,46 @@ formWork.addEventListener('submit', async (event)=>{
     }
 });
 
-function truncate(text, maxLength) {
-    return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
-} 
+//Modal
+const workButton = document.getElementById('workButton');
+workButton.addEventListener('click' ,(event)=>{
+    modal.classList.remove('modalNone')
+})
 
-//Mostrar o nome do arquivo
-function showFileName(input,Deescre) {
-    if (input.files && input.files[0]) {
-        var fileName = input.files[0].name;
-        var name = truncate(fileName,20)
-        document.getElementById(Deescre).textContent = name;
-    } else {
-        document.getElementById(Deescre).textContent = 'Nenhum arquivo selecionado';
+const close = document.getElementById('close');
+close.addEventListener('click' ,(event)=>{
+    modal.classList.add('modalNone')
+})
+
+//ModalApi
+const modalApi = document.getElementById('modalApi');
+const apiButton = document.getElementById('apiButton');
+apiButton.addEventListener('click' ,(event)=>{
+    modalApi.classList.remove('modalNone')
+})
+
+const closeApi = document.getElementById('closeApi');
+closeApi.addEventListener('click' ,(event)=>{
+    modalApi.classList.add('modalNone')
+})
+
+//Axios Api
+const formApi = document.getElementById('formApi');
+formApi.addEventListener('submit', async (event)=>{
+    event.preventDefault();
+
+
+
+    const formDataApi ={
+        renderApi: document.getElementById('renderApi').value,
+        projectId: document.getElementById('projectId').value,
     }
-}
+
+    try {
+        const response = await axios.post('/project/edit/Api', formDataApi);
+        window.location.reload();
+    } catch (error) {
+        console.log(error)
+        // event.target.querySelector("button[type=submit]").disabled = false;
+    }
+});

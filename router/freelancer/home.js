@@ -247,11 +247,13 @@ router.post("/project/edit/referencesAdm",[upload.fields([{ name: 'fileReference
         if(fileTecnico){
             let route = fileTecnico[0].destination
             let fileRefeSe = route.split('/');
-            await ReferencesRoute.create({
-                Name: fileTecnico[0].filename,
-                Route: fileRefeSe[2],
-                Type: fileTecnico[0].fieldname,
-                ProjectId: projectId,
+            await projectBase.update({
+                Prancha: fileTecnico[0].filename,
+                FileRoute: fileRefeSe[2],
+            },{
+                where: {
+                id: projectId
+                } 
             });
         }
 
@@ -319,6 +321,45 @@ router.post("/project/edit/filesWork",[upload.single('fileWork'),authJWT], async
         res.json({message: "Erro interno"})
     }
     
+});
+
+router.post("/project/edit/status",authJWT, async(req,res)=>{
+    let {stats,projectId} = req.body
+
+    try {
+        await projectBase.update({
+            Status: stats,
+        },{ 
+            where: {
+                id: projectId
+            }
+        });
+        
+        res.status(200)
+    } catch (error) {
+        res.status(400)
+        res.json({message: "Erro interno"})
+    }
+    
+})
+
+router.post("/project/edit/Api",authJWT, async(req,res)=>{
+    let {renderApi,projectId} = req.body
+    console.log(renderApi)
+    try {
+        await projectBase.update({
+            RenderApi: renderApi,
+        },{ 
+            where: {
+                id: projectId
+            }
+        })
+
+        res.status(200)
+    } catch (error) {
+        res.status(400)
+        res.json({message: "Erro interno"})
+    }
 });
 
 module.exports = router;

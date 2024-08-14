@@ -42,7 +42,7 @@
                         <%= project.Name %>
                     </p>
                     <% if (UserType===1) { %>
-                            <label for="filePrinc"><ion-icon name="attach-outline"></ion-icon></label>
+                            <label for="filePrinc"><ion-icon name="image-outline"></ion-icon></label>
                             <input accept="image/*" onchange="showFileName(this,'descriptionFotoPrinc')" type="file" class="input-file" id="filePrinc" name="filePrinc">
                             <div class="description" id="descriptionFotoPrinc"></div>
                     <% } %>
@@ -205,7 +205,6 @@
                                     <div class="description" id="descriptionFilename"></div>
                                 <% } %>
                             </div>
-                            
                         </div>
                         <div class="text">
                             <p>Fotos que ilustrem suas ideias para o seu espaço, sendo de mobiliário, cores, texturas, decorações ...</p>
@@ -217,9 +216,14 @@
                                 <% } %>
                             <% }) %>
                         </div>
+                        <% if (project.Status == '1') { %>
+                            <div class="nextStatus">
+                                <label class="button" style="background-color: #18a206; border-color: #18a206;" onclick="statusupdate(3)">Finalizar Etapa</label>
+                            </div>
+                        <% } %>
                     </div>
                     <div class="statusLayout">
-                        <% if (project.Status >= 0 && project.Status < 12) { %>
+                        <% if (project.Status >= 3 && project.Status < 12) { %>
                             <div class="titleEtaps">
                                 <div class="fafa">
                                     <span>Layout</span>
@@ -227,7 +231,6 @@
                                 <div class="inputsText">
                                     <% if (UserType===1) { %>
                                         <label for="fileLayout" class="button">Adicionar Midia</label>
-                                        <input accept="image/*" onchange="showFileName(this,'descriptionLayout')" type="file" class="input-file" id="fileLayout" name="fileLayout">
                                         <div class="description" id="descriptionLayout"></div>
                                     <% } %>
                                 </div>
@@ -235,15 +238,22 @@
                             <div class="text">
                                 <p>Opções de disposição do mobiliário no espaço</p>
                             </div>
-                            <% referenceRoute.forEach(element=> { %>
-                                <% if (element.Type == 'fileLayout') { %>
-                                <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
-                                <% } %>
-                            <% }) %>
+                            <div class="imgLay">
+                                <% referenceRoute.forEach(element=> { %>
+                                    <% if (element.Type == 'fileLayout') { %>
+                                    <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                    <% } %>
+                                <% }) %>
+                            </div>
+                            <% if (project.Status == '3') { %>
+                                <div class="nextStatus">
+                                    <label class="button" style="background-color: #18a206; border-color: #18a206;" onclick="statusupdate(4)">Finalizar Etapa</label>
+                                </div>
+                            <% } %>
                         <% }%>
                     </div>
                     <div class="statusMarcenaria">
-                        <% if (project.Status >= 0 && project.Status < 12) { %>
+                        <% if (project.Status >= 4 && project.Status < 12) { %>
                             <div class="titleEtaps">
                                 <div class="fafa">
                                     <span>Marcenaria</span>
@@ -251,22 +261,28 @@
                                 <div class="inputsText">
                                     <% if (UserType===1) { %>
                                         <label for="fileMarcenaria" class="button">Adicionar Midia</label>
-                                        <input accept="image/*" onchange="showFileName(this,'descriptionMarcenaria')" type="file" class="input-file" id="fileMarcenaria" name="fileMarcenaria">
                                         <div class="description" id="descriptionMarcenaria"></div>
                                     <% } %></div>
                             </div>
                             <div class="text">
                                 <p>Móveis planejados</p>
                             </div>
-                            <% referenceRoute.forEach(element=> { %>
-                                <% if (element.Type == 'fileMarcenaria') { %>
-                                <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
-                                <% } %>
-                            <% }) %>
+                            <div class="imgLay">
+                                <% referenceRoute.forEach(element=> { %>
+                                    <% if (element.Type == 'fileMarcenaria') { %>
+                                    <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                    <% } %>
+                                <% }) %>
+                            </div>
+                            <% if (project.Status == '4') { %>
+                                <div class="nextStatus">
+                                    <label class="button" style="background-color: #18a206; border-color: #18a206;" onclick="statusupdate(6)">Finalizar Etapa</label>
+                                </div>
+                            <% } %>
                         <% }%>
                     </div>
                     <div class="statusModeling3d">
-                        <% if (project.Status >= 0 && project.Status < 12) { %>
+                        <% if (project.Status >= 6 && project.Status < 12) { %>
                             <div class="titleEtaps">
                                 <div class="fafa">
                                     <span>Modelagem 3d</span>
@@ -274,50 +290,66 @@
                                 <div class="inputsText">
                                     <% if (UserType===1) { %>
                                         <label for="fileModeling" class="button">Adicionar Midia</label>
-                                        <input accept="image/*" onchange="showFileName(this,'descriptionModeling')" type="file" class="input-file" id="fileModeling" name="fileModeling">
                                         <div class="description" id="descriptionModeling"></div>
                                     <% } %></div>
                             </div>
                             <div class="text">
                                 <p>Maquete digital do projeto para visualização tridimensional</p>
                             </div>
-                            <% referenceRoute.forEach(element=> { %>
-                                <% if (element.Type == 'fileModeling') { %>
-                                <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
-                                <% } %>
-                            <% }) %>
+                            <div class="imgLay">
+                                <% referenceRoute.forEach(element=> { %>
+                                    <% if (element.Type == 'fileModeling') { %>
+                                    <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                    <% } %>
+                                <% }) %>
+                            </div>
+                            <% if (project.Status == '6') { %>
+                                <div class="nextStatus">
+                                    <label class="button" style="background-color: #18a206; border-color: #18a206;" onclick="statusupdate(7)">Finalizar Etapa</label>
+                                </div>
+                            <% } %>
                         <% }%>
                     </div>
                     <div class="statusRender">
-                        <% if (project.Status >= 0 && project.Status < 12) { %>
+                        <% if (project.Status >= 7 && project.Status < 12) { %>
                             <div class="titleEtaps">
                                 <div class="fafa">
                                     <span>Renderização</span>
+                                    <% if (UserType === 1) { %>
+                                        <div name="apiButton" id="apiButton">
+                                            <ion-icon name="location-outline"></ion-icon>
+                                        </div>
+                                    <% } else {%>
+                                        <div class="">
+                                            <a href="<%= project.RenderApi %>"><ion-icon name="location-outline"></ion-icon></a>
+                                        </div>
+                                    <% } %>
                                 </div>
                                 <div class="inputsText">
                                     <% if (UserType===1) { %>
                                         <label for="fileRender" class="button">Adicionar Midia</label>
-                                        <input accept="image/*" onchange="showFileName(this,'descriptionRender')" type="file" class="input-file" id="fileRender" name="fileRender">
                                         <div class="description" id="descriptionRender"></div>
                                     <% } %></div>
                             </div>
                             <div class="text">
                                 <p>Imagens realistas do projeto para aprovação de acabamentos</p>
                             </div>
-                            <% if (UserType === 1) { %>
-                                <div class="">
-                                    <input class="input" type="text" id="renderApi" name="renderApi" placeholder="Api">
+                            <div class="imgLay">
+                                <% referenceRoute.forEach(element=> { %>
+                                    <% if (element.Type == 'fileRender') { %>
+                                    <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                    <% } %>
+                                <% }) %>
+                            </div>
+                            <% if (project.Status == '7') { %>
+                                <div class="nextStatus">
+                                    <label class="button" style="background-color: #18a206; border-color: #18a206;" onclick="statusupdate(8)">Finalizar Etapa</label>
                                 </div>
                             <% } %>
-                            <% referenceRoute.forEach(element=> { %>
-                                <% if (element.Type == 'fileRender') { %>
-                                <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
-                                <% } %>
-                            <% }) %>
                         <% } %>
                     </div>
                     <div class="statusWork">
-                        <% if (project.Status >= 0 && project.Status < 12) { %>
+                        <% if (project.Status >= 8 && project.Status < 12) { %>
                             <div class="titleEtaps">
                                 <div class="fafa">
                                     <span>Acabamentos</span>
@@ -353,11 +385,15 @@
                                     </div>
                             <% }) %>
                             </div>
-                            
+                            <% if (project.Status == '8') { %>
+                                <div class="nextStatus">
+                                    <label class="button" style="background-color: #18a206; border-color: #18a206;" onclick="statusupdate(9)">Finalizar Etapa</label>
+                                </div>
+                            <% } %>
                         <% } %>
                     </div>
                     <div class="statusPlanta">
-                        <% if (project.Status >= 0 && project.Status < 12) { %>
+                        <% if (project.Status >= 9 && project.Status < 12) { %>
                             <div class="titleEtaps">
                                 <div class="fafa">
                                     <span>Planta Humanizada</span>
@@ -365,7 +401,6 @@
                                 <div class="inputsText">
                                     <% if (UserType===1) { %>
                                         <label for="filePlanta" class="button">Adicionar Midia</label>
-                                        <input accept="image/*" onchange="showFileName(this,'descriptionPlanta')" type="file" class="input-file" id="filePlanta" name="filePlanta">
                                         <div class="description" id="descriptionPlanta"></div>
                                     <% } %></div>
                             </div>
@@ -377,10 +412,15 @@
                                 <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
                                 <% } %>
                             <% }) %>
+                            <% if (project.Status == '9') { %>
+                                <div class="nextStatus">
+                                    <label class="button" style="background-color: #18a206; border-color: #18a206;" onclick="statusupdate(10)">Finalizar Etapa</label>
+                                </div>
+                            <% } %>
                         <% } %>
                     </div>
                     <div class="statusTecnico">
-                        <% if (project.Status >= 0 && project.Status < 12) { %>
+                        <% if (project.Status >= 10 && project.Status < 12) { %>
                             <div class="titleEtaps">
                                 <div class="fafa">
                                     <span>Detalhamento Tecnico</span>
@@ -388,18 +428,22 @@
                                 <div class="inputsText">
                                     <% if (UserType===1) { %>
                                         <label for="fileTecnico" class="button">Adicionar Midia</label>
-                                        <input accept=".pdf" onchange="showFileName(this,'descriptionTecnico')" type="file" class="input-file" id="fileTecnico" name="fileTecnico">
                                         <div class="description" id="descriptionTecnico"></div>
                                     <% } %></div>
                                 </div>
                                 <div class="text">
                                     <p>Desenho técnico da marcenaria planejada para execução</p>
                                 </div>
-                            <% referenceRoute.forEach(element=> { %>
-                                <% if (element.Type == 'fileTecnico') { %>
-                                    <a href="/uploads/<%= element.FileRoute %>/<%= element.File %>" download="Project_<%= element.Name %>">Baixar Arquivo</a>
-                                <% } %>
-                            <% }) %>
+                            <% if (project.Prancha != null) { %>
+                                <div class="button" style="background-color: transparent; border-color: white; width: 100px;">
+                                    <a style="color: white;" href="/uploads/<%= project.FileRoute %>/<%= project.Prancha %>" download="Project_<%= project.Prancha %>">Download projeto</a>
+                                </div>
+                            <% } %>
+                            <% if (project.Status == '10') { %>
+                                <div class="nextStatus">
+                                    <label class="button" style="background-color: #18a206; border-color: #18a206;" onclick="statusupdate(11)">Finalizar Projeto</label>
+                                </div>
+                            <% } %>
                         <% } %>
                     </div>
                     <div class="BlockBotton">
@@ -408,6 +452,15 @@
                         <% } %>
                     </div>
                 </div>
+                <% if (UserType===1) { %>
+                    <input accept=".pdf" onchange="showFileName(this,'descriptionTecnico')" type="file" class="input-file" id="fileTecnico" name="fileTecnico">
+                    <input accept="image/*" onchange="showFileName(this,'descriptionMarcenaria')" type="file" class="input-file" id="fileMarcenaria" name="fileMarcenaria">
+                    <input accept="image/*" onchange="showFileName(this,'descriptionModeling')" type="file" class="input-file" id="fileModeling" name="fileModeling">
+                    <input accept="image/*" onchange="showFileName(this,'descriptionRender')" type="file" class="input-file" id="fileRender" name="fileRender">
+                    <input accept="image/*" onchange="showFileName(this,'descriptionPlanta')" type="file" class="input-file" id="filePlanta" name="filePlanta">
+                    <input accept=".pdf" onchange="showFileName(this,'descriptionTecnico')" type="file" class="input-file" id="fileTecnico" name="fileTecnico">
+                    <input accept="image/*" onchange="showFileName(this,'descriptionLayout')" type="file" class="input-file" id="fileLayout" name="fileLayout">
+                <% } %>
             </form>
             <% if (UserType===1) { %>
                 <div id="modal" class="modal modalNone">
@@ -436,6 +489,24 @@
                         </form>
                     </div>
                 </div>
+
+                <div id="modalApi" class="modal modalNone">
+                    <div class="modal-content">
+                        <span id="closeApi" class="close">&times;</span>
+                        <div class="apiDiv">
+                            <form id="formApi">
+                                <div class="formModal">
+                                    <div class="">
+                                        <input value="<%= project.RenderApi %>" class="input" type="text" id="renderApi" name="renderApi" placeholder="Api">
+                                    </div>
+                                </div>
+                                <div class="P">
+                                    <button type="submit" class="buttonWork">Enviar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             <% } %>
         </div>
     </div>
@@ -444,4 +515,40 @@
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/script/project.js"></script>
+<script>
+const approval = document.getElementById('approval');
+const reject = document.getElementById('reject');
+//Axios Approval
+approval.addEventListener('click', async (event) => {
+    event.preventDefault()
+
+    try {
+        axios.post('/project/edit/approve', {
+            projectId: document.getElementById('projectId').value,
+            approval: 2,
+        });
+
+        window.location.reload();
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+reject.addEventListener('click', async (event) => {
+
+    event.preventDefault()
+
+    try {
+        axios.post('/project/edit/approve', {
+            projectId: document.getElementById('projectId').value,
+            approval: 1,
+        });
+
+        window.location.reload();
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+</script>
 </html>
