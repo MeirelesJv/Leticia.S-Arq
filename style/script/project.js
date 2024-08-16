@@ -1,7 +1,7 @@
 //Axios References
 const form = document.getElementById('projectEdit');
 form.addEventListener('submit', async (event) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     const formDataa = new FormData();
     const projectId = document.getElementById('projectId').value;
@@ -37,33 +37,30 @@ form.addEventListener('submit', async (event) => {
             }
         })
 
-        recarregarAPagina()
-    } catch (error) {
+        window.location.reload();
+    } catch (error) {   
         console.log(error)
     }
 });
 
 function recarregarAPagina(){
-    window.location.reload();
+    
 } 
 
 //Status Update
 async function statusupdate(stats){
     const projectId = document.getElementById('projectId').value;
-    var number = stats
-    console.log(number)
-    console.log(stats)
 
-    axios.post('/project/edit/status', {
-    stats: stats,
-    projectId: projectId
-    })
-    .then(response => {
+    try {
+        axios.post('/project/edit/status', {
+            stats: stats,
+            projectId: projectId
+        }) 
+
         window.location.reload();
-    })
-    .catch(error => {
-        console.error(error);
-    });
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 function truncate(text, maxLength) {
@@ -107,7 +104,6 @@ inputModal.addEventListener('change', (event)=>{
 //Axios WorkFile
 const formWork = document.getElementById('formWork');
 formWork.addEventListener('submit', async (event)=>{
-    event.preventDefault();
 
     const fileWork = document.getElementById('fileWork').files[0]
     const acabCode = document.getElementById('acabCode').value;
@@ -136,7 +132,7 @@ formWork.addEventListener('submit', async (event)=>{
             }
         })
 
-        window.location.reload();
+        window.location.reload(true);
     } catch (error) {
         // event.target.querySelector("button[type=submit]").disabled = false;
     }
@@ -168,7 +164,6 @@ closeApi.addEventListener('click' ,(event)=>{
 //Axios Api
 const formApi = document.getElementById('formApi');
 formApi.addEventListener('submit', async (event)=>{
-    event.preventDefault();
 
 
 
@@ -179,9 +174,29 @@ formApi.addEventListener('submit', async (event)=>{
 
     try {
         const response = await axios.post('/project/edit/Api', formDataApi);
-        window.location.reload();
+        window.location.reload(true);
     } catch (error) {
         console.log(error)
         // event.target.querySelector("button[type=submit]").disabled = false;
     }
 });
+
+//Delete
+async function filesDelete(id,type,name,route){
+    const projectId = document.getElementById('projectId').value;
+    
+    try {
+
+        axios.post('/project/delete/referencesAdm', {
+            referenceId: id,
+            projectId: projectId,
+            referenceType: type,
+            referenceName: name,
+            referenceRoute: route
+        });
+
+        window.location.reload();
+    } catch (error) {
+        console.error(error);
+    }
+}

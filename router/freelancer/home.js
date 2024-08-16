@@ -8,6 +8,8 @@ const { Op } = require('sequelize');
 const {  v4 : uuidv4  } = require("uuid");
 const Users = require("../../database/users");
 const workmanship = require("../../database/workmanship");
+const fs = require("fs")
+const path = require("path")
 
 
 router.get("/home", authJWT, (req, res) => {
@@ -290,7 +292,8 @@ router.post("/project/edit/referencesAdm",[upload.fields([{ name: 'fileReference
             }
         }); 
 
-        res.status(200)
+        res.status(200);
+        return
     } catch (error) {
         res.status(400)
         res.json({message: "Erro interno"});
@@ -361,5 +364,42 @@ router.post("/project/edit/Api",authJWT, async(req,res)=>{
         res.json({message: "Erro interno"})
     }
 });
+
+router.post("/project/delete/referencesAdm",authJWT, async(req,res)=>{
+    let {referenceId,projectId,referenceType,referenceName,referenceRoute} = req.body
+
+
+    function excluirFoto(caminhoDaFoto) {
+        fs.unlink(caminhoDaFoto);
+    }
+
+    try {
+        
+        if(referenceType == 'Marcenaria' || referenceType == 'Revestimento'){
+            await workmanship.destroy({
+                where: {
+                    id: referenceId,
+                    ProjectId: projectId,
+                }
+            });
+        }
+
+        await ReferencesRoute.destroy({
+            where: {
+                id:referenceId,
+                ProjectId: projectId,
+            }
+        })
+
+        const pastaDoProjeto = __dirname;
+        const caminhoFoto = path.join(pastaDoProjeto,'../../style/uploads/'+referenceRoute+'/'+referenceName)
+        excluirFoto(caminhoFoto);
+
+        res.status(200)
+    } catch (error) {
+        res.status(400)
+        res.json({message: "Erro interno"})
+    }
+})
 
 module.exports = router;

@@ -42,7 +42,7 @@
                         <%= project.Name %>
                     </p>
                     <% if (UserType===1) { %>
-                            <label for="filePrinc"><ion-icon name="image-outline"></ion-icon></label>
+                            <label class="filePrinc" for="filePrinc"><ion-icon name="image-outline"></ion-icon></label>
                             <input accept="image/*" onchange="showFileName(this,'descriptionFotoPrinc')" type="file" class="input-file" id="filePrinc" name="filePrinc">
                             <div class="description" id="descriptionFotoPrinc"></div>
                     <% } %>
@@ -212,7 +212,14 @@
                         <div class="ReferenceFiles">
                             <% referenceRoute.forEach(element=> { %>
                                 <% if (element.Type == 'filesReference' || element.Type == 'fileReferenceAdm') { %>
-                                <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                    <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                    <% if (UserType===1 && element.Type == 'fileReferenceAdm') { %>
+                                        <div  class="reveza">
+                                            <label onclick="filesDelete('<%= element.id %>','<%= element.Type %>','<%= element.Name %>','<%= element.Route %>')" >
+                                                <ion-icon class="revezaIon" name="trash-outline"></ion-icon>
+                                            </label>
+                                        </div>
+                                    <% } %>
                                 <% } %>
                             <% }) %>
                         </div>
@@ -241,7 +248,14 @@
                             <div class="imgLay">
                                 <% referenceRoute.forEach(element=> { %>
                                     <% if (element.Type == 'fileLayout') { %>
-                                    <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                        <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                        <% if (UserType===1) { %>
+                                            <div  class="reveza">
+                                                <label onclick="filesDelete('<%= element.id %>','<%= element.Type %>','<%= element.Name %>','<%= element.Route %>')" >
+                                                    <ion-icon class="revezaIon" name="trash-outline"></ion-icon>
+                                                </label>
+                                            </div>
+                                        <% } %>
                                     <% } %>
                                 <% }) %>
                             </div>
@@ -270,7 +284,14 @@
                             <div class="imgLay">
                                 <% referenceRoute.forEach(element=> { %>
                                     <% if (element.Type == 'fileMarcenaria') { %>
-                                    <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                        <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                        <% if (UserType===1) { %>
+                                            <div  class="reveza">
+                                                <label onclick="filesDelete('<%= element.id %>','<%= element.Type %>','<%= element.Name %>','<%= element.Route %>')" >
+                                                    <ion-icon class="revezaIon" name="trash-outline"></ion-icon>
+                                                </label>
+                                            </div>
+                                        <% } %>
                                     <% } %>
                                 <% }) %>
                             </div>
@@ -299,7 +320,14 @@
                             <div class="imgLay">
                                 <% referenceRoute.forEach(element=> { %>
                                     <% if (element.Type == 'fileModeling') { %>
-                                    <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                        <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                        <% if (UserType===1) { %>
+                                            <div  class="reveza">
+                                                <label onclick="filesDelete('<%= element.id %>','<%= element.Type %>','<%= element.Name %>','<%= element.Route %>')" >
+                                                    <ion-icon class="revezaIon" name="trash-outline"></ion-icon>
+                                                </label>
+                                            </div>
+                                        <% } %>
                                     <% } %>
                                 <% }) %>
                             </div>
@@ -316,7 +344,7 @@
                                 <div class="fafa">
                                     <span>Renderização</span>
                                     <% if (UserType === 1) { %>
-                                        <div name="apiButton" id="apiButton">
+                                        <div class="filePrinc" name="apiButton" id="apiButton">
                                             <ion-icon name="location-outline"></ion-icon>
                                         </div>
                                     <% } else {%>
@@ -329,7 +357,8 @@
                                     <% if (UserType===1) { %>
                                         <label for="fileRender" class="button">Adicionar Midia</label>
                                         <div class="description" id="descriptionRender"></div>
-                                    <% } %></div>
+                                    <% } %>
+                                </div>
                             </div>
                             <div class="text">
                                 <p>Imagens realistas do projeto para aprovação de acabamentos</p>
@@ -337,7 +366,14 @@
                             <div class="imgLay">
                                 <% referenceRoute.forEach(element=> { %>
                                     <% if (element.Type == 'fileRender') { %>
-                                    <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                        <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                        <% if (UserType===1) { %>
+                                            <div  class="reveza">
+                                                <label onclick="filesDelete('<%= element.id %>','<%= element.Type %>','<%= element.Name %>','<%= element.Route %>')" >
+                                                    <ion-icon class="revezaIon" name="trash-outline"></ion-icon>
+                                                </label>
+                                            </div>
+                                        <% } %>
                                     <% } %>
                                 <% }) %>
                             </div>
@@ -358,7 +394,6 @@
                                     <% if (UserType===1) { %>
                                         <label id="workButton" class="button">Adicionar midia</label>
                                     <% } %>
-                                    
                                 </div>
                             </div>
                             <div class="text">
@@ -383,6 +418,13 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <% if (UserType===1) { %>
+                                        <div  class="reveza">
+                                            <label onclick="filesDelete('<%= element.id %>','<%= element.Type %>','<%= element.Name %>','<%= element.Route %>')" >
+                                                <ion-icon class="revezaIon" name="trash-outline"></ion-icon>
+                                            </label>
+                                        </div>
+                                    <% } %>
                             <% }) %>
                             </div>
                             <% if (project.Status == '8') { %>
@@ -407,11 +449,20 @@
                             <div class="text">
                                 <p>Planta baixa do projeto com acabamentos definidos</p>
                             </div>
-                            <% referenceRoute.forEach(element=> { %>
-                                <% if (element.Type == 'filePlanta') { %>
-                                <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
-                                <% } %>
-                            <% }) %>
+                            <div class="imgLay">
+                                <% referenceRoute.forEach(element=> { %>
+                                    <% if (element.Type == 'filePlanta') { %>
+                                        <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                        <% if (UserType===1) { %>
+                                            <div  class="reveza">
+                                                <label onclick="filesDelete('<%= element.id %>','<%= element.Type %>','<%= element.Name %>','<%= element.Route %>')" >
+                                                    <ion-icon class="revezaIon" name="trash-outline"></ion-icon>
+                                                </label>
+                                            </div>
+                                        <% } %>
+                                    <% } %>
+                                <% }) %>
+                            </div>
                             <% if (project.Status == '9') { %>
                                 <div class="nextStatus">
                                     <label class="button" style="background-color: #18a206; border-color: #18a206;" onclick="statusupdate(10)">Finalizar Etapa</label>
@@ -471,16 +522,16 @@
                                 <div class="acabImag">
                                     <div class="description" id="descriptionWork"></div>
                                     <label for="fileWork" class="button">Adicionar Midia</label>
-                                    <input accept="image/*" onchange="showFileName(this,'descriptionWork')" type="file" class="input-file" id="fileWork" name="fileWork">
+                                    <input required accept="image/*" onchange="showFileName(this,'descriptionWork')" type="file" class="input-file" id="fileWork" name="fileWork">
                                 </div>
                                 <div class="acabInputs">
                                     <select  class="input" name="acabType" id="acabType">
-                                        <option value="Marcenaria">Marcenaria</option>
-                                        <option value="Revestimento">Revestimento</option>
+                                        <option style="color: black;" value="Marcenaria">Marcenaria</option>
+                                        <option style="color: black;" value="Revestimento">Revestimento</option>
                                     </select>
-                                    <input autocomplete="off"  class="input" id="acabName" name="acabName" placeholder="Nome" type="text">
-                                    <input autocomplete="off" class="input" id="acabCode" name="acabCode" placeholder="Codigo" type="text">
-                                    <input autocomplete="off" class="input" id="acabBrand" name="acabBrand" placeholder="Marca" type="text">
+                                    <input required autocomplete="off"  class="input" id="acabName" name="acabName" placeholder="Nome" type="text">
+                                    <input required autocomplete="off" class="input" id="acabCode" name="acabCode" placeholder="Codigo" type="text">
+                                    <input required autocomplete="off" class="input" id="acabBrand" name="acabBrand" placeholder="Marca" type="text">
                                 </div>
                             </div>
                             <div class="P">

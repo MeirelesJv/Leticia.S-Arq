@@ -93,6 +93,8 @@ a {
     }
 }
 
+
+
 .ReAce{
     margin-top: 10px;
 
@@ -118,6 +120,22 @@ a {
     }
 }
 
+.filePrinc{
+    cursor: pointer;
+}
+
+.reveza{
+    position: relative;
+    z-index: 100;
+    right: 120px;
+}
+
+.revezaIon{
+    background: black;
+    padding: 3px;
+    border-radius: 11px;
+    cursor: pointer;
+}
 .block-bot {
     height: 92%;
     padding: 50px 100px 0px 100px;
@@ -286,12 +304,12 @@ img{
     display: flex;
     gap: 20px;
     flex-direction: column;
+}
 
-    .imgLay{
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-    }
+.imgLay{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .statusMarcenaria{
