@@ -65,7 +65,7 @@ router.post("/project", [upload.fields([{ name: 'filesReference', maxCount: 1 },
         fileObg = fileObgNull[0];
         fileName = fileObg.filename
         fileDestination = fileObg.destination
-        var filesplit = fileDestination.split('\\');
+        var filesplit = fileDestination.split('/');
         fileDestinationS = filesplit[2]
     } else {
         fileDestination = null
@@ -89,7 +89,7 @@ router.post("/project", [upload.fields([{ name: 'filesReference', maxCount: 1 },
 
         var fileRefe = req.files.filesReference[0]
         var route = fileRefe.destination
-        var fileRefeSe = route.split('\\');
+        var fileRefeSe = route.split('/');
         await ReferencesRoute.create({
             Name: fileRefe.filename,
             Route: fileRefeSe[2],
@@ -100,7 +100,7 @@ router.post("/project", [upload.fields([{ name: 'filesReference', maxCount: 1 },
         res.redirect("/home")
     } catch (error) {
         res.status(400)
-        res.json({ message: "Deu erro aqui" })
+        res.json({ message: error })
     }
 
 });

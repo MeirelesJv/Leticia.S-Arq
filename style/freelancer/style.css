@@ -174,3 +174,11 @@ a {
 .block-bot::-webkit-scrollbar{
     background-color: transparent; 
 }
+
+.nameProject{
+    position: relative;
+    z-index: 1000;
+    left: 54px;
+    bottom: 120px;
+    color: #cfcfcf;
+}

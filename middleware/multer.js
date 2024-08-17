@@ -1,12 +1,6 @@
 const multer = require('multer')
 const path = require('path')
 const fs = require('fs')
-const {  v4 : uuidv4  } = require("uuid");
-
-function formatarHoraMinuto(timestamp) {
-    
-    return `${horas}:${minutos}`;
-  }
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
