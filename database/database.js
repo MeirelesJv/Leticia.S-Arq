@@ -1,8 +1,13 @@
 const sequelize = require("sequelize");
-const connection = new sequelize('Leticia','root','J0@0V1T0Rjv',{
+const connection = new sequelize('LeticiaSArq','sa','J0@0V1T0Rjvv',{
     host: 'localhost',
-    dialect: 'mysql',
-    timezone: '-03:00'
+    dialect: 'mssql',
+    timezone: '-03:00',
+    dialectOptions: {
+    ssl: {
+      rejectUnauthorized: false // Equivalente a trustServerCertificate: true
+    }
+  }
 });
 
 module.exports = connection;

@@ -56,9 +56,6 @@
                     <% if (cliente === 1 || clienteId === project.UserId) { %>
                         <a href="/project/<%= project.Uuid %>">
                             <div class="project">
-                                <div class="nameProject">
-                                    <%= User.Name %>
-                                </div>
                                 <div class="title">
                                     <%- truncate(project.Name, 20) %>
                                 </div>

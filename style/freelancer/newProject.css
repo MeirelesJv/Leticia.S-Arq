@@ -230,3 +230,21 @@ button {
     display: flex;
     justify-content: end;
 }
+
+@media screen and (max-width: 768px){
+    .navbar {
+        & .rigth {
+            .user {
+                display: none;
+            }
+        }
+    }
+
+    .container{
+        height: auto;
+    }
+
+    .box{
+        width: 90%;
+    }
+}

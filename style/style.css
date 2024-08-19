@@ -3,13 +3,13 @@
 
 @font-face {
     font-family: Higuen Regular;
-    src: url('https://assets.zyrosite.com/YNqJJk9P7QF5z9Q7/Higuen Regular.woff2') format('woff2');
+    src: url('fonts/Higuen.otf') format('woff2');
     font-display: swap;
 }
 
 @font-face {
     font-family: BDScript Regular;
-    src: url('https://assets.zyrosite.com/YNqJJk9P7QF5z9Q7/BDScript Regular.woff2') format('woff2');
+    src: url('fonts/BDScriptRegular.ttf');
     font-display: swap;
 }
 
@@ -168,11 +168,8 @@ body::-webkit-scrollbar {
 
             h3 {
                 font-size: 150px;
-
-                span {
-                    font-family: BDScript\ Regular;
-                    font-weight: 400;
-                }
+                font-family: BDScript\ Regular;
+                font-weight: 400;
             }
         }
 

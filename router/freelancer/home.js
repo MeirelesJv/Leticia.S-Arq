@@ -65,7 +65,8 @@ router.post("/project", [upload.fields([{ name: 'filesReference', maxCount: 1 },
         fileObg = fileObgNull[0];
         fileName = fileObg.filename
         fileDestination = fileObg.destination
-        var filesplit = fileDestination.split('/');
+        //Produção mudar para /
+        var filesplit = fileDestination.split('\\');
         fileDestinationS = filesplit[2]
     } else {
         fileDestination = null
@@ -89,7 +90,8 @@ router.post("/project", [upload.fields([{ name: 'filesReference', maxCount: 1 },
 
         var fileRefe = req.files.filesReference[0]
         var route = fileRefe.destination
-        var fileRefeSe = route.split('/');
+        //Produção mudar para /
+        var fileRefeSe = route.split('\\');
         await ReferencesRoute.create({
             Name: fileRefe.filename,
             Route: fileRefeSe[2],
