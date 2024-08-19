@@ -9,8 +9,7 @@
 
 @font-face {
     font-family: BDScript Regular;
-    src: url('fonts/BDScriptRegular.ttf');
-    font-display: swap;
+    src: url('fonts/BDScriptRegular.otf') format('woff2');
 }
 
 html {
@@ -168,8 +167,11 @@ body::-webkit-scrollbar {
 
             h3 {
                 font-size: 150px;
-                font-family: BDScript\ Regular;
-                font-weight: 400;
+
+                span {
+                    font-family: BDScript\ Regular;
+                    font-weight: 400;
+                }
             }
         }
 

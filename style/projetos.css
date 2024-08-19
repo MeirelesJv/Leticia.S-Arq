@@ -1,7 +1,6 @@
 @font-face {
     font-family: BDScript Regular;
-    src: url('fonts/BDScriptRegular.ttf') format('woff2');
-    font-display: swap;
+    src: url('fonts/BDScriptRegular.otf') format('woff2');
 }
 
 * {

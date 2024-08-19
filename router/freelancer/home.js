@@ -8,8 +8,9 @@ const { Op } = require('sequelize');
 const {  v4 : uuidv4  } = require("uuid");
 const Users = require("../../database/users");
 const workmanship = require("../../database/workmanship");
-const fs = require("fs")
-const path = require("path")
+const fs = require("fs");
+const path = require("path");
+const envioEmail = require("../Email/email");
 
 
 router.get("/home", authJWT, (req, res) => {
@@ -66,7 +67,7 @@ router.post("/project", [upload.fields([{ name: 'filesReference', maxCount: 1 },
         fileName = fileObg.filename
         fileDestination = fileObg.destination
         //Produção mudar para /
-        var filesplit = fileDestination.split('\\');
+        var filesplit = fileDestination.split('/');
         fileDestinationS = filesplit[2]
     } else {
         fileDestination = null
@@ -91,13 +92,27 @@ router.post("/project", [upload.fields([{ name: 'filesReference', maxCount: 1 },
         var fileRefe = req.files.filesReference[0]
         var route = fileRefe.destination
         //Produção mudar para /
-        var fileRefeSe = route.split('\\');
+        var fileRefeSe = route.split('/');
         await ReferencesRoute.create({
             Name: fileRefe.filename,
             Route: fileRefeSe[2],
             Type: fileRefe.fieldname,
             ProjectId: newProject.id
         })
+        console.log(req.loggedUser.email)
+        await envioEmail.sendMail({
+            from: "Joao Vitor <meirelesDev@hotmail.com>",
+            to: req.loggedUser.email,
+            subject: "Abertura de Projeto",
+            text: "Obrigado por realizar a abertura de um novo Projeto, estaremos analisando o Projeto e entraremos em contato com mais informações!" ,
+        });
+
+        await envioEmail.sendMail({
+            from: "Joao Vitor <meirelesDev@hotmail.com>",
+            to: 'leticia.sanada@gmail.com',
+            subject: "Abertura de Projeto",
+            text: "Realizado uma solicitação de abertura para o usuario " + req.loggedUser.name + req.loggedUser.surname,
+        });
 
         res.redirect("/home")
     } catch (error) {

@@ -161,14 +161,18 @@ a {
 }
 
 .project{
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: center;
 
     .title{
-        position: fixed;
+        text-align: center;
+        /* display: flex; */
+        position: relative;
         font-size: 30px;
         z-index: 10;
+        /* left: 1px; */
+        top: 160px;
     }
 }
 
@@ -202,6 +206,14 @@ a {
             flex-direction: column-reverse;
         }
     }
-
+    .project {
+        display: block;
+        .title {
+            position: relative;
+            font-size: 30px;
+            z-index: 10;
+            top: 160px;
+        }
+    }
     
 }
