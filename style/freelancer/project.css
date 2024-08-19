@@ -1,0 +1,586 @@
+@font-face {
+    font-family: Higuen Regular;
+    src: url('fonts/Higuen.otf') format('woff2');
+    font-display: swap;
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color: white;
+    font-family: "Sorts Mill Goudy", serif;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.statusTecnico{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.statusPlanta{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nextStatus{
+    display: flex;
+    padding-top: 20px;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #737760;
+}
+
+.block-top {
+    height: 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px 0px 40px;
+
+    .left {
+        display: flex;
+
+        img {
+            width: 50px;
+            height: auto;
+            border-radius: 0%;
+        }
+    }
+
+    .rigth {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: "Montserrat", sans-serif;
+
+            .name{
+                text-align: end;
+                font-size: 15px;
+                letter-spacing: 0.16em;
+                text-transform: uppercase;
+            }
+        }
+
+        .rightSecond {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+    }
+}
+
+
+
+.ReAce{
+    margin-top: 10px;
+
+    .approval {
+        position: relative;
+        padding: 10px 22px;
+        border-radius: 6px;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        background-color: #2ed418;
+        transition: all 0.2s ease;
+    }
+    .reject {
+        position: relative;
+        padding: 10px 22px;
+        border-radius: 6px;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        background-color: #af1a1a;
+        transition: all 0.2s ease;
+    }
+}
+
+.filePrinc{
+    cursor: pointer;
+}
+
+.reveza{
+    position: relative;
+    z-index: 100;
+    right: 120px;
+}
+
+.revezaIon{
+    background: black;
+    padding: 3px;
+    border-radius: 11px;
+    cursor: pointer;
+}
+.block-bot {
+    height: 92%;
+    padding: 50px 100px 0px 100px;
+    overflow-y: auto;
+
+    .BlockHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid;
+        height: 80px;
+
+        .title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            p {
+                font-size: 50px;
+            }
+        }
+    }
+
+    .serviceType {
+        display: flex;
+
+        p {
+            background-color: rgb(154 154 165 / 49%);
+            border: 1px white solid;
+            padding: 0.3rem;
+            border-radius: 10px;
+        }
+    }
+
+    .BlockBody {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+    }
+}
+
+.status{
+    display: flex;
+    gap: 1rem;
+
+    .a{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .circle{
+        background-color: white;
+        width: 80px;
+        height: 80px;
+        border-radius: 100%;
+    }
+    .text{
+        text-align: center;
+        max-width: 120px;
+        font-family: "Montserrat", sans-serif;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 13px;
+        margin-top: 10px;
+    }
+    .line{
+        background-color: white;
+        margin-top: 42px;
+        height: 2px;
+        flex: 1 1 0%;
+    }
+}
+
+.text{
+    display: flex;
+}
+
+.statusModeling3d{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.fileService {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    .anexado{
+        display: flex;
+        padding-top: 10px;
+        gap: 10px;
+        align-items: center;
+
+        .Download-button {
+            display: flex;
+            align-items: center;
+            font-family: inherit;
+            font-weight: 500;
+            font-size: 17px;
+            padding: 5px 5px;
+            color: white;
+            background: rgb(103, 92, 156);
+            border: none;
+            box-shadow: 0 0.7em 1.5em -0.5em rgba(59, 48, 78, 0.527);
+            letter-spacing: 0.05em;
+            border-radius: 8px;
+            cursor: pointer;
+            position: relative;
+        }
+    
+        .Download-button svg {
+            width: 15px;
+        }
+    }
+}
+
+.Obs {
+    margin-top: 20px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+
+    .textar{
+        border: solid 1.5px white;
+        border-radius: 1rem;
+        background: none;
+        padding: 1rem;
+        font-size: 1rem;
+        background-color: white;
+        color: black;
+        transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .titleObs{
+        height: 35px;
+        width: 50%;
+        font-family: "Montserrat", sans-serif;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-weight: 100;
+    }
+}
+
+img{
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+}
+
+.Reference {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+
+
+    .ReferenceFiles{
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+}
+
+.statusLayout{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.imgLay{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.statusMarcenaria{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.statusRender{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.statusWork{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+
+    .ab{
+        width: 200px;
+        gap: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    .acabBot{
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    option{
+    color: black;
+    }
+
+    .acabInputsCliente{
+        
+        span{
+            font-family: "Montserrat", sans-serif;
+            
+        }
+        .workName{
+            font-weight: 600;
+            font-size: 20px;
+        }
+    }
+}
+
+.inputs{
+    display: flex;
+    gap: 40px;
+    padding-top: 20px;
+
+    p{
+        position: relative;
+        margin-bottom: .3rem;
+        font-size: .9rem;
+        left: 10px;
+    }
+}
+
+.inputsSpan{
+    padding-top: 20px;
+    display: flex;
+    gap: 40px;
+}
+
+.titleEtaps {
+    font-size: 25px;
+    font-weight: 600;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.apiDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+.fafa{
+    height: 35px;
+    width: 50%;
+    border-bottom: white 2px solid;
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 0.16em;
+    text-transform: uppercase; 
+    font-weight: 100;
+    display: flex;
+}
+
+.inputsText{
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+    align-items: center;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.block-bot::-webkit-scrollbar {
+    background-color: transparent;
+}
+
+.input{
+    border: solid 1.5px white;
+    border-radius: 1rem;
+    background: none;
+    padding: 1rem;
+    font-size: 1rem;
+    background-color: white;
+    color: black;
+    transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input:focus,
+input:valid {
+    outline: none;
+    border: 1.5px solid white;
+    background: white;
+    color: black;
+}
+
+.BlockBotton{
+    display: flex;
+    justify-content: end;
+    margin-bottom: 30px;
+
+    .Atualizar {
+        position: relative;
+        padding: 10px 22px;
+        border-radius: 6px;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        background-color: #d4a218;
+        transition: all 0.2s ease;
+    }
+}
+
+.button{
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    padding-block: 0.5rem;
+    padding-inline: 1.25rem;
+    background-color: #414b3b;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffff;
+    gap: 10px;
+    font-weight: bold;
+    border: 3px solid #414b3b;
+    outline: none;
+    overflow: hidden;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: "Sorts Mill Goudy", serif;
+}
+
+
+
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4);
+
+    .P{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 15px;    
+
+        .buttonWork{
+            position: relative;
+            padding: 10px 22px;
+            border-radius: 6px;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            background-color: #2ea351;
+            transition: all 0.2s ease;
+        }
+    }
+}
+
+.modalNone{
+    display: none;
+}
+
+.formModal{
+    display: flex;
+    justify-content: space-around;
+
+    img{
+        width: 150px;
+        height: 150px;
+        border-radius: 0%;
+        margin-bottom: 10px;
+    }
+}
+
+.acabImag{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: end;
+}
+
+.acabInputs{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-content {
+    background-color: #a6a89b;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    height: 30%;
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px){
+
+    .block-top {
+        & .rigth {
+            .user {
+                display: none;
+            }
+        }
+    }
+
+    .block-bot {
+        height: auto;
+        padding: 0px 0px 0px 10px;
+    }
+
+    .fafa{
+        width: auto;
+    }
+
+    .Obs {
+        .titleObs {
+            text-align: center;
+            height: auto;
+            width: auto;
+        }
+    }
+}

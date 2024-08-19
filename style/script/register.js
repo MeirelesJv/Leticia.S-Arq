@@ -146,7 +146,6 @@ form.addEventListener('submit', async (event) => {
   
     try {
         const response = await axios.post('/users/register', formData);
-        console.log("teste 1")
         window.location = '/login';
     } catch (error) {
         var data = error.response.data.message

@@ -10,7 +10,7 @@ function authJWT(req, res, next) {
                 res.redirect("/login");
             } else {
                 req.token = authToken;
-                req.loggedUser = { id: data.id, email: data.email,type: data.type };
+                req.loggedUser = { id: data.id, email: data.email,type: data.type,name: data.name,surname: data.surname };
                 next();
             }
         })

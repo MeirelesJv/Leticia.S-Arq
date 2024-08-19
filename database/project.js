@@ -16,8 +16,16 @@ const Project = connection.define('Project', {
         allowNull: false
     },
     Obs: {
-        type: sequelize.STRING,
+        type: sequelize.TEXT,
         allowNull: false
+    },
+    RenderApi: {
+        type: sequelize.TEXT,
+        allowNull: true
+    },
+    Prancha: {
+        type: sequelize.TEXT,
+        allowNull: true
     },
     File: {
         type: sequelize.STRING,
@@ -27,10 +35,18 @@ const Project = connection.define('Project', {
         type: sequelize.STRING,
         allowNull: true
     },
+    ImgPrinc: {
+        type: sequelize.STRING,
+        allowNull: true
+    },
     Status: {
         type: sequelize.BIGINT,
         allowNull: false
-    }
+    },
+    Uuid: {
+        type: sequelize.STRING,
+        allowNull: true
+    },
 })
 
 users.hasMany(Project);

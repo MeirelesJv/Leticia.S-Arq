@@ -10,22 +10,22 @@
 <body>
     <div class="navbar">
         <div class="left">
-            <img src="/Portfolio/0. Logo.png" alt="">
-            <div class="center">
-                <p>Leticia S.</p>
-                <p>Arquitetura</p>
-            </div>
+            <a href="/home"><img src="/Portfolio/0. Logo.png" alt=""></a>
         </div>
         <div class="rigth">
             <div class="user">
                 <div class="name">
-                    <p>João Vitor</p>
-                    <p>Meireles</p>
+                    <p>
+                        <%= User.Name %>
+                    </p>
+                    <p>
+                        <%= User.Surname %>
+                    </p>
                 </div>
-                <ion-icon style="font-size: 40px;" name="person-circle-outline"></ion-icon>
+                <ion-icon style="font-size: 50px;" name="person-circle-outline"></ion-icon>
             </div>
             <div class="rightSecond">
-                <a href="/logout"><ion-icon style="font-size: 20px;" name="log-out-outline"></ion-icon></a>
+                <a href="/logout"><ion-icon style="font-size: 30px;" name="log-out-outline"></ion-icon></a>
             </div>
             
         </div>
@@ -39,7 +39,7 @@
                 <form action="/project" id="formProject" method="post" enctype="multipart/form-data">
                     <div class="service title-project">
                         <label class="label">Comodo / Local do Projeto</label>
-                        <input autocomplete="off" required="" name="title" id="title" class="input" type="text">
+                        <input placeholder="Sala de estar, Quarto hóspede..." maxlength="20" autocomplete="off" required="" name="title" id="title" class="input" type="text">
                         <label class="description">Apenas o nome do comodo para usarmos como referencia </label>
                     </div>
                     <div class="service types">
@@ -84,11 +84,11 @@
                     </div> 
                     <div class="service">
                         <label class="label">Programa de necessidade</label>
-                        <p class="description" id="description-file">Descreva ai vai</p>
-                        <textarea class="input textarea" name="textarea" id="textarea" rows="10" cols="50" required=""></textarea>
+                        <p class="description" id="description-file">O que não pode faltar no seu projeto?</p>
+                        <textarea placeholder="espelho de corpo todo,cama queen,espaço de armazenamento..." class="input textarea" name="textarea" id="textarea" rows="10" cols="50" required=""></textarea>
                     </div> 
                     <div class="homeBlock-button">
-                        <button class="btn">Enviar</button>
+                        <button type="submit" class="btn">Enviar</button>
                     </div>              
                 </form>
             </div>
@@ -99,4 +99,10 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="/script/newProject.js"></script>
+
+<% function truncate(text, maxLength) {
+    return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+    } 
+%>
+
 </html>

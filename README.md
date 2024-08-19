@@ -19,7 +19,6 @@
 - [Sobre](#about)
 - [Recursos](#features)
 - [Dependencias](#Dependencias)
-- [Dependencias](#Dependencias)
 
 ## <a name="about"> Sobre
 

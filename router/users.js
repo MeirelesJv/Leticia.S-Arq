@@ -27,7 +27,7 @@ router.get("/login/recover",userOn, (req,res)=>{
 });
 
 router.get("/logout",(req,res) =>{
-    req.session.token = undefined;
+    req.session.tokenn = undefined;
     res.redirect("/");
 });
 
@@ -79,34 +79,20 @@ router.post("/users/login", async (req,res)=>{
     let {email,password} = req.body
 
     users.findOne({where:{Email: email}}).then( user => {
+        var aleCode = uuidv4();
         if(user != undefined){
             var correct = bcrypt.compareSync(password, user.Password);
             if(correct){
                 try {
-                    var token = jwt.sign({ id: user.id,email: user.Email,type: user.Type }, JWTSecret, { expiresIn: '1h' });
+                    var token = jwt.sign({ id: user.id,email: user.Email,type: user.Type,name: user.Name,surname: user.Surname }, JWTSecret, { expiresIn: '1h' });
                     req.session.tokenn = token
+                    req.session.bananao = user.id + aleCode
                     res.status(200);
                     res.json({token: token})
                 } catch (error) {
                     res.status(400);
                     res.json({message: "Falha interna"})
                 }
-                // jwt.sign({id: users.id,email: users.Email,type: users.Type},JWTSecret,{expiresIn: '120h'},(err, token)=>{
-                //     if(err){
-                        // res.status(400);
-                        // res.json({message: "Falha interna"})
-                        // var decoded = jwt.verify(token, JWTSecret);
-                        // console.log(token)
-                        // console.log(decoded)
-                //     }else{
-                //         res.status(200);
-                //         res.json({token: token})
-                //         console.log(token)
-                //     }
-                // });
-
-                //res.json(req.session.user);
-                //  res.redirect("/home")
             }else{
                 return res.status(400).json({message: "Email ou Senha incompativeis"});
             }

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/Portfolio/0. Logo.png">
+    <link rel="stylesheet" href="/freelancer/project.css">
+    <title>Projeto <%= project.Name %>
+    </title>
+</head>
+
+<body>
+    <div class="container">
+        <input type="hidden" name="projectId" id="projectId" value="<%= project.id %>">
+        <input type="hidden" name="projectRoute" id="projectRoute"value="<%= referenceRoute[0].Route %>">
+        <div class="block-top">
+            <div class="left">
+                <a href="/home"><img src="/Portfolio/0. Logo.png" alt=""></a>
+            </div>
+            <div class="rigth">
+                <div class="user">
+                    <div class="name">
+                        <p>
+                            <%= User.Name %>
+                        </p>
+                        <p>
+                            <%= User.Surname %>
+                        </p>
+                    </div>
+                    <ion-icon style="font-size: 50px;" name="person-circle-outline"></ion-icon>
+                </div>
+                <div class="rightSecond">
+                    <a href="/logout"><ion-icon style="font-size: 30px;" name="log-out-outline"></ion-icon></a>
+                </div>
+            </div>
+        </div>
+        <div class="block-bot">
+            <div class="BlockHeader">
+                <div class="title">
+                    <p>
+                        <%= project.Name %>
+                    </p>
+                    <% if (UserType===1) { %>
+                            <label class="filePrinc" for="filePrinc"><ion-icon name="image-outline"></ion-icon></label>
+                            <input accept="image/*" onchange="showFileName(this,'descriptionFotoPrinc')" type="file" class="input-file" id="filePrinc" name="filePrinc">
+                            <div class="description" id="descriptionFotoPrinc"></div>
+                    <% } %>
+                </div>
+                <div class="serviceType">
+                    <p><%= serviceMap[project.Service] %></p>
+                </div>
+            </div>
+            <div class="ReAce">
+                <% if (UserType===1 && project.Status == '0'){ %>
+                    <form class="statusForm" id="formApproval">
+                        <button class="approval" name="approval" id="approval" value="2">Aprovar</button>
+                        <button class="reject" name="reject" id="reject" value="1">Recusar</button>
+                    </form>
+                <% } %>
+            </div>
+            <form id="projectEdit">
+                <div class="BlockBody">
+                    <div class="fileService">
+                        <div class="anexado">
+                            <% if (project.Service != 'interiorDesign') { %>
+                                <div class="fileObgTitle">
+                                    <span>Arquivo Anexado:</span>
+                                </div>
+                                <a href="/uploads/<%= project.FileRoute %>/<%= project.File %>" download="Project_<%= project.Name %>">
+                                    <label class="Download-button">
+                                        <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          height="16"
+                                          width="20"
+                                          viewBox="0 0 640 512"
+                                        >
+                                          <path
+                                            d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-167l80 80c9.4 9.4 24.6 9.4 33.9 0l80-80c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-39 39V184c0-13.3-10.7-24-24-24s-24 10.7-24 24V318.1l-39-39c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9z"
+                                            fill="white"
+                                          ></path>
+                                        </svg>
+                                        <span></span>
+                                    </label>
+                                </a>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="status">
+                        <% if (project.Status >= 1 ) { %>
+                            <div class="a">
+                                <div class="circle" style="background-color: #b9dfaa"></div>
+                                <div class="text" style="color: #b9dfaa">Alinhamento de Projeto</div>
+                            </div>
+                            <div class="line" style="background-color: #b9dfaa"></div>
+                        <% } else { %>
+                            <div class="a">
+                                <div class="circle"></div>
+                                <div class="text">Alinhamento de Projeto</div>
+                            </div>
+                            <div class="line"></div>
+                        <% } %>
+                        
+
+                        <% if (project.Status >= 3 ) { %>
+                            <div class="a">
+                                <div class="circle" style="background-color: #b9dfaa"></div>
+                                <div class="text" style="color: #b9dfaa">Layout</div>
+                            </div>
+                            <div class="line" style="background-color: #b9dfaa"></div>
+                        <% } else { %>
+                            <div class="a">
+                                <div class="circle"></div>
+                                <div class="text">Layout</div>
+                            </div>
+                            <div class="line"></div>
+                        <% } %>
+
+                        <% if (project.Status >= 4 ) { %>
+                            <div class="a">
+                                <div class="circle" style="background-color: #b9dfaa"></div>
+                                <div class="text" style="color: #b9dfaa">Marcenaria</div>
+                            </div>
+                            <div class="line" style="background-color: #b9dfaa"></div>
+                        <% } else { %>
+                            <div class="a">
+                                <div class="circle"></div>
+                                <div class="text">Marcenaria</div>
+                            </div>
+                            <div class="line"></div>
+                        <% } %>
+
+                        <% if (project.Status >= 7 ) { %>
+                            <div class="a">
+                                <div class="circle" style="background-color: #b9dfaa"></div>
+                                <div class="text" style="color: #b9dfaa">Modelagem 3D</div>
+                            </div>
+                            <div class="line" style="background-color: #b9dfaa"></div>
+                        <% } else { %>
+                            <div class="a">
+                                <div class="circle"></div>
+                                <div class="text">Modelagem 3D</div>
+                            </div>
+                            <div class="line"></div>
+                        <% } %>
+
+                        <% if (project.Status >= 8 ) { %>
+                            <div class="a">
+                                <div class="circle" style="background-color: #b9dfaa"></div>
+                                <div class="text" style="color: #b9dfaa">Renderização</div>
+                            </div>
+                            <div class="line" style="background-color: #b9dfaa"></div>
+                        <% } else { %>
+                            <div class="a">
+                                <div class="circle"></div>
+                                <div class="text">Renderização</div>
+                            </div>
+                            <div class="line"></div>
+                        <% } %>
+
+                        <% if (project.Status >= 9 ) { %>
+                            <div class="a">
+                                <div class="circle" style="background-color: #b9dfaa"></div>
+                                <div class="text" style="color: #b9dfaa">Planta Humanizada</div>
+                            </div>
+                            <div class="line" style="background-color: #b9dfaa"></div>
+                        <% } else { %>
+                            <div class="a">
+                                <div class="circle"></div>
+                                <div class="text">Planta Humanizada</div>
+                            </div>
+                            <div class="line"></div>
+                        <% } %>
+                        <% if (project.Status >= 10 ) { %>
+                            <div class="a">
+                                <div class="circle" style="background-color: #b9dfaa"></div>
+                                <div class="text" style="color: #b9dfaa">Detalhamento Tecnico</div>
+                            </div>
+                        <% } else { %>
+                            <div class="a">
+                                <div class="circle"></div>
+                                <div class="text">Detalhamento Tecnico</div>
+                            </div>
+                        <% } %>
+                    </div>
+                    <div class="Obs">
+                        <div class="titleEtaps">
+                            <div class="titleObs">
+                                <span>Programa de necessidade</span>
+                            </div>
+                        </div>
+                        <span class="textar">
+                            <%= project.Obs %>
+                        </span>
+                    </div>
+                    <div class="Reference">
+                        <div class="titleEtaps">
+                            <div class="fafa">
+                                <span>Referencias</span>
+                            </div>
+                            <div class="inputsText">
+                                <% if (UserType===1) { %>
+                                    <label for="fileReferenceAdm" class="button">Adicionar Midia</label>
+                                    <input accept="image/*" onchange="showFileName(this,'descriptionFilename')" type="file" class="input-file" id="fileReferenceAdm" name="fileReferenceAdm">
+                                    <div class="description" id="descriptionFilename"></div>
+                                <% } %>
+                            </div>
+                        </div>
+                        <div class="text">
+                            <p>Fotos que ilustrem suas ideias para o seu espaço, sendo de mobiliário, cores, texturas, decorações ...</p>
+                        </div>
+                        <div class="ReferenceFiles">
+                            <% referenceRoute.forEach(element=> { %>
+                                <% if (element.Type == 'filesReference' || element.Type == 'fileReferenceAdm') { %>
+                                    <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                    <% if (UserType===1 && element.Type == 'fileReferenceAdm') { %>
+                                        <div  class="reveza">
+                                            <label onclick="filesDelete('<%= element.id %>','<%= element.Type %>','<%= element.Name %>','<%= element.Route %>')" >
+                                                <ion-icon class="revezaIon" name="trash-outline"></ion-icon>
+                                            </label>
+                                        </div>
+                                    <% } %>
+                                <% } %>
+                            <% }) %>
+                        </div>
+                        <% if (project.Status == '1') { %>
+                            <div class="nextStatus">
+                                <label class="button" style="background-color: #18a206; border-color: #18a206;" onclick="statusupdate(3)">Finalizar Etapa</label>
+                            </div>
+                        <% } %>
+                    </div>
+                    <div class="statusLayout">
+                        <% if (project.Status >= 3 && project.Status < 12) { %>
+                            <div class="titleEtaps">
+                                <div class="fafa">
+                                    <span>Layout</span>
+                                </div>
+                                <div class="inputsText">
+                                    <% if (UserType===1) { %>
+                                        <label for="fileLayout" class="button">Adicionar Midia</label>
+                                        <div class="description" id="descriptionLayout"></div>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="text">
+                                <p>Opções de disposição do mobiliário no espaço</p>
+                            </div>
+                            <div class="imgLay">
+                                <% referenceRoute.forEach(element=> { %>
+                                    <% if (element.Type == 'fileLayout') { %>
+                                        <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                        <% if (UserType===1) { %>
+                                            <div  class="reveza">
+                                                <label onclick="filesDelete('<%= element.id %>','<%= element.Type %>','<%= element.Name %>','<%= element.Route %>')" >
+                                                    <ion-icon class="revezaIon" name="trash-outline"></ion-icon>
+                                                </label>
+                                            </div>
+                                        <% } %>
+                                    <% } %>
+                                <% }) %>
+                            </div>
+                            <% if (project.Status == '3') { %>
+                                <div class="nextStatus">
+                                    <label class="button" style="background-color: #18a206; border-color: #18a206;" onclick="statusupdate(4)">Finalizar Etapa</label>
+                                </div>
+                            <% } %>
+                        <% }%>
+                    </div>
+                    <div class="statusMarcenaria">
+                        <% if (project.Status >= 4 && project.Status < 12) { %>
+                            <div class="titleEtaps">
+                                <div class="fafa">
+                                    <span>Marcenaria</span>
+                                </div>
+                                <div class="inputsText">
+                                    <% if (UserType===1) { %>
+                                        <label for="fileMarcenaria" class="button">Adicionar Midia</label>
+                                        <div class="description" id="descriptionMarcenaria"></div>
+                                    <% } %></div>
+                            </div>
+                            <div class="text">
+                                <p>Móveis planejados</p>
+                            </div>
+                            <div class="imgLay">
+                                <% referenceRoute.forEach(element=> { %>
+                                    <% if (element.Type == 'fileMarcenaria') { %>
+                                        <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                        <% if (UserType===1) { %>
+                                            <div  class="reveza">
+                                                <label onclick="filesDelete('<%= element.id %>','<%= element.Type %>','<%= element.Name %>','<%= element.Route %>')" >
+                                                    <ion-icon class="revezaIon" name="trash-outline"></ion-icon>
+                                                </label>
+                                            </div>
+                                        <% } %>
+                                    <% } %>
+                                <% }) %>
+                            </div>
+                            <% if (project.Status == '4') { %>
+                                <div class="nextStatus">
+                                    <label class="button" style="background-color: #18a206; border-color: #18a206;" onclick="statusupdate(6)">Finalizar Etapa</label>
+                                </div>
+                            <% } %>
+                        <% }%>
+                    </div>
+                    <div class="statusModeling3d">
+                        <% if (project.Status >= 6 && project.Status < 12) { %>
+                            <div class="titleEtaps">
+                                <div class="fafa">
+                                    <span>Modelagem 3d</span>
+                                </div>
+                                <div class="inputsText">
+                                    <% if (UserType===1) { %>
+                                        <label for="fileModeling" class="button">Adicionar Midia</label>
+                                        <div class="description" id="descriptionModeling"></div>
+                                    <% } %></div>
+                            </div>
+                            <div class="text">
+                                <p>Maquete digital do projeto para visualização tridimensional</p>
+                            </div>
+                            <div class="imgLay">
+                                <% referenceRoute.forEach(element=> { %>
+                                    <% if (element.Type == 'fileModeling') { %>
+                                        <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                        <% if (UserType===1) { %>
+                                            <div  class="reveza">
+                                                <label onclick="filesDelete('<%= element.id %>','<%= element.Type %>','<%= element.Name %>','<%= element.Route %>')" >
+                                                    <ion-icon class="revezaIon" name="trash-outline"></ion-icon>
+                                                </label>
+                                            </div>
+                                        <% } %>
+                                    <% } %>
+                                <% }) %>
+                            </div>
+                            <% if (project.Status == '6') { %>
+                                <div class="nextStatus">
+                                    <label class="button" style="background-color: #18a206; border-color: #18a206;" onclick="statusupdate(7)">Finalizar Etapa</label>
+                                </div>
+                            <% } %>
+                        <% }%>
+                    </div>
+                    <div class="statusRender">
+                        <% if (project.Status >= 7 && project.Status < 12) { %>
+                            <div class="titleEtaps">
+                                <div class="fafa">
+                                    <span>Renderização</span>
+                                    <% if (UserType === 1) { %>
+                                        <div class="filePrinc" name="apiButton" id="apiButton">
+                                            <ion-icon name="location-outline"></ion-icon>
+                                        </div>
+                                    <% } else {%>
+                                        <div class="">
+                                            <a href="<%= project.RenderApi %>"><ion-icon name="location-outline"></ion-icon></a>
+                                        </div>
+                                    <% } %>
+                                </div>
+                                <div class="inputsText">
+                                    <% if (UserType===1) { %>
+                                        <label for="fileRender" class="button">Adicionar Midia</label>
+                                        <div class="description" id="descriptionRender"></div>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="text">
+                                <p>Imagens realistas do projeto para aprovação de acabamentos</p>
+                            </div>
+                            <div class="imgLay">
+                                <% referenceRoute.forEach(element=> { %>
+                                    <% if (element.Type == 'fileRender') { %>
+                                        <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                        <% if (UserType===1) { %>
+                                            <div  class="reveza">
+                                                <label onclick="filesDelete('<%= element.id %>','<%= element.Type %>','<%= element.Name %>','<%= element.Route %>')" >
+                                                    <ion-icon class="revezaIon" name="trash-outline"></ion-icon>
+                                                </label>
+                                            </div>
+                                        <% } %>
+                                    <% } %>
+                                <% }) %>
+                            </div>
+                            <% if (project.Status == '7') { %>
+                                <div class="nextStatus">
+                                    <label class="button" style="background-color: #18a206; border-color: #18a206;" onclick="statusupdate(8)">Finalizar Etapa</label>
+                                </div>
+                            <% } %>
+                        <% } %>
+                    </div>
+                    <div class="statusWork">
+                        <% if (project.Status >= 8 && project.Status < 12) { %>
+                            <div class="titleEtaps">
+                                <div class="fafa">
+                                    <span>Acabamentos</span>
+                                </div>
+                                <div class="inputsText">
+                                    <% if (UserType===1) { %>
+                                        <label id="workButton" class="button">Adicionar midia</label>
+                                    <% } %>
+                                </div>
+                            </div>
+                            <div class="text">
+                                <p>Especificações dos materiais</p>
+                            </div>
+                            <div class="acabBot">
+                                <% Workmanship.forEach(element=> { %>
+                                    <div class="ab">
+                                        <img src="/uploads/<%= element.Route %>/<%= element.File %>" alt="fileWork">
+                                        <div class="acabInputsCliente">
+                                            <div class="work">
+                                                <span><%= element.Type %></span>
+                                            </div>
+                                            <div >
+                                                <span class="workName"><%= element.Name %></span>
+                                            </div>
+                                            <div class="work">
+                                                <span>CÓD: <%= element.Code %></span>
+                                            </div>
+                                            <div class="work">
+                                                <span>MARCA - <%= element.Brand %></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% if (UserType===1) { %>
+                                        <div  class="reveza">
+                                            <label onclick="filesDelete('<%= element.id %>','<%= element.Type %>','<%= element.Name %>','<%= element.Route %>')" >
+                                                <ion-icon class="revezaIon" name="trash-outline"></ion-icon>
+                                            </label>
+                                        </div>
+                                    <% } %>
+                            <% }) %>
+                            </div>
+                            <% if (project.Status == '8') { %>
+                                <div class="nextStatus">
+                                    <label class="button" style="background-color: #18a206; border-color: #18a206;" onclick="statusupdate(9)">Finalizar Etapa</label>
+                                </div>
+                            <% } %>
+                        <% } %>
+                    </div>
+                    <div class="statusPlanta">
+                        <% if (project.Status >= 9 && project.Status < 12) { %>
+                            <div class="titleEtaps">
+                                <div class="fafa">
+                                    <span>Planta Humanizada</span>
+                                </div>
+                                <div class="inputsText">
+                                    <% if (UserType===1) { %>
+                                        <label for="filePlanta" class="button">Adicionar Midia</label>
+                                        <div class="description" id="descriptionPlanta"></div>
+                                    <% } %></div>
+                            </div>
+                            <div class="text">
+                                <p>Planta baixa do projeto com acabamentos definidos</p>
+                            </div>
+                            <div class="imgLay">
+                                <% referenceRoute.forEach(element=> { %>
+                                    <% if (element.Type == 'filePlanta') { %>
+                                        <img src="/uploads/<%= element.Route %>/<%= element.Name %>" alt="Reference">
+                                        <% if (UserType===1) { %>
+                                            <div  class="reveza">
+                                                <label onclick="filesDelete('<%= element.id %>','<%= element.Type %>','<%= element.Name %>','<%= element.Route %>')" >
+                                                    <ion-icon class="revezaIon" name="trash-outline"></ion-icon>
+                                                </label>
+                                            </div>
+                                        <% } %>
+                                    <% } %>
+                                <% }) %>
+                            </div>
+                            <% if (project.Status == '9') { %>
+                                <div class="nextStatus">
+                                    <label class="button" style="background-color: #18a206; border-color: #18a206;" onclick="statusupdate(10)">Finalizar Etapa</label>
+                                </div>
+                            <% } %>
+                        <% } %>
+                    </div>
+                    <div class="statusTecnico">
+                        <% if (project.Status >= 10 && project.Status < 12) { %>
+                            <div class="titleEtaps">
+                                <div class="fafa">
+                                    <span>Detalhamento Tecnico</span>
+                                </div>
+                                <div class="inputsText">
+                                    <% if (UserType===1) { %>
+                                        <label for="fileTecnico" class="button">Adicionar Midia</label>
+                                        <div class="description" id="descriptionTecnico"></div>
+                                    <% } %></div>
+                                </div>
+                                <div class="text">
+                                    <p>Desenho técnico da marcenaria planejada para execução</p>
+                                </div>
+                            <% if (project.Prancha != null) { %>
+                                <div class="button" style="background-color: transparent; border-color: white; width: 100px;">
+                                    <a style="color: white;" href="/uploads/<%= project.FileRoute %>/<%= project.Prancha %>" download="Project_<%= project.Prancha %>">Download projeto</a>
+                                </div>
+                            <% } %>
+                            <% if (project.Status == '10') { %>
+                                <div class="nextStatus">
+                                    <label class="button" style="background-color: #18a206; border-color: #18a206;" onclick="statusupdate(11)">Finalizar Projeto</label>
+                                </div>
+                            <% } %>
+                        <% } %>
+                    </div>
+                    <div class="BlockBotton">
+                        <% if (UserType===1) { %>
+                            <button class="Atualizar" type="submit">Atualizar</button>
+                        <% } %>
+                    </div>
+                </div>
+                <% if (UserType===1) { %>
+                    <input accept=".pdf" onchange="showFileName(this,'descriptionTecnico')" type="file" class="input-file" id="fileTecnico" name="fileTecnico">
+                    <input accept="image/*" onchange="showFileName(this,'descriptionMarcenaria')" type="file" class="input-file" id="fileMarcenaria" name="fileMarcenaria">
+                    <input accept="image/*" onchange="showFileName(this,'descriptionModeling')" type="file" class="input-file" id="fileModeling" name="fileModeling">
+                    <input accept="image/*" onchange="showFileName(this,'descriptionRender')" type="file" class="input-file" id="fileRender" name="fileRender">
+                    <input accept="image/*" onchange="showFileName(this,'descriptionPlanta')" type="file" class="input-file" id="filePlanta" name="filePlanta">
+                    <input accept=".pdf" onchange="showFileName(this,'descriptionTecnico')" type="file" class="input-file" id="fileTecnico" name="fileTecnico">
+                    <input accept="image/*" onchange="showFileName(this,'descriptionLayout')" type="file" class="input-file" id="fileLayout" name="fileLayout">
+                <% } %>
+            </form>
+            <% if (UserType===1) { %>
+                <div id="modal" class="modal modalNone">
+                    <div class="modal-content">
+                        <span id="close" class="close">&times;</span>
+                        <form id="formWork">
+                            <div class="formModal">
+                                <div class="acabImag">
+                                    <div class="description" id="descriptionWork"></div>
+                                    <label for="fileWork" class="button">Adicionar Midia</label>
+                                    <input required accept="image/*" onchange="showFileName(this,'descriptionWork')" type="file" class="input-file" id="fileWork" name="fileWork">
+                                </div>
+                                <div class="acabInputs">
+                                    <select  class="input" name="acabType" id="acabType">
+                                        <option style="color: black;" value="Marcenaria">Marcenaria</option>
+                                        <option style="color: black;" value="Revestimento">Revestimento</option>
+                                    </select>
+                                    <input required autocomplete="off"  class="input" id="acabName" name="acabName" placeholder="Nome" type="text">
+                                    <input required autocomplete="off" class="input" id="acabCode" name="acabCode" placeholder="Codigo" type="text">
+                                    <input required autocomplete="off" class="input" id="acabBrand" name="acabBrand" placeholder="Marca" type="text">
+                                </div>
+                            </div>
+                            <div class="P">
+                                <button type="submit" class="buttonWork">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="modalApi" class="modal modalNone">
+                    <div class="modal-content">
+                        <span id="closeApi" class="close">&times;</span>
+                        <div class="apiDiv">
+                            <form id="formApi">
+                                <div class="formModal">
+                                    <div class="">
+                                        <input value="<%= project.RenderApi %>" class="input" type="text" id="renderApi" name="renderApi" placeholder="Api">
+                                    </div>
+                                </div>
+                                <div class="P">
+                                    <button type="submit" class="buttonWork">Enviar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/script/project.js"></script>
+<script>
+const approval = document.getElementById('approval');
+const reject = document.getElementById('reject');
+//Axios Approval
+approval.addEventListener('click', async (event) => {
+    event.preventDefault()
+
+    try {
+        axios.post('/project/edit/approve', {
+            projectId: document.getElementById('projectId').value,
+            approval: 2,
+        });
+
+        window.location.reload();
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+reject.addEventListener('click', async (event) => {
+
+    event.preventDefault()
+
+    try {
+        axios.post('/project/edit/approve', {
+            projectId: document.getElementById('projectId').value,
+            approval: 1,
+        });
+
+        window.location.reload();
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+</script>
+</html>

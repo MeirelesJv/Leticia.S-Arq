@@ -12,23 +12,23 @@
         <div class="block-top">
             <div class="left">
                 <img src="Portfolio/0. Logo.png" alt="">
-                <div class="center">
-                    <p>Leticia S.</p>
-                    <p>Arquitetura</p>
-                </div>
             </div>
             <div class="rigth">
                 <div class="user">
                     <div class="name">
-                        <p>João Vitor</p>
-                        <p>Meireles</p>
+                        <p>
+                            <%= User.Name %>
+                        </p>
+                        <p>
+                            <%= User.Surname %>
+                        </p>
                     </div>
-                    <ion-icon style="font-size: 40px;" name="person-circle-outline"></ion-icon>
+                    <ion-icon style="font-size: 50px;" name="person-circle-outline"></ion-icon>
                 </div>
                 <div class="rightSecond">
-                    <a href="/logout"><ion-icon style="font-size: 20px;" name="log-out-outline"></ion-icon></a>
+                    <a href="/logout"><ion-icon style="font-size: 30px;" name="log-out-outline"></ion-icon></a>
                 </div>
-                
+
             </div>
         </div>
         <div class="block-bot">
@@ -38,36 +38,44 @@
                 </div>
                 <div class="newProject">
                     <a href="/new/project">
-                    <button class="button">
-                        Novo Projeto
-                        <svg fill="currentColor" viewBox="0 0 24 24" class="icon">
-                          <path clip-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z" fill-rule="evenodd"></path>
-                        </svg>
-                      </button>
+                        <button class="button">
+                            Novo Projeto
+                            <svg fill="currentColor" viewBox="0 0 24 24" class="icon">
+                                <path clip-rule="evenodd"
+                                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z"
+                                    fill-rule="evenodd"></path>
+                            </svg>
+                        </button>
                     </a>
                 </div>
             </div>
             <div class="projects">
-                <div class="box">
-                    <div class="box-content">
-                        <div class="box-header">
-                            <h3>Projeto Master Chef</h3>
-                            <div class="status">
-                                <span>Aberto</span>
+                <% project.forEach(project => { %>
+                    <% if (cliente === 1 || clienteId === project.UserId) { %>
+                        <a href="/project/<%= project.Uuid %>">
+                            <div class="project">
+                                <div class="title">
+                                    <%- truncate(project.Name, 20) %>
+                                </div>
+                                <% if (project.ImgPrinc != null) { %>
+                                    <img src="/uploads/<%= project.FileRoute %>/<%= project.ImgPrinc %>" alt="Projeto">
+                                <% }else { %>
+                                    <img src="background.png" alt="">
+                                <% } %>
                             </div>
-                        </div>
-                        <div class="box-body">
-
-                        </div>
-                        <div class="box-footer">
-
-                        </div>
-                    </div>
-                </div>
+                        </a>
+                    <% } %>
+                <% }) %>
             </div>
         </div>
     </div>
 </body>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<% function truncate(text, maxLength) {
+    return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+    } 
+%>
+
 </html>
