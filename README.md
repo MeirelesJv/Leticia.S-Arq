@@ -33,7 +33,6 @@ de projetos Freelances
   - JavaScript
 - Abertura e acompanhamento de serviços Freelancers
   - NodeJs
-  - 
 
 ## <a name="Dependencias"> Dependencias
 
@@ -44,7 +43,9 @@ de projetos Freelances
 - Ejs
 - Express
 - Jsonwebtoken
+- Multer
 - Nodemailer
 - Sequelize
+- sharp
 - Tedious
 - Uuid
