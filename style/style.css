@@ -150,6 +150,8 @@ body::-webkit-scrollbar {
                     background-color: #414B3B;
                     font-size: 15px;
                     color: hsl(0, 0%, 100%);
+                    font-family: Montserrat;
+                    font-weight: 400;
                 }
             }
         }
