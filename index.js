@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const connection = require("./database/database");
 const session = require("express-session");
+const key = require("./Keys");
 
 app.use(express.static('style'));
 
@@ -15,7 +16,7 @@ app.use(bodyParser.json());
 
 //session
 app.use(session({
-    secret: "imrpivarv4094cl", cookie:{maxAge: null}
+    secret: key.sessionPassword, cookie:{maxAge: null}
 }))
 
 

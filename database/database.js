@@ -1,5 +1,7 @@
 const sequelize = require("sequelize");
-const connection = new sequelize('LeticiaSArq','sa','J0@0V1T0Rjvv',{
+const key = require('../Keys');
+
+const connection = new sequelize('LeticiaSArq','sa',key.databasePassword,{
     host: 'localhost',
     dialect: 'mssql',
     timezone: '-03:00',

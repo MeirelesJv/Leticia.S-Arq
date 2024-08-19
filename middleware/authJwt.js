@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const JWTSecret = 'bamlrçdkgmnaerçnoht'
+const key = require('../Keys')
+const JWTSecret = key.JWTSecret
 
 function authJWT(req, res, next) {
     const authToken = req.session.tokenn

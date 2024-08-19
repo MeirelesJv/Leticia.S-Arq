@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+const key = require('../../Keys');
 
 let transporter = nodemailer.createTransport({
     host: "smtp-mail.outlook.com",
@@ -8,10 +9,10 @@ let transporter = nodemailer.createTransport({
       ciphers: "SSLv3",
     },
     auth: {
-        user: "meirelesdev@hotmail.com",
-        pass: "j0@0v1t0r"
+        user: key.Email,
+        pass: key.emailPassword
     },
-    from: "meirelesdev@hotmail.com",
+    from: key.Email,
 });
 
 module.exports = transporter;

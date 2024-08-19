@@ -7,8 +7,9 @@ const envioEmail = require("./Email/email");
 const {  v4 : uuidv4  } = require("uuid");
 const userOn = require("../middleware/userOn");
 const jwt = require("jsonwebtoken");
+const key = require('../Keys');
 
-const JWTSecret = 'bamlrçdkgmnaerçnoht'
+const JWTSecret = key.JWTSecret
 
 router.get("/login",userOn, (req,res)=>{
     res.render("users/login");
